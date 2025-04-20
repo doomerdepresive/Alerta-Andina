@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <!-- Importante para responsive -->
+  <title>SENAMHI - Sistema de Alerta Temprana</title>  <!-- Título más descriptivo -->
+  
+  <!-- Font Awesome para los iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" />
+  
+  <!-- Precarga de recursos importantes -->
+  <link rel="preload" href="/src/main.jsx" as="script">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Fallback para navegadores sin JS -->
+  <noscript>
+    <h1 style="text-align: center; padding: 2rem;">
+      ⚠️ Por favor habilita JavaScript para usar esta aplicación
+    </h1>
+  </noscript>
+</body>
+</html>

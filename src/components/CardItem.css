@@ -1,0 +1,26 @@
+.card-item {
+    min-width: 300px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    scroll-snap-align: start;
+    text-align: center;
+  }
+  
+  .card-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-image {
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .card-title {
+    padding: 10px;
+    font-weight: bold;
+  }
+  

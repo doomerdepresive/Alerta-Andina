@@ -1,0 +1,119 @@
+/* src/components/Navbar.css */
+.navbar {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8f9fa;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 5%;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-container h1 {
+  color: #1a365d;
+  font-size: 1.4rem;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.logo {
+  height: 50px;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  background: #2c5282;
+}
+
+.menu-items {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+/* Estilo unificado para todos los elementos del menú */
+.menu-items > * {
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-items > *:hover {
+  background: #1a365d;
+}
+
+/* Estilo específico para el dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-btn i {
+  font-size: 0.8em;
+  transition: transform 0.3s;
+}
+
+.dropdown:hover .dropdown-btn i {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  position: absolute;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border-radius: 0 0 5px 5px;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content a {
+  color: #2d3748;
+  padding: 12px 16px;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background: #ebf8ff;
+}
+
+.alerts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  background: #fff3cd;
+}
+
+.alert {
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+
+.meteorologica { background: #ff9800; }
+.hidrologica { background: #4fc3f7; }

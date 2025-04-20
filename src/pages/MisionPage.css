@@ -1,0 +1,86 @@
+/* src/pages/MisionPage.css */
+
+/* Estilo general para contenedores de página (puedes mover a App.css si aplica a todas) */
+.page-container {
+  padding: 40px 20px; /* Espaciado superior/inferior y lateral */
+  background-color: #ffffff; /* Fondo blanco por defecto */
+  /* Calcula altura mínima restando aprox. altura de navbar y footer */
+  /* Ajusta '150px' si la altura combinada de tu navbar+footer es diferente */
+  min-height: calc(100vh - 150px);
+  box-sizing: border-box;
+}
+
+/* Estilo específico para la página Misión */
+.mision-page {
+  display: flex; /* Activa Flexbox */
+  justify-content: space-between; /* Empuja decoraciones a los lados */
+}
+
+/* Contenedor del texto principal */
+.mision-page .main-content {
+  flex-grow: 1; /* Permite que ocupe el espacio central */
+  max-width: 800px; /* Ancho máximo del texto */
+  margin: 0 auto; /* Centra el bloque si es más estrecho */
+  padding: 0 30px; /* Espacio entre texto y decoraciones */
+  box-sizing: border-box;
+}
+
+/* Título "MISIÓN" */
+.mision-page .page-title {
+  text-align: center;
+  color: #1a2a56; /* Azul oscuro */
+  font-size: 2rem; /* Tamaño del título */
+  margin-bottom: 30px; /* Espacio debajo */
+  font-weight: 600; /* Semi-negrita */
+}
+
+/* Párrafo de texto */
+.mision-page .page-text {
+  text-align: justify; /* Texto justificado */
+  line-height: 1.7; /* Espaciado entre líneas */
+  color: #333; /* Gris oscuro */
+  font-size: 1rem;
+}
+
+/* Decoraciones laterales */
+.mision-page .side-decoration {
+  flex-basis: 55px; /* Ancho de las barras laterales */
+  flex-shrink: 0; /* No encoger */
+
+  /* OPCIÓN A: Usar una imagen de fondo repetida */
+  /* background-image: url('/images/patron-ondas.png'); /* Asegúrate que la imagen esté en public/images/ */
+  /* background-repeat: repeat-y; */
+  /* background-position: center top; */
+  /* background-size: contain; /* O 'auto', ajusta según tu imagen */
+
+  /* OPCIÓN B: Usar un color placeholder si no tienes imagen */
+   background-color: #e8f0f5; /* Azul muy pálido */
+
+  /* OPCIÓN C: Ocultarlas si no las quieres por ahora */
+  /* display: none; */
+}
+
+/* Ocultar decoraciones en pantallas pequeñas */
+@media (max-width: 900px) {
+  .mision-page .side-decoration {
+    display: none;
+  }
+  .mision-page .main-content {
+    max-width: 95%; /* Ocupar más ancho */
+    padding: 0 15px; /* Menos padding */
+  }
+}
+
+/* Ajustes adicionales para móviles */
+@media (max-width: 600px) {
+  .page-container.mision-page { /* Aplica también al contenedor general */
+     padding: 25px 15px;
+  }
+  .mision-page .page-title {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+  .mision-page .page-text {
+    font-size: 0.95rem;
+  }
+}
