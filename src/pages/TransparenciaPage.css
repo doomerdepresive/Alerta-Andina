@@ -1,0 +1,51 @@
+.page-container.transparencia-page {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .page-title {
+    color: #2e4a6d;
+    margin-bottom: 20px;
+  }
+  
+  .intro {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #444;
+  }
+  
+  .tabla-documentos {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 700px;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+  
+  .tabla-documentos th,
+  .tabla-documentos td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tabla-documentos th {
+    background-color: #f5f8fa;
+    text-align: left;
+  }
+  
+  .btn-descargar {
+    background-color: #4caf50;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .btn-descargar:hover {
+    background-color: #388e3c;
+  }
+  

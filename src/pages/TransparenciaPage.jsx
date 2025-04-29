@@ -1,30 +1,34 @@
 import React from "react";
-import "./MisionPage.css";
+import "./TransparenciaPage.css";
 
 function TransparenciaPage() {
+  const documentos = [
+    { titulo: "Informe de Gestión 2024", enlace: "#" },
+    { titulo: "Auditoría Interna", enlace: "#" },
+    { titulo: "Contrataciones y licitaciones", enlace: "#" }
+  ];
+
   return (
-    <div className="page-container mision-page">
-      <div className="side-decoration left-decoration"></div>
+    <div className="page-container transparencia-page">
+      <h1 className="page-title">📑 Transparencia</h1>
+      <p className="intro">Consulta aquí los documentos públicos, informes, auditorías y contrataciones del sistema.</p>
 
-      <main className="main-content">
-        <h1 className="page-title">TRANSPARENCIA</h1>
-        <p className="page-text">
-          En cumplimiento con la normativa vigente, el SENAMHI pone a disposición de la ciudadanía
-          la información pública relacionada con la gestión institucional:
-        </p>
-        <ul className="page-text">
-          <li>Planificación estratégica y operativa</li>
-          <li>Informes de ejecución presupuestaria</li>
-          <li>Contrataciones y adquisiciones</li>
-          <li>Rendición de cuentas</li>
-          <li>Informes de auditoría</li>
-        </ul>
-        <p className="page-text">
-          Para mayor información puedes visitar el portal de transparencia institucional.
-        </p>
-      </main>
-
-      <div className="side-decoration right-decoration"></div>
+      <table className="tabla-documentos">
+        <thead>
+          <tr>
+            <th>📄 Documento</th>
+            <th>📥 Descargar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {documentos.map((doc, index) => (
+            <tr key={index}>
+              <td>{doc.titulo}</td>
+              <td><a href={doc.enlace} className="btn-descargar">Ver PDF</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
