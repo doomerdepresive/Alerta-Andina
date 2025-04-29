@@ -1,0 +1,70 @@
+.weather-widget {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.current-weather {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.current-weather h2 {
+    color: #1a4b84;
+    margin-bottom: 1rem;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.temperature {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1a4b84;
+}
+
+.weather-details {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.weather-details p {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.forecast h3 {
+    color: #1a4b84;
+    margin-bottom: 1rem;
+}
+
+.forecast-list {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.forecast-item {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: #f5f7fa;
+}
+
+.forecast-item img {
+    width: 40px;
+    height: 40px;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}

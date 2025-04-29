@@ -1,0 +1,78 @@
+.disaster-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.disaster-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.disaster-card:hover {
+    transform: translateY(-5px);
+}
+
+.disaster-icon {
+    width: 60px;
+    height: 60px;
+    background: #1a4b84;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.disaster-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.disaster-card h3 {
+    color: #1a4b84;
+    margin-bottom: 1rem;
+}
+
+.disaster-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.affected-areas,
+.preventive-measures {
+    margin-top: 1.5rem;
+}
+
+.affected-areas h4,
+.preventive-measures h4 {
+    color: #1a4b84;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.affected-areas ul,
+.preventive-measures ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.affected-areas li,
+.preventive-measures li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.affected-areas li:before,
+.preventive-measures li:before {
+    content: '•';
+    color: #1a4b84;
+    position: absolute;
+    left: 0;
+}
