@@ -23,7 +23,7 @@ function Navbar() {
         </Link>
 
         <h1 className="site-title">
-          SERVICIO NACIONAL DE METEOROLOGÍA E HIDROLOGÍA
+          ALERTA ANDINA
         </h1>
 
         <img src="/images/logo-bolivia.png" alt="Bolivia" className="logo" />
@@ -102,6 +102,12 @@ function Navbar() {
           </Link>
         </div>
       </nav>
+      <div className="login-button-wrapper">
+        <Link to="/login" className="login-button">
+          <i className="fas fa-user"></i>
+          <span>Admin</span>
+        </Link>
+      </div>
     </header>
   );
 }

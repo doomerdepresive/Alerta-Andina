@@ -1,0 +1,116 @@
+/* Estilos de impresión para la plantilla del reporte */
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        background: white;
+    }
+
+    .plantilla-reporte {
+        width: 210mm;
+        height: 297mm;
+        padding: 25mm;
+        box-sizing: border-box;
+        page-break-after: always;
+    }
+
+    .plantilla-reporte h3,
+    .plantilla-reporte h4,
+    .plantilla-reporte h5 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #1a4b84;
+    }
+
+    .plantilla-reporte table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .plantilla-reporte th,
+    .plantilla-reporte td {
+        border: 1px solid #ccc;
+        padding: 6px;
+        text-align: left;
+        font-size: 11px;
+    }
+
+    .plantilla-reporte .reporte-encabezado {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .plantilla-reporte .reporte-encabezado img.logo-report {
+        height: 60px;
+        margin-right: 1rem;
+    }
+
+    .plantilla-reporte .charts-container {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .plantilla-reporte .chart-card {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* Estilos en pantalla para vista previa */
+.plantilla-reporte {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    color: #333;
+}
+
+.reporte-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-report {
+    height: 60px;
+}
+
+.plantilla-reporte table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.plantilla-reporte th,
+.plantilla-reporte td {
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.plantilla-reporte h4 {
+    margin-top: 2rem;
+    color: #1a4b84;
+}
+
+.hidden-print {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}

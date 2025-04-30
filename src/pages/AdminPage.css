@@ -1,0 +1,59 @@
+.admin-container {
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    padding: 2rem;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.admin-header h1 {
+    color: #1a4b84;
+    font-size: 2rem;
+}
+
+.user-manager {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.user-manager h2 {
+    margin-bottom: 1rem;
+}
+
+.user-manager table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.user-manager th,
+.user-manager td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.user-manager select,
+.user-manager input[type="checkbox"] {
+    padding: 0.3rem;
+    font-size: 1rem;
+}
+
+.dashboard-link {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: #1a4b84;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}

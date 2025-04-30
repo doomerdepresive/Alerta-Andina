@@ -1,8 +1,7 @@
 // src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer"; // 👈 Asegúrate de importar el Footer
+import Layout from "./components/Layout";
 
 import HomePage from "./pages/HomePage";
 import MisionPage from "./pages/MisionPage";
@@ -17,30 +16,38 @@ import ContactoPage from "./pages/ContactoPage";
 import TransparenciaPage from "./pages/TransparenciaPage";
 import AlertaMeteorologicaPage from "./pages/AlertaMeteorologicaPage";
 import AlertaHidrologicaPage from "./pages/AlertaHidrologicaPage";
+import LoginPage from "./pages/LoginPage";
+import AdminPage from "./pages/AdminPage";
+import DashboardEstadisticas from './components/DashboardEstadisticas';
+
 
 function App() {
   return (
     <Router>
-      <Navbar />
-
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/mision" element={<MisionPage />} />
-        <Route path="/institucion/mision" element={<MisionPage />} />
-        <Route path="/institucion/vision" element={<VisionPage />} />
-        <Route path="/institucion/quienes-somos" element={<QuienesSomosPage />} />
-        <Route path="/institucion/que-hacemos" element={<QueHacemosPage />} />
-        <Route path="/meteorologia" element={<MeteorologiaPage />} />
-        <Route path="/clima" element={<ClimaPage />} />
-        <Route path="/hidrologia" element={<HidrologiaPage />} />
-        <Route path="/sistemas" element={<SistemasPage />} />
-        <Route path="/contacto" element={<ContactoPage />} />
-        <Route path="/transparencia" element={<TransparenciaPage />} />
-        <Route path="/alerta-meteorologica" element={<AlertaMeteorologicaPage />} />
-        <Route path="/alerta-hidrologica" element={<AlertaHidrologicaPage />} />
-      </Routes>
+        {/* Ruta protegida sin layout */}
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/estadisticas" element={<DashboardEstadisticas />} />
 
-      <Footer /> {/* 👈 Aquí el pie de página aparece en todas las rutas */}
+        {/* Rutas públicas con layout */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="mision" element={<MisionPage />} />
+          <Route path="institucion/mision" element={<MisionPage />} />
+          <Route path="institucion/vision" element={<VisionPage />} />
+          <Route path="institucion/quienes-somos" element={<QuienesSomosPage />} />
+          <Route path="institucion/que-hacemos" element={<QueHacemosPage />} />
+          <Route path="meteorologia" element={<MeteorologiaPage />} />
+          <Route path="clima" element={<ClimaPage />} />
+          <Route path="hidrologia" element={<HidrologiaPage />} />
+          <Route path="sistemas" element={<SistemasPage />} />
+          <Route path="contacto" element={<ContactoPage />} />
+          <Route path="transparencia" element={<TransparenciaPage />} />
+          <Route path="alerta-meteorologica" element={<AlertaMeteorologicaPage />} />
+          <Route path="alerta-hidrologica" element={<AlertaHidrologicaPage />} />
+          <Route path="login" element={<LoginPage />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }
