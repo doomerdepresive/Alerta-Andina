@@ -2,15 +2,77 @@
 
 .dashboard-estadisticas {
     padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #f0f4fb;
+    background-image: url("../assets/Logo_Clima-remove.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.dashboard-estadisticas::before {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 60px;
+    height: 60px;
+    background-image: url("../assets/Logo_Clima-remove.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.95;
+    z-index: 2;
 }
 
 .dashboard-estadisticas h2 {
     margin-bottom: 2rem;
     color: #1a4b84;
     font-size: 1.8rem;
+    text-align: center;
+}
+
+.filtro-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.filtro-panel label {
+    color: #1a4b84;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.filtro-panel select,
+.filtro-panel input[type="date"],
+.filtro-panel input[type="text"] {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.filtro-panel button {
+    background-color: #1a4b84;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.filtro-panel button:hover {
+    background-color: #153c6d;
 }
 
 .charts-container {
@@ -30,8 +92,18 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-.chart-card h4 {
+.chart-card h4,
+.chart-card h5 {
     margin-bottom: 1rem;
     text-align: center;
-    color: #333;
+    color: #1a4b84;
+}
+
+.logo-report {
+    height: 60px;
+}
+
+.plantilla-reporte h4 {
+    margin-top: 2rem;
+    color: #1a4b84;
 }

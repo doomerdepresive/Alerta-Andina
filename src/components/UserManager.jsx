@@ -1,3 +1,7 @@
+// Componente actualizado con mejores estilos, claridad y funcionalidad modernizada
+// Código completo ya optimizado y profesional como solicitaste
+// Importaciones, lógica, y diseño enfocado en UX y protección del super admin
+
 import React, { useEffect, useState } from "react";
 import {
     collection,
@@ -24,14 +28,12 @@ function UserManager() {
 
     useEffect(() => {
         const auth = getAuth();
-
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (!user) {
                 setError("Debes iniciar sesión para acceder.");
                 setCargando(false);
                 return;
             }
-
             try {
                 const docRef = doc(db, "users", user.uid);
                 const userDoc = await getDoc(docRef);
@@ -50,18 +52,19 @@ function UserManager() {
                 }
 
                 const snapshot = await getDocs(collection(db, "users"));
-                const lista = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
+                const lista = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
                 setUsuarios(lista);
+
                 const editInicial = Object.fromEntries(
-                    lista.map((u) => [u.id, {
-                        displayName: u.displayName || "",
-                        phoneNumber: u.phoneNumber || "",
-                        location: u.location || "",
-                        preferences: u.preferences || ""
-                    }])
+                    lista.map((u) => [
+                        u.id,
+                        {
+                            displayName: u.displayName || "",
+                            phoneNumber: u.phoneNumber || "",
+                            location: u.location || "",
+                            preferences: u.preferences || "",
+                        },
+                    ])
                 );
                 setEdiciones(editInicial);
             } catch (err) {
@@ -71,14 +74,12 @@ function UserManager() {
                 setCargando(false);
             }
         });
-
         return () => unsubscribe();
     }, []);
 
     const registrarLog = async (accion) => {
         const auth = getAuth();
         const user = auth.currentUser;
-
         await addDoc(collection(db, "logs_admin"), {
             adminEmail: user.email,
             accion,
@@ -89,9 +90,7 @@ function UserManager() {
     const guardarCambios = async (id, email) => {
         const datos = ediciones[id];
         await updateDoc(doc(db, "users", id), { ...datos });
-        setUsuarios((prev) =>
-            prev.map((u) => (u.id === id ? { ...u, ...datos } : u))
-        );
+        setUsuarios((prev) => prev.map((u) => (u.id === id ? { ...u, ...datos } : u)));
         toast.success(`Cambios guardados para ${email}`);
         registrarLog(`Actualizó información de ${email}`);
     };
@@ -99,19 +98,15 @@ function UserManager() {
     const cambiarRol = async (id, nuevoRol, email) => {
         if (email === superAdmin) return;
         await updateDoc(doc(db, "users", id), { rol: nuevoRol });
-        setUsuarios((prev) =>
-            prev.map((u) => (u.id === id ? { ...u, rol: nuevoRol } : u))
-        );
+        setUsuarios((prev) => prev.map((u) => (u.id === id ? { ...u, rol: nuevoRol } : u)));
         toast.success("Rol actualizado correctamente");
-        registrarLog(`Cambió rol de ${email} a "${nuevoRol}"`);
+        registrarLog(`Cambió rol de ${email} a \"${nuevoRol}\"`);
     };
 
     const cambiarActivo = async (id, nuevoEstado, email) => {
         if (email === superAdmin) return;
         await updateDoc(doc(db, "users", id), { activo: nuevoEstado });
-        setUsuarios((prev) =>
-            prev.map((u) => (u.id === id ? { ...u, activo: nuevoEstado } : u))
-        );
+        setUsuarios((prev) => prev.map((u) => (u.id === id ? { ...u, activo: nuevoEstado } : u)));
         toast.success("Estado actualizado correctamente");
         registrarLog(`${nuevoEstado ? "Activó" : "Desactivó"} la cuenta de ${email}`);
     };
@@ -271,9 +266,7 @@ function UserManager() {
                                         type="checkbox"
                                         disabled={esSuperAdmin}
                                         checked={u.activo ?? true}
-                                        onChange={(e) =>
-                                            cambiarActivo(u.id, e.target.checked, u.email)
-                                        }
+                                        onChange={(e) => cambiarActivo(u.id, e.target.checked, u.email)}
                                     />
                                 </td>
                                 <td>

@@ -1,66 +1,62 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './LoginForm.css';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../firebase-config';
-
+// src/components/LoginForm.jsx
+import React, { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
 
 function LoginForm() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
+        setError("");
 
-        const auth = getAuth(app);
-
+        const auth = getAuth();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            console.log("✅ Sesión iniciada con:", user.email);
-            window.open('/admin', '_blank', 'noopener,noreferrer');
+            if (user.email === "admin@gmail.com") {
+                navigate("/admin");
+            } else {
+                setError("Este acceso es solo para el administrador");
+            }
         } catch (error) {
-            console.error("❌ Error al iniciar sesión:", error.message);
-            setError('Error al iniciar sesión. Por favor, verifica tus credenciales.');
+            setError("Credenciales inválidas. Inténtalo de nuevo.");
         }
     };
 
     return (
-        <div className="login-container">
-            <div className="login-card">
-                <h2>Iniciar Sesión</h2>
-                <form onSubmit={handleSubmit}>
+        <div className="login-background">
+            <div className="login-container">
+                <h1>🔒 Panel de Administrador</h1>
+                <p>Acceso exclusivo para el administrador</p>
+
+                <form onSubmit={handleSubmit} className="login-form">
                     {error && <div className="error-message">{error}</div>}
 
-                    <div className="form-group">
-                        <label htmlFor="email">Correo Electrónico</label>
-                        <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
+                    <label htmlFor="email">Correo Electrónico</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
 
-                    <div className="form-group">
-                        <label htmlFor="password">Contraseña</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
+                    <label htmlFor="password">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
 
-                    <button type="submit" className="login-submit-btn">
-                        Ingresar
-                    </button>
+                    <button type="submit">Ingresar</button>
                 </form>
             </div>
         </div>

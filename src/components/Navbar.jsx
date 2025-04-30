@@ -19,14 +19,14 @@ function Navbar() {
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         <Link to="/" className="logo-link">
-          <img src="/images/logo-senamhi.png" alt="SENAMHI" className="logo" />
+          <img src="src\assets\Logo_Clima-remove.png" alt="SENAMHI" className="logo" />
         </Link>
 
         <h1 className="site-title">
           ALERTA ANDINA
         </h1>
 
-        <img src="/images/logo-bolivia.png" alt="Bolivia" className="logo" />
+        <img src="src\assets\Logo_Clima-remove.png" alt="Bolivia" className="logo" />
 
         <button
           className={`mobile-menu-button ${isMobileMenuOpen ? 'active' : ''}`}
