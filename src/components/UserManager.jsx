@@ -154,7 +154,7 @@ function UserManager() {
     return (
         <div className="user-manager">
             <Toaster position="top-right" />
-            <h2>Gestión de Usuarios</h2>
+            <h2>Lista de Usuarios</h2>
 
             <div className="top-controls">
                 <input
