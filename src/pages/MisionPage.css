@@ -1,86 +1,203 @@
-/* src/pages/MisionPage.css */
+/* MisionPage.css - Estilo elegante y profesional */
 
-/* Estilo general para contenedores de página (puedes mover a App.css si aplica a todas) */
-.page-container {
-  padding: 40px 20px; /* Espaciado superior/inferior y lateral */
-  background-color: #ffffff; /* Fondo blanco por defecto */
-  /* Calcula altura mínima restando aprox. altura de navbar y footer */
-  /* Ajusta '150px' si la altura combinada de tu navbar+footer es diferente */
-  min-height: calc(100vh - 150px);
-  box-sizing: border-box;
-}
-
-/* Estilo específico para la página Misión */
 .mision-page {
-  display: flex; /* Activa Flexbox */
-  justify-content: space-between; /* Empuja decoraciones a los lados */
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  overflow: hidden;
 }
 
-/* Contenedor del texto principal */
+/* Contenido principal */
 .mision-page .main-content {
-  flex-grow: 1; /* Permite que ocupe el espacio central */
-  max-width: 800px; /* Ancho máximo del texto */
-  margin: 0 auto; /* Centra el bloque si es más estrecho */
-  padding: 0 30px; /* Espacio entre texto y decoraciones */
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 3.5rem 4rem;
   box-sizing: border-box;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(26, 42, 86, 0.08);
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
-/* Título "MISIÓN" */
+.mision-page .content-wrapper {
+  position: relative;
+  padding: 1rem;
+}
+
+/* Título con decoración */
 .mision-page .page-title {
   text-align: center;
-  color: #1a2a56; /* Azul oscuro */
-  font-size: 2rem; /* Tamaño del título */
-  margin-bottom: 30px; /* Espacio debajo */
-  font-weight: 600; /* Semi-negrita */
+  color: #1a2a56;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
-/* Párrafo de texto */
+.mision-page .title-decoration {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #1a2a56, transparent);
+  width: 60px;
+  display: block;
+}
+
+/* Divisor elegante debajo del título */
+.mision-page .divider {
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.mision-page .divider::before {
+  content: "";
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(26, 42, 86, 0.2), transparent);
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+.mision-page .divider-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid rgba(26, 42, 86, 0.2);
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.mision-page .divider-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #1a2a56;
+  opacity: 0.6;
+  border-radius: 50%;
+}
+
+/* Texto principal */
 .mision-page .page-text {
-  text-align: justify; /* Texto justificado */
-  line-height: 1.7; /* Espaciado entre líneas */
-  color: #333; /* Gris oscuro */
-  font-size: 1rem;
+  color: #333;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  text-align: justify;
+  margin: 0;
+  padding: 0 1rem;
 }
 
 /* Decoraciones laterales */
 .mision-page .side-decoration {
-  flex-basis: 55px; /* Ancho de las barras laterales */
-  flex-shrink: 0; /* No encoger */
-
-  /* OPCIÓN A: Usar una imagen de fondo repetida */
-  /* background-image: url('/images/patron-ondas.png'); /* Asegúrate que la imagen esté en public/images/ */
-  /* background-repeat: repeat-y; */
-  /* background-position: center top; */
-  /* background-size: contain; /* O 'auto', ajusta según tu imagen */
-
-  /* OPCIÓN B: Usar un color placeholder si no tienes imagen */
-   background-color: #e8f0f5; /* Azul muy pálido */
-
-  /* OPCIÓN C: Ocultarlas si no las quieres por ahora */
-  /* display: none; */
+  flex-basis: 80px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: linear-gradient(to bottom, #f5f7fa, #ffffff);
+  position: relative;
 }
 
-/* Ocultar decoraciones en pantallas pequeñas */
+/* Elementos decorativos en las barras laterales */
+.mision-page .decoration-element {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(26, 42, 86, 0.15);
+  transform: rotate(45deg);
+  margin: 20px 0;
+  position: relative;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.mision-page .left-decoration .decoration-element {
+  background: linear-gradient(135deg, #e8f0f5, #ffffff);
+}
+
+.mision-page .right-decoration .decoration-element {
+  background: linear-gradient(135deg, #ffffff, #e8f0f5);
+}
+
+/* Efecto hover en los elementos decorativos */
+.mision-page .decoration-element:hover {
+  opacity: 1;
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* Media queries específicas */
+@media (max-width: 1200px) {
+  .mision-page .main-content {
+    max-width: 85%;
+    margin: 2rem auto;
+    padding: 3rem;
+  }
+}
+
 @media (max-width: 900px) {
+  .mision-page .side-decoration {
+    flex-basis: 60px;
+  }
+  
+  .mision-page .main-content {
+    max-width: 90%;
+    padding: 2.5rem;
+  }
+  
+  .mision-page .page-title {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mision-page .side-decoration {
+    flex-basis: 40px;
+  }
+  
+  .mision-page .decoration-element {
+    width: 20px;
+    height: 20px;
+    margin: 15px 0;
+  }
+  
+  .mision-page .main-content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
   .mision-page .side-decoration {
     display: none;
   }
+  
   .mision-page .main-content {
-    max-width: 95%; /* Ocupar más ancho */
-    padding: 0 15px; /* Menos padding */
+    max-width: 95%;
+    margin: 1rem auto;
+    padding: 1.5rem;
   }
-}
-
-/* Ajustes adicionales para móviles */
-@media (max-width: 600px) {
-  .page-container.mision-page { /* Aplica también al contenedor general */
-     padding: 25px 15px;
-  }
+  
   .mision-page .page-title {
-    font-size: 1.7rem;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    gap: 1rem;
   }
-  .mision-page .page-text {
-    font-size: 0.95rem;
+  
+  .mision-page .title-decoration {
+    width: 40px;
   }
 }

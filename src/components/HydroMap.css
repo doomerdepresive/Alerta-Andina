@@ -1,0 +1,23 @@
+.hydro-map-container {
+    height: 500px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .leaflet-container {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .leaflet-popup-content h3 {
+    color: #1a4b84;
+    margin-bottom: 0.5rem;
+  }
+  
+  .leaflet-popup-content p {
+    margin: 0.25rem 0;
+    color: #555;
+  }
+  

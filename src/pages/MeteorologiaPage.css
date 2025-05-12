@@ -1,0 +1,228 @@
+/* src/pages/MeteorologiaPage.css */
+.meteorologia-page {
+    padding: 1rem;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    font-family: Arial, sans-serif;
+    padding-top: 80px; /* Ajusta este valor según la altura REAL de tu navbar (ej: 60px, 70px, etc.) */
+  }
+  
+  .with-navbar {
+    padding-top: 0; /* Elimina el padding duplicado */
+  }
+  
+  .contenido {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .titulo {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .subtitulo {
+    color: #7f8c8d;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .selector-ciudades {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .boton-ciudad {
+    background-color: #f8f9fa;
+    border: 1px solid #dfe4ea;
+    border-radius: 4px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .boton-ciudad:hover {
+    background-color: #f1f2f6;
+    border-color: #ced6e0;
+  }
+  
+  .boton-ciudad.seleccionada {
+    background-color: #34495e;
+    color: white;
+    border-color: #2c3e50;
+    font-weight: 500;
+  }
+  
+  .cargando {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    color: #455a64;
+  }
+  
+  /* Tarjeta del clima actual */
+  .clima-actual-card {
+    background-color: #87CEFA;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .clima-info {
+    text-align: center;
+  }
+  
+  .clima-condicion {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .clima-temperatura {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+  
+  .icono-clima {
+    font-size: 3rem;
+    margin-right: 1rem;
+  }
+  
+  .temperatura-actual {
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
+  
+  .clima-detalles {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+  }
+  
+  .detalle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Pronóstico semanal */
+  .pronostico-semanal {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+    padding-bottom: 1rem;
+  }
+  
+  .dia-pronostico {
+    min-width: 135px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .dia-actual {
+    background-color: #f0f8ff;
+    border: 1px solid #d1e3f6;
+  }
+  
+  .dia-header {
+    margin-bottom: 0.5rem;
+  }
+  
+  .dia-nombre {
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  
+  .dia-fecha {
+    color: #777;
+    font-size: 0.85rem;
+  }
+  
+  .dia-icono {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+  }
+  
+  .dia-lluvia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #555;
+    font-size: 0.85rem;
+  }
+  
+  .dia-temperatura {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .temp-max {
+    color: #e74c3c;
+    font-weight: bold;
+  }
+  
+  .temp-min {
+    color: #3498db;
+  }
+  
+  .dia-viento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  .viento-direccion {
+    margin-bottom: 0.25rem;
+  }
+  
+  .flecha {
+    font-size: 1.2rem;
+    color: #2980b9;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .pronostico-semanal {
+      gap: 0.25rem;
+    }
+    
+    .dia-pronostico {
+      min-width: 110px;
+      padding: 0.75rem;
+    }
+    
+    .icono-clima {
+      font-size: 2.5rem;
+    }
+    
+    .temperatura-actual {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .meteorologia-page {
+      padding-top: 70px; /* Ajuste para móviles */
+    }
+  }

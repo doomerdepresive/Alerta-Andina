@@ -1,3 +1,4 @@
+/* Navbar.css - Versión corregida */
 .navbar {
   position: fixed;
   width: 100%;
@@ -5,16 +6,19 @@
   z-index: 1000;
   background: linear-gradient(to right, #1a4b84, #2c5d99);
   transition: all 0.3s ease;
+  height: auto;
+  min-height: 80px;
 }
 
 .navbar.scrolled {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   background: rgba(26, 75, 132, 0.95);
   backdrop-filter: blur(10px);
+  min-height: 70px;
 }
 
 .header-container {
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,7 +68,7 @@
 }
 
 .main-menu {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 2rem 1rem; /* Añadido padding-bottom de 1rem */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -219,11 +223,9 @@
   0% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(1.02);
   }
-
   100% {
     transform: scale(1);
   }
@@ -232,6 +234,14 @@
 @media (max-width: 1024px) {
   .site-title {
     font-size: 1.2rem;
+  }
+  
+  .header-container {
+    padding: 0.7rem 1.5rem;
+  }
+  
+  .main-menu {
+    padding: 0.5rem 1.5rem 0.8rem;
   }
 }
 
@@ -242,7 +252,7 @@
 
   .main-menu {
     position: absolute;
-    top: 100%;
+    top: 80px; /* Ajustado para coincidir con min-height del navbar */
     left: 0;
     right: 0;
     background: #1a4b84;
@@ -282,9 +292,7 @@
   .alert {
     justify-content: center;
   }
-}
-
-@media (max-width: 768px) {
+  
   .login-button {
     padding: 0.5rem;
   }
@@ -295,5 +303,19 @@
 
   .login-button i {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0.6rem 1rem;
+  }
+  
+  .site-title {
+    font-size: 1.1rem;
+  }
+  
+  .logo {
+    height: 40px;
   }
 }

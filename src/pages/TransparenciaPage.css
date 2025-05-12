@@ -1,0 +1,246 @@
+/* src/pages/TransparenciaPage.css */
+
+.transparencia-page {
+  position: relative;
+  padding: 0 0 2rem; /* solo padding bottom */
+  background-color: #f8f9fa;
+}
+
+.intro-section {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #343a40;
+  text-align: center;
+}
+
+.transparency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.transparency-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transparency-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.transparency-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  background-color: #e8f4fd;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  color: #0066cc;
+}
+
+.transparency-card h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #0066cc;
+}
+
+.transparency-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.sources-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sources-section h2 {
+  color: #0066cc;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.sources-section h2:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #0066cc;
+}
+
+.sources-list {
+  padding-left: 1.5rem;
+}
+
+.sources-list li {
+  margin-bottom: 1rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.sources-list strong {
+  color: #343a40;
+}
+
+.metrics-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.metrics-section h2 {
+  color: #0066cc;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.metrics-section h2:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #0066cc;
+}
+
+.metrics-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.metric-item {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 450px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.metric-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  background-color: #e8f4fd;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #0066cc;
+}
+
+.metric-info h4 {
+  color: #343a40;
+  margin-bottom: 0.5rem;
+}
+
+.metric-info p {
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.contact-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.contact-section h2 {
+  color: #0066cc;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.contact-section h2:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #0066cc;
+}
+
+.contact-section p {
+  text-align: center;
+  color: #495057;
+  margin-bottom: 1rem;
+}
+
+.disclaimer {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .transparency-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .metric-item {
+    width: 100%;
+  }
+}
+
+/* ✅ Ajuste para que .with-navbar funcione */
+.page-container.with-navbar {
+  padding-top: 160px;
+}
+
+@media (max-width: 768px) {
+  .page-container.with-navbar {
+    padding-top: 120px;
+  }
+}
+/* 🔧 Evita el margen superior automático del h1 */
+.transparencia-page h1 {
+  margin-top: 0;
+  padding-top: 0;
+}

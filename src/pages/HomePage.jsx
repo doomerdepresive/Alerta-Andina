@@ -45,7 +45,7 @@ function HomePage() {
   ];
 
   return (
-    <div className="home-page">
+    <div className="home-page with-navbar">
       <Slider />
 
       <div className="home-content">

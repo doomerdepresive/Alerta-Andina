@@ -121,3 +121,13 @@ button:hover {
   width: 100%;
   padding: 20px;
 }
+
+.with-navbar {
+  padding-top: 160px; /* Este valor ya cubre perfectamente tu navbar */
+}
+
+@media (max-width: 768px) {
+  .with-navbar {
+    padding-top: 120px; /* Para móviles */
+  }
+}

@@ -105,3 +105,7 @@ section h2::after {
         position: static;
     }
 }
+/* Evita espacio excesivo debajo del navbar solo aquí */
+.home-page.with-navbar {
+  padding-top: 20px; /* Asegúrate que no sea más de lo que mide tu navbar */
+}

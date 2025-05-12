@@ -1,0 +1,148 @@
+/* src/pages/QueHacemosPage.css */
+
+.que-hacemos-page {
+    position: relative;
+    padding: 2rem 0;
+    background-color: #f8f9fa;
+  }
+  
+  .intro-section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .intro-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #343a40;
+    text-align: center;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .service-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .service-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background-color: #e8f4fd;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    color: #0066cc;
+  }
+  
+  .service-card h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #0066cc;
+  }
+  
+  .service-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #495057;
+  }
+  
+  .data-sources-section,
+  .impact-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .data-sources-section h2,
+  .impact-section h2 {
+    color: #0066cc;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .data-sources-section h2:after,
+  .impact-section h2:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: #0066cc;
+  }
+  
+  .impact-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .impact-item {
+    text-align: center;
+  }
+  
+  .impact-item h4 {
+    color: #343a40;
+    margin-bottom: 0.5rem;
+  }
+  
+  .motto-section {
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .motto {
+    font-size: 1.5rem;
+    color: #0066cc;
+    font-weight: 300;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .impact-items {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .impact-items {
+      grid-template-columns: 1fr;
+    }
+    
+    .intro-text {
+      font-size: 1rem;
+    }
+    
+    .motto {
+      font-size: 1.2rem;
+    }
+  }

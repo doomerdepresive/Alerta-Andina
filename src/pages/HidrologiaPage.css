@@ -1,0 +1,324 @@
+/* HidrologiaPage.css - Estilos específicos para la página de hidrología */
+
+.hydrology-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+  }
+  
+  /* Header */
+  .hydrology-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .page-subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+  
+  /* Contenedor principal */
+  .hydrology-content {
+    display: grid;
+    grid-gap: 30px;
+  }
+  
+  /* Secciones generales */
+  .hydrology-content section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .hydrology-content h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eaeaea;
+  }
+  
+  /* Panel de estaciones */
+  .station-selector {
+    margin-bottom: 20px;
+  }
+  
+  .station-buttons {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    gap: 10px;
+  }
+  
+  .station-button {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 180px;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+  }
+  
+  .station-button.active {
+    background-color: #e9f3ff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .station-button:hover {
+    background-color: #e9f3ff;
+  }
+  
+  .station-status {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    font-weight: bold;
+  }
+  
+  /* Detalles de la estación */
+  .station-details {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+  }
+  
+  .station-details h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 1.3rem;
+  }
+  
+  .station-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  
+  .detail-card {
+    background-color: white;
+    border-radius: 6px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detail-title {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+  }
+  
+  .detail-value {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .capacity-card {
+    grid-column: 1 / -1;
+  }
+  
+  .capacity-indicator {
+    position: relative;
+    height: 20px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  
+  .capacity-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+  
+  .capacity-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #333;
+    font-size: 0.85rem;
+  }
+  
+  /* Mapa */
+  .hydrology-map-section {
+    min-height: 500px;
+  }
+  
+  .map-container {
+    height: 450px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #dee2e6;
+  }
+  
+  /* Datos históricos */
+  .data-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .data-button {
+    padding: 8px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .data-button.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+  }
+  
+  .chart-container {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+  }
+  
+  /* Alertas */
+  .alerts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+  }
+  
+  .alert-card {
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid;
+  }
+  
+  .alert-verde {
+    background-color: #d4edda;
+    border-color: #28a745;
+  }
+  
+  .alert-amarillo {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+  }
+  
+  .alert-rojo {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+  }
+  
+  .alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .alert-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  
+  .alert-time {
+    font-size: 0.8rem;
+    color: #6c757d;
+  }
+  
+  .alert-message {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  .no-alerts {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+  }
+  
+  /* Información adicional */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .info-card {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+  }
+  
+  .info-card h3 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .info-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #495057;
+  }
+  
+  /* Footer */
+  .hydrology-footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .station-details-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
+    
+    .alerts-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .station-buttons {
+      flex-direction: column;
+    }
+    
+    .station-button {
+      width: 100%;
+      min-width: auto;
+    }
+  }
+  
