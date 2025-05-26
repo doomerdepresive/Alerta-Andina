@@ -1,0 +1,278 @@
+.alerta-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.alerta-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.alerta-header h1 {
+    color: #1a4b84;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.descripcion {
+    color: #555;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.filtro-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filtro-seccion h2 {
+    color: #1a4b84;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.filtro-region {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filtro-region label {
+    font-weight: 600;
+    color: #333;
+}
+
+.filtro-region select {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: white;
+    font-size: 1rem;
+}
+
+.cargando {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.zonas-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.zonas-table-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.zonas-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.zonas-table th,
+.zonas-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.zonas-table th {
+    background-color: #f0f4f8;
+    color: #1a4b84;
+}
+
+.nivel-alto {
+    background-color: #ffebee;
+    color: #d32f2f;
+    font-weight: bold;
+  }
+  
+  .nivel-medio {
+    background-color: #fff3e0;
+    color: #f57c00;
+    font-weight: bold;
+  }
+  
+  .nivel-bajo {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    font-weight: bold;
+  }
+  
+
+.btn-detalles {
+    background-color: #1a4b84;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-detalles:hover {
+    background-color: #0d3b6f;
+}
+
+.no-data {
+    text-align: center;
+    padding: 1rem;
+    color: #666;
+}
+
+.pronostico-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pronostico-container h2 {
+    color: #1a4b84;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.pronostico-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.pronostico-indicadores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    flex: 2;
+}
+
+.indicador {
+    background-color: #f0f4f8;
+    padding: 1rem;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 180px;
+}
+
+.indicador h4 {
+    color: #1a4b84;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.pronostico-recomendaciones {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f6f8fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #1a4b84;
+}
+
+.pronostico-recomendaciones h4 {
+    color: #1a4b84;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.pronostico-recomendaciones ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.pronostico-recomendaciones li {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.recursos-adicionales {
+    padding: 1.5rem;
+}
+
+.recursos-adicionales h3 {
+    color: #1a4b84;
+    margin-bottom: 1rem;
+}
+
+.recursos-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.recurso-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f0f4f8;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #1a4b84;
+    text-decoration: none;
+    flex: 1;
+    min-width: 250px;
+    transition: all 0.3s ease;
+}
+
+.recurso-link:hover {
+    background-color: #e3f2fd;
+    transform: translateY(-3px);
+}
+
+.recurso-link i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .filtro-seccion {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .pronostico-info {
+        flex-direction: column;
+    }
+    
+    .alerta-header h1 {
+        font-size: 2rem;
+    }
+}
+.with-navbar {
+    padding-top: 130px; /* Ajusta si tu navbar tiene otra altura */
+  }
+  /* Aplica el color de fondo a toda la fila, no solo a la celda de nivel */
+.zonas-table tr.nivel-alto {
+    background-color: #ffebee;
+    color: #d32f2f;
+    font-weight: bold;
+  }
+  
+  .zonas-table tr.nivel-medio {
+    background-color: #fff3e0;
+    color: #f57c00;
+    font-weight: bold;
+  }
+  
+  .zonas-table tr.nivel-bajo {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    font-weight: bold;
+  }
+  

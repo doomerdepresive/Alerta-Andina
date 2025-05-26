@@ -1,0 +1,287 @@
+/* Estilos para el componente HydroStationInfo */
+
+.hydro-station-detail {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+  }
+  
+  .hydro-station-detail h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eaeaea;
+  }
+  
+  .station-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+  }
+  
+  @media (max-width: 992px) {
+    .station-dashboard {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Panel de métricas */
+  .metrics-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .metric-card {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .main-metric {
+    background-color: #e9f3ff;
+  }
+  
+  .metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .metric-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .metric-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .metric-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+  }
+  
+  .threshold-indicator {
+    position: relative;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin-top: 8px;
+    overflow: visible;
+  }
+  
+  .threshold-bar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .threshold-marker {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #3498db;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .threshold-alert, .threshold-danger {
+    position: absolute;
+    width: 2px;
+    height: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .threshold-alert {
+    background-color: #ffc107;
+  }
+  
+  .threshold-danger {
+    background-color: #dc3545;
+  }
+  
+  .secondary-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .secondary-metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .secondary-metrics .metric-card {
+    text-align: center;
+  }
+  
+  .secondary-metrics h4 {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #495057;
+  }
+  
+  .secondary-metrics .metric-value {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+  
+  .metric-subtext {
+    font-size: 0.8rem;
+    color: #6c757d;
+  }
+  
+  .metric-time {
+    font-size: 1.1rem;
+  }
+  
+  /* Gráficos históricos */
+  .historical-chart {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+  }
+  
+  .chart-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 576px) {
+    .chart-controls {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .control-group label {
+    font-size: 0.9rem;
+    color: #495057;
+  }
+  
+  .button-group {
+    display: flex;
+  }
+  
+  .button-group button {
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .button-group button:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .button-group button:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .button-group button.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+  }
+  
+  .chart-container {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+  }
+  
+  /* Estado de sensores */
+  .sensor-status {
+    margin-top: 20px;
+  }
+  
+  .sensor-status h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+  
+  .sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .sensor-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .sensor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .sensor-item.operational {
+    background-color: #d4edda;
+  }
+  
+  .sensor-item.maintenance {
+    background-color: #fff3cd;
+  }
+  
+  .sensor-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .sensor-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #2c3e50;
+  }
+  
+  .sensor-detail {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+  }
+  
+  .status-text {
+    margin-bottom: 3px;
+  }
+  
+  .battery-level {
+    color: #6c757d;
+  }

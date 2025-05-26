@@ -1,0 +1,69 @@
+/* src/components/UserReport.css */
+
+.user-report {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-report h2 {
+    margin-bottom: 1rem;
+    color: #1a4b84;
+}
+
+.report-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.report-filtros select,
+.report-filtros input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.report-filtros button {
+    background-color: #1a4b84;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.reporte-contenido table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.reporte-contenido th,
+.reporte-contenido td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.reporte-contenido th {
+    background-color: #f1f5fb;
+    color: #1a4b84;
+}
+
+.reporte-contenido tr:last-child td {
+    border-bottom: none;
+}
+
+.reporte-contenido p {
+    padding: 1rem;
+    color: #666;
+    font-style: italic;
+}

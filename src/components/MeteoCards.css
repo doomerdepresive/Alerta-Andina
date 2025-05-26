@@ -1,0 +1,91 @@
+/* src/components/MeteoCards.css */
+
+.meteo-cards-container {
+  margin: 1.5rem 0;
+}
+
+.meteo-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.meteo-card {
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.meteo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-titulo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.card-icono {
+  font-size: 1.5rem;
+}
+
+.card-valor {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.card-descripcion {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .meteo-cards {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  .meteo-card {
+    padding: 0.8rem;
+  }
+  
+  .card-valor {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .meteo-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  
+  .card-titulo {
+    font-size: 0.8rem;
+  }
+  
+  .card-icono {
+    font-size: 1.3rem;
+  }
+  
+  .card-descripcion {
+    font-size: 0.75rem;
+  }
+}

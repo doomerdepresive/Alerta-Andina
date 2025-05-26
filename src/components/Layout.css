@@ -1,0 +1,212 @@
+/* Layout.css - Estilos mejorados */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    margin-top: 140px; /* Ajusta este valor según la altura de tu navbar */
+    flex: 1;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos para el footer mejorado */
+  .footer {
+    background-color: #0a3056; /* Color azul oscuro más uniforme como en la imagen */
+    color: white;
+    width: 100%;
+    padding: 0;
+    margin-top: 40px;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 30px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 240px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+  }
+  
+  /* Estilos de títulos */
+  .footer-title {
+    color: #ffd700;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+  
+  .footer-title:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #ffd700;
+  }
+  
+  /* Estilos para los enlaces */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .footer-links li {
+    margin-right: 20px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+  
+  .footer-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-links a:hover {
+    color: #ffd700;
+  }
+  
+  .footer-links a i {
+    margin-right: 5px;
+    color: #ffd700;
+    font-size: 10px;
+  }
+  
+  /* Descripción del proyecto */
+  .footer-description {
+    color: #e0e0e0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    max-width: 350px;
+  }
+  
+  /* Información de contacto */
+  .contact-info {
+    margin-top: 10px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  
+  .contact-item i {
+    color: #ffd700;
+    margin-right: 10px;
+    font-size: 16px;
+    min-width: 16px;
+    margin-top: 3px;
+  }
+  
+  .contact-item span {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+  }
+  
+  /* Iconos sociales */
+  .social-icons {
+    display: flex;
+    margin-top: 20px;
+    gap: 15px;
+  }
+  
+  .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    background-color: #ffd700;
+    color: #0a3056;
+  }
+  
+  /* Footer bottom */
+  .footer-bottom {
+    background-color: #072542; /* Un poco más oscuro que el principal */
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+  }
+  
+  /* Ajustes para dispositivos móviles */
+  @media (max-width: 992px) {
+    .footer-container {
+      flex-wrap: wrap;
+    }
+    
+    .footer-section {
+      flex-basis: 50%;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      margin-top: 100px;
+    }
+    
+    .footer-section {
+      flex-basis: 100%;
+    }
+    
+    .footer-links {
+      flex-direction: column;
+    }
+    
+    .footer-links li {
+      margin-right: 0;
+    }
+    
+    .social-icons {
+      justify-content: flex-start;
+    }
+  }
+  
+  /* Enlaces rápidos en formato horizontal para pantallas grandes */
+  .quick-links-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .quick-links-container .link-group {
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Scroll suave entre secciones */
+  html {
+    scroll-behavior: smooth;
+  }

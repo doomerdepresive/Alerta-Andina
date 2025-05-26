@@ -1,86 +1,907 @@
-/* src/pages/MisionPage.css */
+/* MisionPage.css - Estilo Elegante y Sofisticado con Franjas Extendidas */
 
-/* Estilo general para contenedores de página (puedes mover a App.css si aplica a todas) */
-.page-container {
-  padding: 40px 20px; /* Espaciado superior/inferior y lateral */
-  background-color: #ffffff; /* Fondo blanco por defecto */
-  /* Calcula altura mínima restando aprox. altura de navbar y footer */
-  /* Ajusta '150px' si la altura combinada de tu navbar+footer es diferente */
-  min-height: calc(100vh - 150px);
+/* Variables CSS para diseño elegante */
+:root {
+  --primary-dark: #1a252f;
+  --primary-navy: #2c3e50;
+  --accent-gold: #f39c12;
+  --accent-blue: #3498db;
+  --accent-emerald: #2ecc71;
+  --text-primary: #2c3e50;
+  --text-secondary: #34495e;
+  --text-light: #7f8c8d;
+  --text-gold: #e67e22;
+  --background-white: #ffffff;
+  --background-cream: #fefefe;
+  --background-light: #f8f9fa;
+  --background-dark: #2c3e50;
+  --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --background-gold: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --shadow-elegant: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-gold: 0 8px 32px rgba(243, 156, 18, 0.3);
+  --border-radius: 16px;
+  --border-radius-lg: 24px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+  --max-width: 1400px;
+}
+
+/* Reset y configuración base */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* Estilo específico para la página Misión */
+html, body {
+  overflow-x: hidden;
+}
+
 .mision-page {
-  display: flex; /* Activa Flexbox */
-  justify-content: space-between; /* Empuja decoraciones a los lados */
+  font-family: 'Playfair Display', 'Georgia', serif;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--background-cream);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Contenedor del texto principal */
-.mision-page .main-content {
-  flex-grow: 1; /* Permite que ocupe el espacio central */
-  max-width: 800px; /* Ancho máximo del texto */
-  margin: 0 auto; /* Centra el bloque si es más estrecho */
-  padding: 0 30px; /* Espacio entre texto y decoraciones */
-  box-sizing: border-box;
+/* Container principal elegante */
+.page-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  position: relative;
+  min-height: 100vh;
 }
 
-/* Título "MISIÓN" */
-.mision-page .page-title {
+.page-container.with-navbar {
+  padding-top: 160px;
+}
+
+/* Decoraciones laterales elegantes - EXTENDIDAS A TODO EL DOCUMENTO */
+.side-decoration {
+  position: fixed;
+  top: 0;
+  width: 120px;
+  height: 100vh;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xl);
+  z-index: 10;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(52, 73, 94, 0.03) 20%, 
+    rgba(52, 73, 94, 0.05) 50%, 
+    rgba(52, 73, 94, 0.03) 80%, 
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Fondo de las franjas que se extiende hasta el final del documento */
+.side-decoration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200vh; /* Altura extendida para cubrir scroll */
+  background: inherit;
+  z-index: -1;
+}
+
+.left-decoration {
+  left: 0;
+  background: linear-gradient(90deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.left-decoration::before {
+  background: linear-gradient(90deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.right-decoration {
+  right: 0;
+  background: linear-gradient(270deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.right-decoration::before {
+  background: linear-gradient(270deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.decoration-element {
+  border-radius: var(--border-radius);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.decoration-1 {
+  width: 8px;
+  height: 120px;
+  background: var(--background-gradient);
+  box-shadow: var(--shadow-elegant);
+}
+
+.decoration-2 {
+  width: 12px;
+  height: 180px;
+  background: var(--background-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.decoration-3 {
+  width: 6px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-blue) 100%);
+  box-shadow: var(--shadow-elegant);
+}
+
+.decoration-element::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.side-decoration:hover .decoration-element {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.side-decoration:hover .decoration-element::before {
+  opacity: 1;
+}
+
+/* Franjas adicionales para el área del footer */
+.footer-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.footer-stripe-left,
+.footer-stripe-right {
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+}
+
+.footer-stripe-left {
+  left: 0;
+  background: linear-gradient(90deg, 
+    rgba(52, 73, 94, 0.12) 0%, 
+    rgba(52, 73, 94, 0.06) 50%,
+    transparent 100%);
+}
+
+.footer-stripe-right {
+  right: 0;
+  background: linear-gradient(270deg, 
+    rgba(52, 73, 94, 0.12) 0%, 
+    rgba(52, 73, 94, 0.06) 50%,
+    transparent 100%);
+}
+
+.footer-decoration-element {
+  border-radius: var(--border-radius);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.footer-decoration-1 {
+  width: 6px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-emerald) 100%);
+  box-shadow: var(--shadow-elegant);
+}
+
+.footer-decoration-2 {
+  width: 10px;
+  height: 120px;
+  background: var(--background-gradient);
+  box-shadow: var(--shadow-gold);
+}
+
+.footer-decoration-3 {
+  width: 4px;
+  height: 60px;
+  background: var(--background-gold);
+  box-shadow: var(--shadow-elegant);
+}
+
+/* Contenido principal elegante */
+.main-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--spacing-xxl) 0;
+  background: radial-gradient(ellipse at center, 
+    rgba(255, 255, 255, 0.9) 0%, 
+    transparent 70%);
+}
+
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header elegante */
+.page-header {
   text-align: center;
-  color: #1a2a56; /* Azul oscuro */
-  font-size: 2rem; /* Tamaño del título */
-  margin-bottom: 30px; /* Espacio debajo */
-  font-weight: 600; /* Semi-negrita */
+  margin-bottom: var(--spacing-xxl);
+  position: relative;
 }
 
-/* Párrafo de texto */
-.mision-page .page-text {
-  text-align: justify; /* Texto justificado */
-  line-height: 1.7; /* Espaciado entre líneas */
-  color: #333; /* Gris oscuro */
-  font-size: 1rem;
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, 
+    rgba(243, 156, 18, 0.1) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
 }
 
-/* Decoraciones laterales */
-.mision-page .side-decoration {
-  flex-basis: 55px; /* Ancho de las barras laterales */
-  flex-shrink: 0; /* No encoger */
-
-  /* OPCIÓN A: Usar una imagen de fondo repetida */
-  /* background-image: url('/images/patron-ondas.png'); /* Asegúrate que la imagen esté en public/images/ */
-  /* background-repeat: repeat-y; */
-  /* background-position: center top; */
-  /* background-size: contain; /* O 'auto', ajusta según tu imagen */
-
-  /* OPCIÓN B: Usar un color placeholder si no tienes imagen */
-   background-color: #e8f0f5; /* Azul muy pálido */
-
-  /* OPCIÓN C: Ocultarlas si no las quieres por ahora */
-  /* display: none; */
+.page-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--primary-dark);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-/* Ocultar decoraciones en pantallas pequeñas */
-@media (max-width: 900px) {
-  .mision-page .side-decoration {
+.title-decoration {
+  width: 120px;
+  height: 4px;
+  background: var(--background-gradient);
+  border-radius: 2px;
+  box-shadow: var(--shadow-elegant);
+  position: relative;
+  overflow: hidden;
+}
+
+.title-decoration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.6) 50%, 
+    transparent 100%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Divider elegante */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--background-gradient);
+  max-width: 200px;
+  border-radius: 1px;
+}
+
+.divider-icon {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--accent-gold);
+  border-radius: 50%;
+  margin: 0 var(--spacing-lg);
+  position: relative;
+  background: var(--background-white);
+  box-shadow: var(--shadow-gold);
+}
+
+.divider-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+}
+
+/* Sección de declaración de misión elegante */
+.mission-statement-section {
+  margin-bottom: var(--spacing-xxl);
+  position: relative;
+}
+
+.mission-text {
+  font-size: 1.4rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  text-align: justify;
+  font-weight: 400;
+  padding: var(--spacing-xxl);
+  background: var(--background-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-deep);
+  border: 1px solid rgba(243, 156, 18, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Crimson Text', serif;
+}
+
+.mission-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--background-gradient);
+}
+
+.mission-text::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, 
+    rgba(243, 156, 18, 0.1) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+}
+
+.mission-text::first-letter {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: var(--accent-gold);
+  float: left;
+  line-height: 0.8;
+  margin: 0.1em 0.2em 0 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Sección de pilares elegante */
+.mission-pillars-section {
+  margin-bottom: var(--spacing-xxl);
+  position: relative;
+}
+
+.pillars-title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pillars-title::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--background-gold);
+  border-radius: 2px;
+  box-shadow: var(--shadow-gold);
+}
+
+.mission-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xxl);
+}
+
+.mission-pillar {
+  background: var(--background-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-elegant);
+  border: 1px solid rgba(52, 73, 94, 0.1);
+}
+
+.mission-pillar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--background-gradient);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.mission-pillar::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(243, 156, 18, 0.05) 0%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-pillar:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-deep);
+}
+
+.mission-pillar:hover::before {
+  transform: scaleX(1);
+}
+
+.mission-pillar:hover::after {
+  opacity: 1;
+}
+
+.pillar-icon {
+  font-size: 3.5rem;
+  margin-bottom: var(--spacing-md);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 2;
+}
+
+.mission-pillar:nth-child(1) .pillar-icon { color: var(--accent-blue); }
+.mission-pillar:nth-child(2) .pillar-icon { color: var(--accent-emerald); }
+.mission-pillar:nth-child(3) .pillar-icon { color: var(--accent-gold); }
+.mission-pillar:nth-child(4) .pillar-icon { color: #e74c3c; }
+
+.mission-pillar:hover .pillar-icon {
+  transform: scale(1.2) rotate(5deg);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+.mission-pillar h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-dark);
+  position: relative;
+  z-index: 2;
+}
+
+.mission-pillar p {
+  color: var(--text-light);
+  line-height: 1.7;
+  font-size: 1.1rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  position: relative;
+  z-index: 2;
+}
+
+/* Sección de compromiso elegante */
+.commitment-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.commitment-card {
+  background: var(--background-dark);
+  color: var(--background-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xxl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-deep);
+}
+
+.commitment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background-gradient);
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.commitment-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.commitment-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.commitment-card h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.commitment-card blockquote {
+  font-size: 1.8rem;
+  font-style: italic;
+  margin-bottom: var(--spacing-lg);
+  font-weight: 300;
+  line-height: 1.6;
+  font-family: 'Playfair Display', serif;
+  position: relative;
+}
+
+.commitment-card blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  top: -20px;
+  left: -40px;
+  color: var(--accent-gold);
+  opacity: 0.7;
+}
+
+.commitment-card blockquote::after {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  color: var(--accent-gold);
+  opacity: 0.7;
+}
+
+.commitment-text {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Estilos para el footer con decoraciones */
+footer {
+  position: relative;
+  z-index: 2;
+}
+
+footer .footer-decorations .footer-stripe-left .footer-decoration-element,
+footer .footer-decorations .footer-stripe-right .footer-decoration-element {
+  animation: footerDecorationFloat 6s ease-in-out infinite alternate;
+}
+
+footer .footer-decorations .footer-decoration-1 {
+  animation-delay: 0s;
+}
+
+footer .footer-decorations .footer-decoration-2 {
+  animation-delay: 2s;
+}
+
+footer .footer-decorations .footer-decoration-3 {
+  animation-delay: 4s;
+}
+
+@keyframes footerDecorationFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-10px) rotate(2deg);
+    opacity: 1;
+  }
+}
+
+/* Animaciones elegantes */
+@keyframes elegantFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.page-title {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.divider {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+}
+
+.mission-text {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s both;
+}
+
+.pillars-title {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s both;
+}
+
+.mission-pillar:nth-child(1) { animation: slideInLeft 0.8s ease-out 1.2s both; }
+.mission-pillar:nth-child(2) { animation: elegantFadeIn 0.8s ease-out 1.4s both; }
+.mission-pillar:nth-child(3) { animation: elegantFadeIn 0.8s ease-out 1.6s both; }
+.mission-pillar:nth-child(4) { animation: slideInRight 0.8s ease-out 1.8s both; }
+
+.commitment-card {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s both;
+}
+
+.left-decoration .decoration-element {
+  animation: slideInLeft 0.8s ease-out both;
+}
+
+.right-decoration .decoration-element {
+  animation: slideInRight 0.8s ease-out both;
+}
+
+.decoration-1 { animation-delay: 0.5s; }
+.decoration-2 { animation-delay: 0.7s; }
+.decoration-3 { animation-delay: 0.9s; }
+
+/* Responsive Design Elegante */
+@media (max-width: 1024px) {
+  .side-decoration,
+  .footer-stripe-left,
+  .footer-stripe-right {
+    width: 80px;
+  }
+  
+  .page-title {
+    font-size: 3.5rem;
+  }
+  
+  .mission-pillars {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .page-container.with-navbar {
+    padding-top: 80px;
+  }
+  
+  .main-content {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .page-title {
+    font-size: 2.8rem;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .title-decoration {
+    width: 80px;
+  }
+  
+  .mission-text {
+    font-size: 1.2rem;
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .mission-pillars {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .pillars-title {
+    font-size: 2.2rem;
+  }
+  
+  .commitment-card {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .commitment-card h2 {
+    font-size: 2.2rem;
+  }
+  
+  .commitment-card blockquote {
+    font-size: 1.4rem;
+  }
+  
+  .side-decoration,
+  .footer-stripe-left,
+  .footer-stripe-right {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2.2rem;
+  }
+  
+  .title-decoration {
+    width: 60px;
+    height: 3px;
+  }
+  
+  .mission-text {
+    font-size: 1.1rem;
+    padding: var(--spacing-lg);
+  }
+  
+  .mission-pillar {
+    padding: var(--spacing-lg);
+  }
+  
+  .pillar-icon {
+    font-size: 2.8rem;
+  }
+  
+  .commitment-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .commitment-card h2 {
+    font-size: 1.8rem;
+  }
+  
+  .commitment-card blockquote {
+    font-size: 1.2rem;
+  }
+  
+  .side-decoration,
+  .footer-stripe-left,
+  .footer-stripe-right {
     display: none;
   }
-  .mision-page .main-content {
-    max-width: 95%; /* Ocupar más ancho */
-    padding: 0 15px; /* Menos padding */
+}
+
+/* Estados de focus elegantes */
+.mission-pillar:focus-within {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-deep);
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 4px;
+}
+
+/* Mejoras de rendimiento */
+.decoration-element,
+.footer-decoration-element,
+.mission-pillar,
+.pillar-icon,
+.commitment-card::after {
+  will-change: transform;
+}
+
+/* Modo de contraste alto */
+@media (prefers-contrast: high) {
+  :root {
+    --text-secondary: #000;
+    --text-light: #333;
   }
 }
 
-/* Ajustes adicionales para móviles */
-@media (max-width: 600px) {
-  .page-container.mision-page { /* Aplica también al contenedor general */
-     padding: 25px 15px;
+/* Modo de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  .mision-page .page-title {
-    font-size: 1.7rem;
-    margin-bottom: 20px;
-  }
-  .mision-page .page-text {
-    font-size: 0.95rem;
+  
+  .commitment-card::after {
+    animation: none;
   }
 }

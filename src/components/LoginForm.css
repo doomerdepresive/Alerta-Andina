@@ -1,0 +1,105 @@
+/* src/components/LoginForm.css */
+
+.login-background {
+    min-height: 100vh;
+    background: url("../assets/Logo_Clima-remove.png") center center no-repeat;
+    background-size: 45%;
+    background-color: #eef3f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.login-container h1 {
+    color: #1a4b84;
+    margin-bottom: 0.4rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.login-container p {
+    margin-bottom: 1.5rem;
+    color: #555;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.login-form label {
+    display: block;
+    margin: 0.75rem 0 0.35rem;
+    color: #222;
+    font-weight: 500;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid #ccd1d9;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background-color: #fdfdfd;
+    transition: border 0.2s ease;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #1a4b84;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #1a4b84;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-form button:hover {
+    background-color: #153c6d;
+    transform: translateY(-1px);
+}
+
+.error-message {
+    background-color: #ffe0e0;
+    color: #d40000;
+    padding: 0.85rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    box-shadow: 0 0 5px rgba(212, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

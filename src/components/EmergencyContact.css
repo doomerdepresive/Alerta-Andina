@@ -1,0 +1,55 @@
+.emergency-contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.contact-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    background: #1a4b84;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.contact-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.contact-card h3 {
+    color: #1a4b84;
+    margin-bottom: 0.5rem;
+}
+
+.phone-number {
+    font-size: 1.5rem;
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.availability {
+    color: #28a745;
+    font-size: 0.9rem;
+    margin: 0;
+}
