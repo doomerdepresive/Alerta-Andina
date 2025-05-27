@@ -22,10 +22,7 @@ function Navbar() {
           <img src="src\assets\Logo_Clima-remove.png" alt="SENAMHI" className="logo" />
         </Link>
 
-        <h1 className="site-title">
-          ALERTA ANDINA
-        </h1>
-
+        <img src="src\assets\Logo_Alerta_Andina.png" alt="ALERTA ANDINA" className="site-title" />
         <img src="src\assets\Logo_Clima-remove.png" alt="Bolivia" className="logo" />
 
         <button

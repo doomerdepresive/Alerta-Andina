@@ -1,6 +1,5 @@
 .slider-section {
   padding-top: 0px;
-  /* Espacio para el navbar fijo */
   margin-bottom: 2rem;
   width: 100%;
   background: #f5f7fa;
@@ -14,25 +13,38 @@
 }
 
 .cards-wrapper {
-  display: flex;
-  gap: 2rem;
   position: relative;
-  min-height: 400px;
+  min-height: 430px; /* Aumentado para dar más espacio */
+  overflow: hidden; /* Evita que las tarjetas ocultas causen scroll */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-slide {
-  flex: 1;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.5s ease;
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+  max-width: 1500px; /* Limita el ancho máximo de las tarjetas */
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateX(100px) scale(0.9);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none; /* Evita interacción con tarjetas inactivas */
 }
 
 .card-slide.active {
   opacity: 1;
-  transform: scale(1);
-  position: relative;
+  transform: translateX(0) scale(1);
+  pointer-events: auto; /* Permite interacción solo con tarjeta activa */
+  z-index: 2;
+}
+
+/* Animación para tarjeta que sale */
+.card-slide:not(.active) {
+  transform: translateX(-100px) scale(0.9);
 }
 
 .slider-controls {
@@ -40,6 +52,8 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
+  z-index: 3;
+  position: relative;
 }
 
 .slider-dot {
@@ -52,9 +66,47 @@
   transition: all 0.3s ease;
 }
 
+.slider-dot:hover {
+  background: #888;
+  transform: scale(1.1);
+}
+
 .slider-dot.active {
   background: #1a4b84;
   transform: scale(1.2);
+}
+
+/* Opcional: Agregar botones de navegación */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(26, 75, 132, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.slider-nav:hover {
+  background: rgba(26, 75, 132, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+  left: 1rem;
+}
+
+.slider-nav.next {
+  right: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -67,6 +119,40 @@
   }
 
   .cards-wrapper {
-    min-height: 300px;
+    min-height: 350px;
+  }
+
+  .card-slide {
+    max-width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .slider-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .slider-nav.prev {
+    left: 0.5rem;
+  }
+
+  .slider-nav.next {
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-wrapper {
+    min-height: 320px;
+  }
+  
+  .slider-container {
+    padding: 0.5rem;
+  }
+  
+  .slider-controls {
+    margin-top: 1rem;
   }
 }

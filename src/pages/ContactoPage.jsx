@@ -1,5 +1,5 @@
 import React from "react";
-import "./MisionPage.css";
+import "./MisionPage.module.css";
 
 function ContactoPage() {
   return (

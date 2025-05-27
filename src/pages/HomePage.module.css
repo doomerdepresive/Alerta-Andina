@@ -1,0 +1,198 @@
+/* HomePage.module.css - Estilos aislados usando CSS Modules */
+
+.homePageContainer {
+  padding-top: 60px; /* Reducido para eliminar el espacio excesivo */
+  min-height: 100vh;
+  position: relative; /* Añadido para mejor control del posicionamiento */
+}
+
+.homePageContainer.with-navbar {
+  padding-top: 60px; /* Consistente con el valor base */
+}
+
+.sliderWrapper {
+  margin-bottom: 2rem;
+}
+
+.homeContent {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.contentLeft {
+  position: sticky;
+  top: 80px; /* Reducido para compensar el navbar más pequeño */
+  height: fit-content;
+}
+
+.weatherWidgetWrapper {
+  width: 100%;
+}
+
+.contentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Secciones */
+.sectionTitle {
+  color: #1a4b84;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #1a4b84;
+}
+
+.emergencySection {
+  background: #fff5f5;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emergencyAlertWrapper {
+  margin-top: 1rem;
+}
+
+.infoSection {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.disasterInfoWrapper {
+  margin-top: 1rem;
+}
+
+.riskMapSection {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.riskMapWrapper {
+  margin-top: 1rem;
+}
+
+.contactsSection {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emergencyContactWrapper {
+  margin-top: 1rem;
+}
+
+.preparationSection {
+  background: #f0f7ff;
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.preparationContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.kitTitle {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.emergencyKitList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.emergencyKitList li {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  border: none;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .homePageContainer {
+    padding-top: 70px; /* Ajustado para tablets */
+  }
+  .homePageContainer.with-navbar {
+    padding-top: 70px;
+  }
+  .homeContent {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .contentLeft {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .homePageContainer {
+    padding-top: 80px; /* Ajustado para móviles */
+  }
+  .homePageContainer.with-navbar {
+    padding-top: 80px;
+  }
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+  .kitTitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .homePageContainer {
+    padding-top: 90px; /* Ajustado para pantallas pequeñas */
+  }
+  .homePageContainer.with-navbar {
+    padding-top: 90px;
+  }
+  .homeContent {
+    padding: 1rem;
+  }
+  .emergencyKitList {
+    grid-template-columns: 1fr;
+  }
+  .sectionTitle::after {
+    width: 60px;
+    height: 2px;
+  }
+}
