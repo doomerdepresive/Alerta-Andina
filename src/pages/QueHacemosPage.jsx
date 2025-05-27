@@ -1,207 +1,237 @@
 // src/pages/QueHacemosPage.jsx
 import React from "react";
-import "./QueHacemosPage.css";
+import PropTypes from "prop-types";
+import styles from "./QueHacemosPage.module.css";
 import { 
-  FaMapMarkerAlt, 
-  FaBell, 
-  FaMobileAlt, 
-  FaChartLine, 
-  FaShieldAlt,
-  FaCloud,
-  FaLeaf,
-  FaUsers,
-  FaGraduationCap,
-  FaDatabase,
-  FaSatellite
+  FaMapMarkerAlt, FaBell, FaMobileAlt, FaChartLine, FaShieldAlt,
+  FaCloud, FaLeaf, FaUsers, FaGraduationCap, FaDatabase, FaSatellite,
+  FaRocket, FaStar, FaHeart, FaMagic
 } from "react-icons/fa";
 
-function QueHacemosPage() {
-  const services = [
-    {
-      icon: FaMapMarkerAlt,
-      title: "Alertas Geolocalizadas",
-      description: "Proporcionamos pronósticos hiperlocales detallados por barrios, distritos y comunidades, adaptados a tu ubicación exacta.",
-      color: "geolocation"
+// Configuración de datos
+const CONFIG = {
+  services: [
+    { 
+      id: 'geolocation', 
+      icon: FaMapMarkerAlt, 
+      title: "Alertas Geolocalizadas", 
+      description: "Pronósticos hiperlocales por barrios y comunidades, adaptados a tu ubicación exacta."
     },
-    {
-      icon: FaBell,
-      title: "Notificaciones en Tiempo Real",
-      description: "Recibe alertas visuales y auditivas con niveles de riesgo (bajo, medio, alto) sobre eventos climatológicos inminentes.",
-      color: "notifications"
+    { 
+      id: 'notifications', 
+      icon: FaBell, 
+      title: "Notificaciones en Tiempo Real", 
+      description: "Alertas instantáneas con niveles de riesgo sobre eventos climatológicos inminentes."
     },
-    {
-      icon: FaMobileAlt,
-      title: "Aplicación Móvil",
-      description: "Accede a nuestros servicios desde cualquier lugar a través de nuestra aplicación disponible para Android e iOS.",
-      color: "mobile"
+    { 
+      id: 'mobile', 
+      icon: FaMobileAlt, 
+      title: "Aplicación Móvil", 
+      description: "Acceso completo desde Android e iOS. Lleva la protección en tu bolsillo."
     },
-    {
-      icon: FaChartLine,
-      title: "Reportes Especializados",
-      description: "Ofrecemos modo rural para alertas agrícolas, historial y estadísticas de eventos pasados por zona para planificación preventiva.",
-      color: "reports"
+    { 
+      id: 'reports', 
+      icon: FaChartLine, 
+      title: "Reportes Especializados", 
+      description: "Modo rural para alertas agrícolas e historial de eventos para planificación preventiva."
     },
-    {
-      icon: FaShieldAlt,
-      title: "Guías de Acción",
-      description: "Proporcionamos recomendaciones claras sobre qué hacer antes, durante y después de cada evento climatológico adverso.",
-      color: "protection"
+    { 
+      id: 'protection', 
+      icon: FaShieldAlt, 
+      title: "Guías de Acción", 
+      description: "Recomendaciones claras sobre qué hacer antes, durante y después de eventos adversos."
     }
-  ];
-
-  const dataSources = [
+  ],
+  
+  dataSources: [
     { icon: FaSatellite, name: "SENAMHI", description: "Servicio Nacional de Meteorología" },
     { icon: FaShieldAlt, name: "Defensa Civil", description: "Coordinación de emergencias" },
     { icon: FaDatabase, name: "Datos Abiertos", description: "Bases climáticas públicas" },
     { icon: FaUsers, name: "Reportes Ciudadanos", description: "Información colaborativa" }
-  ];
+  ],
+  
+  impacts: [
+    { icon: FaShieldAlt, title: "Prevención", description: "Reducción de pérdidas humanas y materiales" },
+    { icon: FaRocket, title: "Resiliencia", description: "Mejora en la capacidad de respuesta" },
+    { icon: FaLeaf, title: "Agricultura", description: "Apoyo a agricultores con pronósticos especializados" },
+    { icon: FaGraduationCap, title: "Educación", description: "Concientización ambiental comunitaria" }
+  ]
+};
 
-  const impactItems = [
-    {
-      icon: FaShieldAlt,
-      title: "Prevención",
-      description: "Reducción de pérdidas humanas y materiales ante eventos extremos",
-      color: "prevention"
-    },
-    {
-      icon: FaCloud,
-      title: "Resiliencia",
-      description: "Mejora en la capacidad de respuesta de la población",
-      color: "resilience"
-    },
-    {
-      icon: FaLeaf,
-      title: "Agricultura",
-      description: "Apoyo a agricultores mediante pronósticos especializados",
-      color: "agriculture"
-    },
-    {
-      icon: FaGraduationCap,
-      title: "Educación",
-      description: "Concientización ambiental y climática para la comunidad",
-      color: "education"
-    }
-  ];
+// Componente de tarjeta reutilizable
+const Card = ({ icon: Icon, title, description, className = "" }) => (
+  <div className={`${styles.card} ${className}`}>
+    <div className={styles.cardIcon}>
+      <Icon />
+    </div>
+    <h3 className={styles.cardTitle}>{title}</h3>
+    <p className={styles.cardDescription}>{description}</p>
+  </div>
+);
 
-  return (
-    <div className="que-hacemos-container">
-      <div className="animated-background">
-        <div className="floating-icon icon-1"><FaCloud /></div>
-        <div className="floating-icon icon-2"><FaBell /></div>
-        <div className="floating-icon icon-3"><FaMapMarkerAlt /></div>
-        <div className="floating-icon icon-4"><FaShieldAlt /></div>
+Card.propTypes = {
+  icon: PropTypes.elementType.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  className: PropTypes.string
+};
+
+// Componente de sección
+const Section = ({ title, children, className = "" }) => (
+  <section className={`${styles.section} ${className}`}>
+    {title && (
+      <h2 className={styles.sectionTitle}>
+        {title}
+      </h2>
+    )}
+    {children}
+  </section>
+);
+
+Section.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string
+};
+
+// Hero principal
+const Hero = () => (
+  <div className={styles.hero}>
+    <div className={styles.heroBackground}>
+      <div className={styles.floatingIcons}>
+        <FaCloud className={`${styles.floatingIcon} ${styles.icon1}`} />
+        <FaBell className={`${styles.floatingIcon} ${styles.icon2}`} />
+        <FaShieldAlt className={`${styles.floatingIcon} ${styles.icon3}`} />
+        <FaStar className={`${styles.floatingIcon} ${styles.icon4}`} />
       </div>
+    </div>
+    
+    <div className={styles.heroContent}>
+      <h1 className={styles.heroTitle}>
+        ¿QUÉ <span className={styles.highlight}>HACEMOS</span>?
+      </h1>
+      <p className={styles.heroSubtitle}>
+        Transformamos datos climáticos en protección real para tu comunidad
+      </p>
+    </div>
+  </div>
+);
 
-      <div className="side-decoration left-decoration"></div>
+// Introducción
+const Intro = () => (
+  <Section className={styles.introSection}>
+    <div className={styles.introCard}>
+      <div className={styles.introIcon}>
+        <FaMagic />
+      </div>
+      <h2 className={styles.introTitle}>
+        Protegemos vidas con <span className={styles.highlight}>tecnología</span>
+      </h2>
+      <p className={styles.introText}>
+        En <strong>Alerta Andina</strong>, desarrollamos tecnología de vanguardia para proteger vidas 
+        a través de alertas climatológicas precisas y oportunas. Combinamos inteligencia artificial, 
+        datos meteorológicos avanzados y geolocalización para brindarte información personalizada 
+        según tu ubicación en La Paz.
+      </p>
+      <div className={styles.introStats}>
+        <div className={styles.stat}>
+          <FaStar />
+          <span>24/7 Monitoreo</span>
+        </div>
+        <div className={styles.stat}>
+          <FaHeart />
+          <span>100% Precisión</span>
+        </div>
+      </div>
+    </div>
+  </Section>
+);
 
-      <main className="main-content">
-        <div className="hero-section">
-          <h1 className="page-title">¿QUÉ HACEMOS?</h1>
-          <div className="title-decoration">
-            <div className="decoration-line"></div>
-            <FaCloud className="title-icon" />
-            <div className="decoration-line"></div>
-          </div>
-        </div>
-        
-        <div className="intro-section">
-          <div className="intro-card">
-            <div className="intro-icon">
-              <FaShieldAlt />
-            </div>
-            <div className="intro-content">
-              <h2>Protegemos vidas con tecnología</h2>
-              <p>
-                En <strong>Alerta Andina</strong>, desarrollamos tecnología para proteger 
-                vidas a través de alertas climatológicas precisas y oportunas.
-                Combinamos datos meteorológicos avanzados con geolocalización para
-                brindarte información personalizada según tu ubicación en La Paz.
-              </p>
-            </div>
-          </div>
-        </div>
+// Servicios
+const Services = () => (
+  <Section title="Nuestros Servicios" className={styles.servicesSection}>
+    <div className={styles.servicesGrid}>
+      {CONFIG.services.map((service) => (
+        <Card
+          key={service.id}
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+          className={styles.serviceCard}
+        />
+      ))}
+    </div>
+  </Section>
+);
 
-        <div className="services-section">
-          <h2 className="section-title">Nuestros Servicios</h2>
-          <div className="services-grid">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <div key={index} className={`service-card ${service.color}`}>
-                  <div className="service-icon">
-                    <IconComponent />
-                  </div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                  <div className="card-glow"></div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+// Fuentes de datos
+const DataSources = () => (
+  <Section title="Nuestras Fuentes de Datos" className={styles.dataSourcesSection}>
+    <p className={styles.sourcesDescription}>
+      Integramos información de múltiples fuentes oficiales complementada con reportes 
+      ciudadanos en tiempo real para mejorar la precisión y cobertura de nuestras alertas.
+    </p>
+    <div className={styles.sourcesGrid}>
+      {CONFIG.dataSources.map((source, index) => (
+        <Card
+          key={index}
+          icon={source.icon}
+          title={source.name}
+          description={source.description}
+          className={styles.sourceCard}
+        />
+      ))}
+    </div>
+  </Section>
+);
 
-        <div className="data-sources-section">
-          <h2 className="section-title">Nuestras Fuentes de Datos</h2>
-          <div className="data-sources-content">
-            <div className="sources-text">
-              <p>
-                Integramos información de fuentes oficiales complementada con reportes ciudadanos
-                para mejorar la precisión y cobertura de nuestras alertas.
-              </p>
-            </div>
-            <div className="sources-grid">
-              {dataSources.map((source, index) => {
-                const IconComponent = source.icon;
-                return (
-                  <div key={index} className="source-item">
-                    <div className="source-icon">
-                      <IconComponent />
-                    </div>
-                    <div className="source-info">
-                      <h4>{source.name}</h4>
-                      <p>{source.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+// Impacto
+const Impact = () => (
+  <Section title="Nuestro Impacto" className={styles.impactSection}>
+    <div className={styles.impactGrid}>
+      {CONFIG.impacts.map((impact, index) => (
+        <Card
+          key={index}
+          icon={impact.icon}
+          title={impact.title}
+          description={impact.description}
+          className={styles.impactCard}
+        />
+      ))}
+    </div>
+  </Section>
+);
 
-        <div className="impact-section">
-          <h2 className="section-title">Nuestro Impacto</h2>
-          <div className="impact-grid">
-            {impactItems.map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <div key={index} className={`impact-card ${item.color}`}>
-                  <div className="impact-icon">
-                    <IconComponent />
-                  </div>
-                  <h4>{item.title}</h4>
-                  <p>{item.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+// Motto final
+const Motto = () => (
+  <Section className={styles.mottoSection}>
+    <div className={styles.mottoCard}>
+      <div className={styles.quoteIcon}>
+        <FaCloud />
+      </div>
+      <blockquote className={styles.mottoText}>
+        "El clima avisa. Tú decides actuar."
+      </blockquote>
+      <cite className={styles.mottoAuthor}>— Alerta Andina</cite>
+    </div>
+  </Section>
+);
 
-        <div className="motto-section">
-          <div className="motto-card">
-            <div className="motto-icon">
-              <FaCloud />
-            </div>
-            <p className="motto">
-              <em>"El clima avisa. Tú decides actuar."</em>
-            </p>
-            <div className="motto-author">
-              - Alerta Andina
-            </div>
-          </div>
-        </div>
+/**
+ * Página ¿Qué Hacemos? - Versión optimizada con CSS Modules
+ * Diseño limpio, creativo y directo
+ */
+function QueHacemosPage() {
+  return (
+    <div className={styles.pageContainer}>
+      <main className={styles.mainContent}>
+        <Hero />
+        <Intro />
+        <Services />
+        <DataSources />
+        <Impact />
+        <Motto />
       </main>
-
-      <div className="side-decoration right-decoration"></div>
     </div>
   );
 }

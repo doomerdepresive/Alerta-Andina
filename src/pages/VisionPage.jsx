@@ -6,7 +6,7 @@ import {
   FaHandsHelping, 
   FaGlobeAmericas 
 } from "react-icons/fa";
-import "./VisionPage.css";
+import styles from "./VisionPage.module.css";
 
 // Datos separados para mejor mantenibilidad
 const VISION_STATEMENT = `Posicionar a Alerta Andina como el sistema de referencia 
@@ -66,8 +66,8 @@ const TIMELINE_DATA = [
 
 // Componente para las tarjetas de visión
 const VisionCard = ({ icon: Icon, title, description, id }) => (
-  <div className="vision-card" role="article" aria-labelledby={`card-title-${id}`}>
-    <div className="card-icon" aria-hidden="true">
+  <div className={styles.visionCard} role="article" aria-labelledby={`card-title-${id}`}>
+    <div className={styles.cardIcon} aria-hidden="true">
       <Icon />
     </div>
     <h3 id={`card-title-${id}`}>{title}</h3>
@@ -77,9 +77,9 @@ const VisionCard = ({ icon: Icon, title, description, id }) => (
 
 // Componente para los elementos del timeline
 const TimelineItem = ({ period, description, id }) => (
-  <div className="timeline-item" role="listitem">
-    <div className="timeline-dot" aria-hidden="true"></div>
-    <div className="timeline-content">
+  <div className={styles.timelineItem} role="listitem">
+    <div className={styles.timelineDot} aria-hidden="true"></div>
+    <div className={styles.timelineContent}>
       <h4 id={`timeline-${id}`}>{period}</h4>
       <p aria-describedby={`timeline-${id}`}>{description}</p>
     </div>
@@ -89,32 +89,41 @@ const TimelineItem = ({ period, description, id }) => (
 // Componente principal
 function VisionPage() {
   return (
-    <div className="page-container vision-page with-navbar">
+    <div className={`${styles.pageContainer} ${styles.visionPage} ${styles.withNavbar}`}>
       {/* Decoraciones laterales */}
-      <div className="side-decoration left-decoration" aria-hidden="true"></div>
+      <div className={`${styles.sideDecoration} ${styles.leftDecoration}`} aria-hidden="true">
+        <div className={`${styles.decorationElement} ${styles.decoration1}`}></div>
+        <div className={`${styles.decorationElement} ${styles.decoration2}`}></div>
+        <div className={`${styles.decorationElement} ${styles.decoration3}`}></div>
+      </div>
       
-      <main className="main-content" role="main">
+      <main className={styles.mainContent} role="main">
         {/* Encabezado principal */}
-        <header className="page-header">
-          <h1 className="page-title">VISIÓN</h1>
+        <header className={styles.pageHeader}>
+          <h1 className={styles.pageTitle}>VISIÓN</h1>
         </header>
         
+        {/* Divisor decorativo */}
+        <div className={styles.divider}>
+          <div className={styles.dividerIcon}></div>
+        </div>
+        
         {/* Sección hero con declaración de visión */}
-        <section className="hero-section" aria-labelledby="vision-statement">
-          <div className="vision-icon" aria-hidden="true">
+        <section className={styles.heroSection} aria-labelledby="vision-statement">
+          <div className={styles.visionIcon} aria-hidden="true">
             <FaBinoculars />
           </div>
-          <p className="vision-statement" id="vision-statement">
-            "{VISION_STATEMENT.replace('Alerta Andina', '<strong>Alerta Andina</strong>')}"
+          <p className={styles.visionStatement} id="vision-statement">
+            {VISION_STATEMENT}
           </p>
         </section>
         
         {/* Sección de tarjetas de visión */}
-        <section className="vision-cards-section" aria-labelledby="vision-cards-title">
-          <h2 id="vision-cards-title" className="sr-only">
-            Pilares de nuestra visión
+        <section className={styles.visionCardsSection} aria-labelledby="vision-cards-title">
+          <h2 id="vision-cards-title">
+            Pilares de Nuestra Visión
           </h2>
-          <div className="vision-cards" role="list">
+          <div className={styles.visionCards} role="list">
             {VISION_CARDS_DATA.map((card) => (
               <VisionCard
                 key={card.id}
@@ -128,9 +137,9 @@ function VisionPage() {
         </section>
         
         {/* Sección de visión a futuro */}
-        <section className="future-section" aria-labelledby="future-title">
+        <section className={styles.futureSection} aria-labelledby="future-title">
           <h2 id="future-title">Nuestra Visión a Futuro</h2>
-          <div className="timeline" role="list" aria-label="Cronograma de objetivos">
+          <div className={styles.timeline} role="list" aria-label="Cronograma de objetivos">
             {TIMELINE_DATA.map((item) => (
               <TimelineItem
                 key={item.id}
@@ -143,18 +152,22 @@ function VisionPage() {
         </section>
         
         {/* Sección de cita */}
-        <section className="quote-section" aria-labelledby="company-motto">
+        <section className={styles.quoteSection} aria-labelledby="company-motto">
           <blockquote>
-            <p>"El clima avisa. Tú decides actuar."</p>
+            "El clima avisa. Tú decides actuar."
           </blockquote>
-          <p className="attribution" id="company-motto">
+          <p className={styles.attribution} id="company-motto">
             — Lema de Alerta Andina
           </p>
         </section>
       </main>
 
       {/* Decoración lateral derecha */}
-      <div className="side-decoration right-decoration" aria-hidden="true"></div>
+      <div className={`${styles.sideDecoration} ${styles.rightDecoration}`} aria-hidden="true">
+        <div className={`${styles.decorationElement} ${styles.decoration1}`}></div>
+        <div className={`${styles.decorationElement} ${styles.decoration2}`}></div>
+        <div className={`${styles.decorationElement} ${styles.decoration3}`}></div>
+      </div>
     </div>
   );
 }

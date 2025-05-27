@@ -1,6 +1,6 @@
 // src/pages/TransparenciaPage.jsx
 import React, { useState, useEffect } from "react";
-import "./TransparenciaPage.css";
+import styles from "./TransparenciaPage.module.css";
 import {
   FaShieldAlt,
   FaBalanceScale,
@@ -89,32 +89,32 @@ function TransparenciaPage() {
     switch(activeTab) {
       case 'overview':
         return (
-          <div className="tab-content">
-            <div className="hero-stats">
-              <div className="hero-stat">
-                <div className="stat-icon"><FaRocket /></div>
-                <div className="stat-info">
+          <div className={styles.tabContent}>
+            <div className={styles.heroStats}>
+              <div className={styles.heroStat}>
+                <div className={styles.statIcon}><FaRocket /></div>
+                <div className={styles.statInfo}>
                   <h3>3 Años</h3>
                   <p>En desarrollo</p>
                 </div>
               </div>
-              <div className="hero-stat">
-                <div className="stat-icon"><FaGraduationCap /></div>
-                <div className="stat-info">
+              <div className={styles.heroStat}>
+                <div className={styles.statIcon}><FaGraduationCap /></div>
+                <div className={styles.statInfo}>
                   <h3>EMI La Paz</h3>
                   <p>Proyecto académico</p>
                 </div>
               </div>
-              <div className="hero-stat">
-                <div className="stat-icon"><FaLightbulb /></div>
-                <div className="stat-info">
+              <div className={styles.heroStat}>
+                <div className={styles.statIcon}><FaLightbulb /></div>
+                <div className={styles.statInfo}>
                   <h3>Open Source</h3>
                   <p>Código abierto</p>
                 </div>
               </div>
             </div>
 
-            <div className="transparency-grid">
+            <div className={styles.transparencyGrid}>
               {[
                 {
                   icon: FaShieldAlt,
@@ -143,19 +143,19 @@ function TransparenciaPage() {
               ].map((card, index) => (
                 <div 
                   key={index}
-                  className={`transparency-card enhanced ${visibleCards.includes(index) ? 'visible' : ''}`}
+                  className={`${styles.transparencyCard} ${styles.enhanced} ${visibleCards.includes(index) ? styles.visible : ''}`}
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
-                  <div className="card-header">
-                    <div className="transparency-icon">
+                  <div className={styles.cardHeader}>
+                    <div className={styles.transparencyIcon}>
                       <card.icon />
                     </div>
                     <h3>{card.title}</h3>
                   </div>
-                  <p className="card-description">{card.description}</p>
-                  <div className="card-features">
+                  <p className={styles.cardDescription}>{card.description}</p>
+                  <div className={styles.cardFeatures}>
                     {card.features.map((feature, idx) => (
-                      <span key={idx} className="feature-badge">{feature}</span>
+                      <span key={idx} className={styles.featureBadge}>{feature}</span>
                     ))}
                   </div>
                 </div>
@@ -166,35 +166,35 @@ function TransparenciaPage() {
 
       case 'data':
         return (
-          <div className="tab-content">
-            <div className="data-sources-grid">
+          <div className={styles.tabContent}>
+            <div className={styles.dataSourcesGrid}>
               {dataSourcesDetailed.map((source, index) => (
-                <div key={index} className="data-source-card">
-                  <div className="source-header">
-                    <div className="source-icon">
+                <div key={index} className={styles.dataSourceCard}>
+                  <div className={styles.sourceHeader}>
+                    <div className={styles.sourceIcon}>
                       <source.icon />
                     </div>
-                    <div className="source-info">
+                    <div className={styles.sourceInfo}>
                       <h3>{source.name}</h3>
                       <p>{source.description}</p>
                     </div>
                   </div>
-                  <div className="source-details">
-                    <div className="detail-item">
+                  <div className={styles.sourceDetails}>
+                    <div className={styles.detailItem}>
                       <strong>Tipos de datos:</strong>
-                      <div className="data-types">
+                      <div className={styles.dataTypes}>
                         {source.dataTypes.map((type, idx) => (
-                          <span key={idx} className="data-type-tag">{type}</span>
+                          <span key={idx} className={styles.dataTypeTag}>{type}</span>
                         ))}
                       </div>
                     </div>
-                    <div className="detail-row">
-                      <div className="detail-item">
+                    <div className={styles.detailRow}>
+                      <div className={styles.detailItem}>
                         <strong>Frecuencia:</strong> {source.updateFrequency}
                       </div>
-                      <div className="detail-item">
+                      <div className={styles.detailItem}>
                         <strong>Confiabilidad:</strong> 
-                        <span className="reliability-badge">{source.reliability}</span>
+                        <span className={styles.reliabilityBadge}>{source.reliability}</span>
                       </div>
                     </div>
                   </div>
@@ -206,32 +206,32 @@ function TransparenciaPage() {
 
       case 'methodology':
         return (
-          <div className="tab-content">
-            <div className="methodology-timeline">
-              <div className="timeline-item">
-                <div className="timeline-marker">1</div>
-                <div className="timeline-content">
+          <div className={styles.tabContent}>
+            <div className={styles.methodologyTimeline}>
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineMarker}>1</div>
+                <div className={styles.timelineContent}>
                   <h3>Recolección de Datos</h3>
                   <p>Agregamos datos de múltiples fuentes confiables en tiempo real, aplicando filtros de calidad y validación automática.</p>
                 </div>
               </div>
-              <div className="timeline-item">
-                <div className="timeline-marker">2</div>
-                <div className="timeline-content">
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineMarker}>2</div>
+                <div className={styles.timelineContent}>
                   <h3>Procesamiento y Análisis</h3>
                   <p>Utilizamos algoritmos de machine learning para identificar patrones y anomalías en los datos meteorológicos.</p>
                 </div>
               </div>
-              <div className="timeline-item">
-                <div className="timeline-marker">3</div>
-                <div className="timeline-content">
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineMarker}>3</div>
+                <div className={styles.timelineContent}>
                   <h3>Generación de Alertas</h3>
                   <p>Sistema inteligente que evalúa múltiples variables para determinar el nivel de riesgo y generar alertas precisas.</p>
                 </div>
               </div>
-              <div className="timeline-item">
-                <div className="timeline-marker">4</div>
-                <div className="timeline-content">
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineMarker}>4</div>
+                <div className={styles.timelineContent}>
                   <h3>Distribución y Feedback</h3>
                   <p>Las alertas se envían a través de múltiples canales y recopilamos feedback para mejorar continuamente.</p>
                 </div>
@@ -242,23 +242,23 @@ function TransparenciaPage() {
 
       case 'metrics':
         return (
-          <div className="tab-content">
-            <div className="metrics-dashboard">
-              <div className="metrics-grid">
+          <div className={styles.tabContent}>
+            <div className={styles.metricsDashboard}>
+              <div className={styles.metricsGrid}>
                 {metricsData.map((metric, index) => (
-                  <div key={index} className="metric-card">
-                    <div className="metric-header">
+                  <div key={index} className={styles.metricCard}>
+                    <div className={styles.metricHeader}>
                       <h4>{metric.label}</h4>
-                      <span className="metric-trend" style={{ color: metric.color }}>
+                      <span className={styles.metricTrend} style={{ color: metric.color }}>
                         {metric.trend}
                       </span>
                     </div>
-                    <div className="metric-value" style={{ color: metric.color }}>
+                    <div className={styles.metricValue} style={{ color: metric.color }}>
                       {metric.value}
                     </div>
-                    <div className="metric-progress">
+                    <div className={styles.metricProgress}>
                       <div 
-                        className="progress-bar" 
+                        className={styles.progressBar} 
                         style={{ backgroundColor: metric.color, width: '75%' }}
                       ></div>
                     </div>
@@ -266,25 +266,25 @@ function TransparenciaPage() {
                 ))}
               </div>
               
-              <div className="additional-metrics">
-                <div className="metric-detail">
-                  <div className="metric-icon"><FaClock /></div>
+              <div className={styles.additionalMetrics}>
+                <div className={styles.metricDetail}>
+                  <div className={styles.metricIcon}><FaClock /></div>
                   <div>
                     <h4>Tiempo Promedio de Detección</h4>
                     <p>Desde la ocurrencia del evento hasta la emisión de la alerta</p>
                     <strong>2.3 minutos</strong>
                   </div>
                 </div>
-                <div className="metric-detail">
-                  <div className="metric-icon"><FaUsers /></div>
+                <div className={styles.metricDetail}>
+                  <div className={styles.metricIcon}><FaUsers /></div>
                   <div>
                     <h4>Alcance de Alertas</h4>
                     <p>Porcentaje de población objetivo que recibe las alertas</p>
                     <strong>87.2%</strong>
                   </div>
                 </div>
-                <div className="metric-detail">
-                  <div className="metric-icon"><FaChartBar /></div>
+                <div className={styles.metricDetail}>
+                  <div className={styles.metricIcon}><FaChartBar /></div>
                   <div>
                     <h4>Efectividad de Respuesta</h4>
                     <p>Usuarios que toman acción preventiva tras recibir una alerta</p>
@@ -302,33 +302,33 @@ function TransparenciaPage() {
   };
 
   return (
-    <div className="page-container transparencia-page with-navbar">
-      <div className="side-decoration left-decoration"></div>
+    <div className={`${styles.pageContainer} ${styles.transparenciaPage} ${styles.withNavbar}`}>
+      <div className={`${styles.sideDecoration} ${styles.leftDecoration}`}></div>
 
       {/* Header mejorado */}
-      <div className="page-header">
-        <div className="header-content">
-          <h1 className="page-title">TRANSPARENCIA</h1>
-          <p className="page-subtitle">
+      <div className={styles.pageHeader}>
+        <div className={styles.headerContent}>
+          <h1 className={styles.pageTitle}>TRANSPARENCIA</h1>
+          <p className={styles.pageSubtitle}>
             Comprometidos con la transparencia total en nuestro proyecto de alertas climatológicas
           </p>
         </div>
-        <div className="header-actions">
-          <button className="action-btn primary">
+        <div className={styles.headerActions}>
+          <button className={`${styles.actionBtn} ${styles.primary}`}>
             <FaDownload /> Descargar Reporte
           </button>
-          <button className="action-btn secondary">
+          <button className={`${styles.actionBtn} ${styles.secondary}`}>
             <FaGithub /> Ver Código
           </button>
         </div>
       </div>
 
       {/* Navegación por pestañas */}
-      <div className="tabs-navigation">
+      <div className={styles.tabsNavigation}>
         {tabs.map(tab => (
           <button
             key={tab.id}
-            className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
+            className={`${styles.tabBtn} ${activeTab === tab.id ? styles.active : ''}`}
             onClick={() => setActiveTab(tab.id)}
           >
             <tab.icon />
@@ -341,34 +341,34 @@ function TransparenciaPage() {
       {renderTabContent()}
 
       {/* Footer de contacto mejorado */}
-      <div className="contact-section enhanced">
-        <div className="contact-header">
+      <div className={`${styles.contactSection} ${styles.enhanced}`}>
+        <div className={styles.contactHeader}>
           <h2>¿Necesitas más información?</h2>
           <p>Estamos aquí para responder todas tus preguntas sobre transparencia y metodología</p>
         </div>
-        <div className="contact-cards">
-          <div className="contact-card">
+        <div className={styles.contactCards}>
+          <div className={styles.contactCard}>
             <FaFileAlt />
             <h4>Documentación</h4>
             <p>Accede a nuestra documentación técnica completa</p>
           </div>
-          <div className="contact-card">
+          <div className={styles.contactCard}>
             <FaUsers />
             <h4>Comunidad</h4>
             <p>Únete a nuestra comunidad de desarrolladores</p>
           </div>
-          <div className="contact-card">
+          <div className={styles.contactCard}>
             <FaGraduationCap />
             <h4>Académico</h4>
             <p>Colaboraciones e investigación académica</p>
           </div>
         </div>
-        <div className="disclaimer enhanced">
+        <div className={`${styles.disclaimer} ${styles.enhanced}`}>
           <strong>Proyecto Académico EMI La Paz</strong> • Desarrollado con fines educativos y de servicio comunitario • Código abierto bajo licencia MIT
         </div>
       </div>
 
-      <div className="side-decoration right-decoration"></div>
+      <div className={`${styles.sideDecoration} ${styles.rightDecoration}`}></div>
     </div>
   );
 }

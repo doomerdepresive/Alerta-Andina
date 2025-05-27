@@ -7,7 +7,7 @@ import {
   FaLeaf, 
   FaShieldAlt 
 } from 'react-icons/fa';
-import './MisionPage.css';
+import styles from './MisionPage.module.css';
 
 // Datos separados para mejor mantenibilidad
 const MISSION_STATEMENT = `Entidad rectora de la actividad meteorológica, hidrológica y actividades afines; 
@@ -49,8 +49,8 @@ const MISSION_PILLARS = [
 
 // Componente para las tarjetas de pilares
 const MissionPillar = ({ icon: Icon, title, description, id }) => (
-  <div className="mission-pillar" role="article" aria-labelledby={`pillar-title-${id}`}>
-    <div className="pillar-icon" aria-hidden="true">
+  <div className={styles.missionPillar} role="article" aria-labelledby={`pillar-title-${id}`}>
+    <div className={styles.pillarIcon} aria-hidden="true">
       <Icon />
     </div>
     <h3 id={`pillar-title-${id}`}>{title}</h3>
@@ -61,52 +61,61 @@ const MissionPillar = ({ icon: Icon, title, description, id }) => (
 // Componente para elementos decorativos
 const DecorationElement = ({ index, side }) => (
   <div 
-    className={`decoration-element decoration-${index}`} 
+    className={`${styles.decorationElement} ${styles[`decoration${index}`]}`}
     aria-hidden="true"
     role="presentation"
   />
 );
 
-// Componente principal mejorado
+// Componente para decoraciones del footer
+const FooterDecorationElement = ({ index, side }) => (
+  <div 
+    className={`${styles.footerDecorationElement} ${styles[`footerDecoration${index}`]}`}
+    aria-hidden="true"
+    role="presentation"
+  />
+);
+
+// Componente principal corregido para CSS Modules
 function MisionPage() {
   return (
-    <div className="page-container mision-page with-navbar">
+    <div className={`${styles.pageContainer} ${styles.misionPage} ${styles.withNavbar}`}>
       {/* Decoración Lateral Izquierda */}
-      <aside className="side-decoration left-decoration" aria-hidden="true">
+      <aside className={`${styles.sideDecoration} ${styles.leftDecoration}`} aria-hidden="true">
         {[1, 2, 3].map(index => (
           <DecorationElement key={`left-${index}`} index={index} side="left" />
         ))}
       </aside>
 
       {/* Contenido Principal */}
-      <main className="main-content" role="main">
-        <div className="content-wrapper">
+      <main className={styles.mainContent} role="main">
+        <div className={styles.contentWrapper}>
           {/* Header con título */}
-          <header className="page-header">
-            <h1 className="page-title" id="mission-title">
-              <span className="title-decoration" aria-hidden="true"></span>
+          <header className={styles.pageHeader}>
+            <h1 className={styles.pageTitle} id="mission-title">
+              <span className={styles.titleDecoration} aria-hidden="true"></span>
               MISIÓN
-              <span className="title-decoration" aria-hidden="true"></span>
+              <span className={styles.titleDecoration} aria-hidden="true"></span>
             </h1>
             
-            <div className="divider" role="separator" aria-hidden="true">
-              <span className="divider-icon"></span>
+            <div className={styles.divider} role="separator" aria-hidden="true">
+              <span className={styles.dividerIcon}></span>
             </div>
           </header>
           
           {/* Sección principal de la misión */}
-          <section className="mission-statement-section" aria-labelledby="mission-title">
-            <p className="mission-text" role="text">
+          <section className={styles.missionStatementSection} aria-labelledby="mission-title">
+            <p className={styles.missionText} role="text">
               {MISSION_STATEMENT}
             </p>
           </section>
 
           {/* Sección de pilares de la misión */}
-          <section className="mission-pillars-section" aria-labelledby="pillars-title">
-            <h2 id="pillars-title" className="pillars-title">
+          <section className={styles.missionPillarsSection} aria-labelledby="pillars-title">
+            <h2 id="pillars-title" className={styles.pillarsTitle}>
               Nuestros Pilares Fundamentales
             </h2>
-            <div className="mission-pillars" role="list">
+            <div className={styles.missionPillars} role="list">
               {MISSION_PILLARS.map((pillar) => (
                 <MissionPillar
                   key={pillar.id}
@@ -120,16 +129,16 @@ function MisionPage() {
           </section>
 
           {/* Sección de compromiso */}
-          <section className="commitment-section" aria-labelledby="commitment-title">
-            <div className="commitment-card">
-              <h2 id="commitment-title">Nuestro Compromiso</h2>
-              <blockquote>
-                <p>
-                  "Dedicados a proteger vidas y el medio ambiente a través de 
-                  la ciencia meteorológica y la innovación tecnológica."
-                </p>
+          <section className={styles.commitmentSection} aria-labelledby="commitment-title">
+            <div className={styles.commitmentCard}>
+              <h2 id="commitment-title" className={styles.commitmentTitle}>
+                Nuestro Compromiso
+              </h2>
+              <blockquote className={styles.commitmentQuote}>
+                "Dedicados a proteger vidas y el medio ambiente a través de 
+                la ciencia meteorológica y la innovación tecnológica."
               </blockquote>
-              <p className="commitment-text">
+              <p className={styles.commitmentText}>
                 Como institución rectora, nos comprometemos a brindar información 
                 precisa y oportuna que permita a Bolivia enfrentar los desafíos 
                 climáticos con conocimiento y preparación.
@@ -140,11 +149,25 @@ function MisionPage() {
       </main>
 
       {/* Decoración Lateral Derecha */}
-      <aside className="side-decoration right-decoration" aria-hidden="true">
+      <aside className={`${styles.sideDecoration} ${styles.rightDecoration}`} aria-hidden="true">
         {[1, 2, 3].map(index => (
           <DecorationElement key={`right-${index}`} index={index} side="right" />
         ))}
       </aside>
+
+      {/* Decoraciones del Footer */}
+      <div className={styles.footerDecorations}>
+        <div className={`${styles.footerStripeLeft}`}>
+          {[1, 2, 3].map(index => (
+            <FooterDecorationElement key={`footer-left-${index}`} index={index} side="left" />
+          ))}
+        </div>
+        <div className={`${styles.footerStripeRight}`}>
+          {[1, 2, 3].map(index => (
+            <FooterDecorationElement key={`footer-right-${index}`} index={index} side="right" />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

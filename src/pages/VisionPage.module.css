@@ -1,0 +1,492 @@
+/* VisionPage.module.css */
+
+/* Variables CSS para colores y espaciado */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --accent-color: #3b82f6;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --background-light: #f8fafc;
+  --background-white: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #1e40af);
+  --gradient-accent: linear-gradient(135deg, #60a5fa, #3b82f6);
+}
+
+/* Contenedor principal de la página */
+.pageContainer {
+  min-height: 100vh;
+  background: var(--background-light);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.visionPage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.withNavbar {
+  padding-top: 80px; /* Espacio para navbar fijo */
+}
+
+/* Contenido principal */
+.mainContent {
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+/* Encabezado de la página */
+.pageHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pageTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Divisor decorativo */
+.divider {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  border-radius: 1px;
+  transform: translateY(-50%);
+}
+
+.dividerIcon {
+  width: 12px;
+  height: 12px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 4px var(--background-light);
+}
+
+/* Sección hero */
+.heroSection {
+  text-align: center;
+  margin: 4rem 0;
+  padding: 3rem 2rem;
+  background: var(--background-white);
+  border-radius: 20px;
+  box-shadow: var(--shadow-large);
+  position: relative;
+}
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: var(--gradient-primary);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+}
+
+.visionIcon {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.visionStatement {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-weight: 500;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Sección de tarjetas de visión */
+.visionCardsSection {
+  margin: 5rem 0;
+  text-align: center;
+}
+
+.visionCardsSection h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.visionCardsSection h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+}
+
+.visionCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.visionCard {
+  background: var(--background-white);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.visionCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.visionCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-large);
+}
+
+.visionCard:hover::before {
+  transform: scaleX(1);
+}
+
+.cardIcon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.visionCard:hover .cardIcon {
+  transform: scale(1.1);
+}
+
+.visionCard h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.visionCard p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Sección de futuro/timeline */
+.futureSection {
+  margin: 5rem 0;
+}
+
+.futureSection h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.futureSection h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gradient-primary);
+  border-radius: 1px;
+}
+
+.timelineItem {
+  position: relative;
+  margin: 3rem 0;
+  padding-left: 5rem;
+}
+
+.timelineDot {
+  position: absolute;
+  left: 1.25rem;
+  top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--background-light);
+  z-index: 2;
+}
+
+.timelineContent {
+  background: var(--background-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-medium);
+  transition: transform 0.3s ease;
+}
+
+.timelineContent:hover {
+  transform: translateX(8px);
+}
+
+.timelineContent h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.timelineContent p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Sección de cita */
+.quoteSection {
+  text-align: center;
+  margin: 5rem 0;
+  padding: 4rem 2rem;
+  background: var(--gradient-primary);
+  border-radius: 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.quoteSection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveBackground 20s linear infinite;
+}
+
+.quoteSection blockquote {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+.attribution {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Decoraciones laterales */
+.sideDecoration {
+  position: fixed;
+  top: 0;
+  width: 200px;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.leftDecoration {
+  left: -100px;
+}
+
+.rightDecoration {
+  right: -100px;
+}
+
+.decorationElement {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.decoration1 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 50%;
+  animation-delay: 0s;
+}
+
+.decoration2 {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.decoration3 {
+  width: 60px;
+  height: 60px;
+  top: 70%;
+  left: 70%;
+  animation-delay: 4s;
+}
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes moveBackground {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20px, 20px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+  
+  .visionStatement {
+    font-size: 1.25rem;
+  }
+  
+  .visionCards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .visionCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .heroSection {
+    padding: 2rem 1rem;
+  }
+  
+  .timeline::before {
+    left: 1rem;
+  }
+  
+  .timelineItem {
+    padding-left: 3rem;
+  }
+  
+  .timelineDot {
+    left: 0.75rem;
+  }
+  
+  .quoteSection {
+    padding: 3rem 1rem;
+  }
+  
+  .quoteSection blockquote {
+    font-size: 1.5rem;
+  }
+  
+  .sideDecoration {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .withNavbar {
+    padding-top: 60px;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+  }
+  
+  .visionStatement {
+    font-size: 1.1rem;
+  }
+  
+  .visionCardsSection h2,
+  .futureSection h2 {
+    font-size: 2rem;
+  }
+}

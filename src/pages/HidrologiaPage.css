@@ -9,10 +9,26 @@
   color: #333;
   background-color: #f8f9fa;
   min-height: 100vh;
+  /* SOLUCIÓN: Padding top por defecto para el navbar fijo */
+  padding-top: 180px;
+  position: relative;
+  z-index: 1;
 }
 
+/* Clase específica para cuando hay navbar - ahora redundante pero mantenemos compatibilidad */
 .hydrology-page.with-navbar {
-  padding-top: 140px;
+  padding-top: 180px;
+  margin-top: 0;
+}
+
+/* Alternativa: Si el navbar cambia de altura, usar esta clase */
+.hydrology-page.navbar-large {
+  padding-top: 200px;
+}
+
+/* Para páginas sin navbar (si las hay) */
+.hydrology-page.no-navbar {
+  padding-top: 20px;
 }
 
 /* Header */
@@ -24,6 +40,11 @@
   color: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* CRÍTICO: z-index muy bajo para estar debajo del navbar */
+  position: relative;
+  z-index: 1;
+  /* Asegurar que no se superponga */
+  margin-top: 0;
 }
 
 .page-title {
@@ -44,6 +65,9 @@
 .hydrology-content {
   display: grid;
   grid-gap: 30px;
+  /* Asegurar que el contenido esté por debajo del navbar */
+  position: relative;
+  z-index: 1;
 }
 
 /* Secciones */
@@ -52,6 +76,8 @@
   border-radius: 10px;
   padding: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  /* Asegurar posición relativa */
+  position: relative;
 }
 
 .hydrology-content h2 {
@@ -79,6 +105,8 @@
   overflow-x: auto;
   padding-bottom: 15px;
   gap: 12px;
+  /* Prevenir que los botones se salgan del contenedor */
+  scroll-behavior: smooth;
 }
 
 .station-button {
@@ -93,6 +121,8 @@
   min-width: 200px;
   transition: all 0.3s ease;
   font-size: 0.95rem;
+  /* Evitar que se compriman demasiado */
+  flex-shrink: 0;
 }
 
 .station-button.active {
@@ -121,6 +151,8 @@
   border-radius: 8px;
   padding: 20px;
   border: 1px solid #e9ecef;
+  /* Margen superior para separar del selector */
+  margin-top: 20px;
 }
 
 .station-details h3 {
@@ -203,6 +235,7 @@
   overflow: hidden;
   border: 1px solid #dee2e6;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 /* Gráficos históricos */
@@ -210,6 +243,7 @@
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .data-button {
@@ -369,7 +403,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999; /* Z-index muy alto para estar sobre todo */
   backdrop-filter: blur(3px);
 }
 
@@ -443,10 +477,26 @@
   font-size: 0.9rem !important;
 }
 
+/* Clases de utilidad para z-index */
+.z-below-navbar {
+  position: relative;
+  z-index: 1;
+}
+
+.z-above-content {
+  position: relative;
+  z-index: 10;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hydrology-page {
     padding: 15px;
+    padding-top: 200px; /* Más espacio en móviles */
+  }
+  
+  .hydrology-page.with-navbar {
+    padding-top: 200px;
   }
   
   .page-title {
@@ -460,11 +510,13 @@
   }
   
   .station-buttons {
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
   }
   
   .station-button {
     min-width: 100%;
+    flex-shrink: 0;
   }
   
   .map-container {
@@ -474,12 +526,6 @@
   .hydrology-content section {
     padding: 18px;
   }
-}
-
-@media (max-width: 480px) {
-  .page-title {
-    font-size: 1.8rem;
-  }
   
   .data-selector {
     flex-direction: column;
@@ -488,4 +534,37 @@
   .data-button {
     width: 100%;
   }
+}
+
+@media (max-width: 480px) {
+  .hydrology-page {
+    padding-top: 220px; /* Aún más espacio en pantallas muy pequeñas */
+  }
+  
+  .hydrology-page.with-navbar {
+    padding-top: 220px;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+  }
+  
+  .hydrology-content {
+    grid-gap: 20px;
+  }
+  
+  .hydrology-content section {
+    padding: 15px;
+  }
+}
+
+/* Ajustes específicos para evitar conflictos con navbar fijo */
+body.has-fixed-navbar .hydrology-page {
+  padding-top: 160px;
+}
+
+/* Clase auxiliar para debugging */
+.debug-spacing {
+  border: 2px dashed red;
+  background-color: rgba(255, 0, 0, 0.1);
 }
