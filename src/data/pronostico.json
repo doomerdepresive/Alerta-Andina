@@ -1,0 +1,24 @@
+{
+    "La Paz": [
+      { "dia": "Lunes", "estado": "Nublado", "max": 18, "min": 6, "icono": "☁️" },
+      { "dia": "Martes", "estado": "Lluvia", "max": 16, "min": 7, "icono": "🌧️" },
+      { "dia": "Miércoles", "estado": "Parcialmente nublado", "max": 20, "min": 8, "icono": "⛅" }
+    ],
+    "Cochabamba": [
+      { "dia": "Lunes", "estado": "Soleado", "max": 28, "min": 12, "icono": "☀️" },
+      { "dia": "Martes", "estado": "Nublado", "max": 25, "min": 14, "icono": "☁️" },
+      { "dia": "Miércoles", "estado": "Soleado", "max": 29, "min": 13, "icono": "☀️" }
+    ],
+    "Santa Cruz": [
+      { "dia": "Lunes", "estado": "Lluvia", "max": 24, "min": 19, "icono": "🌧️" },
+      { "dia": "Martes", "estado": "Tormenta", "max": 22, "min": 18, "icono": "⛈️" },
+      { "dia": "Miércoles", "estado": "Lluvia", "max": 23, "min": 19, "icono": "🌧️" }
+    ],
+    "Oruro": [],
+    "Potosí": [],
+    "Tarija": [],
+    "Chuquisaca": [],
+    "Beni": [],
+    "Pando": []
+  }
+  

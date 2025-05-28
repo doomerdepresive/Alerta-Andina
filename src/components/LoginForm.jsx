@@ -1,7 +1,7 @@
+// src/components/LoginForm.jsx
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { FaEnvelope, FaLock, FaSignInAlt } from "react-icons/fa";
 import "./LoginForm.css";
 
 function LoginForm() {
@@ -30,80 +30,35 @@ function LoginForm() {
     };
 
     return (
-        <div className="split-container">
-            <div className="login-section">
-                <div className="login-content">
-                    <div className="login-header">
-                        <h2>Iniciar Sesión</h2>
-                        <p className="login-subtitle">Panel de Administración</p>
-                    </div>
+        <div className="login-background">
+            <div className="login-container">
+                <h1>🔒 Panel de Administrador</h1>
+                <p>Acceso exclusivo para el administrador</p>
 
-                    <form onSubmit={handleSubmit} className="login-form">
-                        {error && (
-                            <div className="error-message">
-                                <FaSignInAlt className="error-icon" />
-                                {error}
-                            </div>
-                        )}
+                <form onSubmit={handleSubmit} className="login-form">
+                    {error && <div className="error-message">{error}</div>}
 
-                        <div className="form-group">
-                            <label htmlFor="email">
-                                <FaEnvelope className="input-icon" />
-                                Correo Electrónico
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                placeholder="Ingrese su correo"
-                                className="input-with-icon"
-                            />
-                        </div>
+                    <label htmlFor="email">Correo Electrónico</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
 
-                        <div className="form-group">
-                            <label htmlFor="password">
-                                <FaLock className="input-icon" />
-                                Contraseña
-                            </label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                placeholder="Ingrese su contraseña"
-                                className="input-with-icon"
-                            />
-                        </div>
+                    <label htmlFor="password">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
 
-                        <button type="submit" className="login-button">
-                            <FaSignInAlt className="button-icon" />
-                            Ingresar al Sistema
-                        </button>
-                    </form>
-                </div>
+                    <button type="submit">Ingresar</button>
+                </form>
             </div>
-
-            <div className="welcome-section">
-                <div className="welcome-content">
-                    <div className="logo-container">
-                        <img
-                            src="/src/assets/Logo_Clima-remove.png"
-                            alt="Logo Alerta Andina"
-                            className="main-logo"
-                        />
-                    </div>
-                    <h1>Alerta Andina</h1>
-                    <p className="welcome-message">
-                        Bienvenido al Sistema de Administración de Alerta Andina.
-                        Aquí podrás gestionar toda la información meteorológica
-                        e hidrológica para mantener informada a nuestra comunidad.
-                    </p>
-                </div>
-            </div>
-
         </div>
     );
 }

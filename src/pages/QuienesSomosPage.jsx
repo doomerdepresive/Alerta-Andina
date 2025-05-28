@@ -1,113 +1,151 @@
 // src/pages/QuienesSomosPage.jsx
 import React from "react";
-import "./QuienesSomosPage.css"; // Crearemos un archivo CSS específico
-import { FaGraduationCap, FaLaptopCode, FaSchool, FaUsers } from "react-icons/fa"; // Necesitarás react-icons
+import styles from "./QuienesSomosPage.module.css";
+import {
+  FaGraduationCap,
+  FaLaptopCode,
+  FaSchool,
+  FaUsers,
+  FaMapMarkerAlt,
+  FaCalendarAlt
+} from "react-icons/fa";
 
 function QuienesSomosPage() {
   return (
-    <div className="page-container quienes-somos-page">
-      <div className="side-decoration left-decoration"></div>
+    <div className={styles.quienesSomosContainer}>
+      <div className={`${styles.sideDecoration} ${styles.leftDecoration}`}></div>
 
-      <main className="main-content">
-        <h1 className="page-title">¿QUIÉNES SOMOS?</h1>
-        
-        <div className="intro-section">
-          <p className="intro-text">
-            <strong>Alerta Andina</strong> es un proyecto innovador desarrollado por estudiantes 
-            de Ingeniería de Sistemas de la Escuela Militar de Ingeniería "Mcal. Antonio Jose de Sucre" 
-            (EMI) de La Paz, Bolivia. Nuestro objetivo es crear un sistema de alerta temprana 
-            climatológica geolocalizada que contribuya a la prevención de riesgos en nuestra ciudad.
-          </p>
+      <main className={styles.mainContent}>
+        <div className={styles.heroSection}>
+          <h1 className={styles.pageTitle}>¿QUIÉNES SOMOS?</h1>
+          <div className={styles.titleUnderline}></div>
         </div>
 
-        <div className="team-section">
-          <h2>Nuestro Equipo</h2>
-          <div className="team-members">
-            <div className="team-member">
-              <div className="member-avatar">BG</div>
-              <h3>Brayaan Gutierrez Morales</h3>
-              <p>Estudiante de Ingeniería de Sistemas</p>
-              <p>EMI - La Paz</p>
+        <div className={styles.introSection}>
+          <div className={styles.introContent}>
+            <div className={styles.introText}>
+              <h2>Alerta Andina</h2>
+              <p>
+                Es un proyecto innovador desarrollado por estudiantes de Ingeniería de Sistemas de la <strong>Escuela Militar de Ingeniería "Mcal. Antonio José de Sucre" (EMI)</strong> de La Paz, Bolivia. Nuestro objetivo es crear un sistema de alerta temprana climatológica geolocalizada que contribuya a la prevención de riesgos en nuestra ciudad.
+              </p>
             </div>
-            <div className="team-member">
-              <div className="member-avatar">NT</div>
-              <h3>Norman Lisandro Tintaya Mollinedo</h3>
-              <p>Estudiante de Ingeniería de Sistemas</p>
-              <p>A26047-9</p>
+            <div className={styles.introStats}>
+              <div className={styles.statItem}>
+                <FaMapMarkerAlt className={styles.statIcon} />
+                <span>La Paz, Bolivia</span>
+              </div>
+              <div className={styles.statItem}>
+                <FaCalendarAlt className={styles.statIcon} />
+                <span>2025</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="info-cards">
-          <div className="info-card">
-            <div className="info-icon">
-              <FaSchool />
+        <div className={styles.teamSection}>
+          <h2 className={styles.sectionTitle}>Nuestro Equipo</h2>
+          <div className={styles.teamMembers}>
+            <div className={styles.teamMember}>
+              <div className={`${styles.memberAvatar} ${styles.gradientBg1}`}>
+                <span>BG</span>
+              </div>
+              <div className={styles.memberInfo}>
+                <h3>Brayaan Gutierrez Morales</h3>
+                <p className={styles.memberRole}>Estudiante de Ingeniería de Sistemas</p>
+                <p className={styles.memberInstitution}>EMI - La Paz</p>
+              </div>
             </div>
-            <h3>Respaldo Académico</h3>
-            <p>
-              Este proyecto se desarrolla como parte de nuestra formación académica
-              en la EMI, institución de prestigio en la formación de ingenieros en Bolivia.
-            </p>
+            <div className={styles.teamMember}>
+              <div className={`${styles.memberAvatar} ${styles.gradientBg2}`}>
+                <span>NT</span>
+              </div>
+              <div className={styles.memberInfo}>
+                <h3>Norman Lisandro Tintaya Mollinedo</h3>
+                <p className={styles.memberRole}>Estudiante de Ingeniería de Sistemas</p>
+                <p className={styles.memberInstitution}>A26047-9</p>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div className="info-card">
-            <div className="info-icon">
-              <FaLaptopCode />
+        <div className={styles.infoCardsSection}>
+          <h2 className={styles.sectionTitle}>Nuestros Pilares</h2>
+          <div className={styles.infoCards}>
+            <div className={styles.infoCard}>
+              <div className={`${styles.infoIcon} ${styles.schoolIcon}`}>
+                <FaSchool />
+              </div>
+              <h3>Respaldo Académico</h3>
+              <p>
+                Este proyecto se desarrolla como parte de nuestra formación académica en la EMI, institución de prestigio en la formación de ingenieros en Bolivia.
+              </p>
             </div>
-            <h3>Innovación Tecnológica</h3>
-            <p>
-              Combinamos conocimientos de desarrollo de software, meteorología y 
-              geolocalización para crear una solución tecnológica adaptada a las 
-              necesidades de La Paz.
-            </p>
+
+            <div className={styles.infoCard}>
+              <div className={`${styles.infoIcon} ${styles.techIcon}`}>
+                <FaLaptopCode />
+              </div>
+              <h3>Innovación Tecnológica</h3>
+              <p>
+                Combinamos conocimientos de desarrollo de software, meteorología y geolocalización para crear una solución tecnológica adaptada a las necesidades de La Paz.
+              </p>
+            </div>
+
+            <div className={styles.infoCard}>
+              <div className={`${styles.infoIcon} ${styles.socialIcon}`}>
+                <FaUsers />
+              </div>
+              <h3>Compromiso Social</h3>
+              <p>
+                Buscamos generar un impacto positivo en nuestra comunidad, especialmente en zonas vulnerables ante eventos climatológicos adversos.
+              </p>
+            </div>
+
+            <div className={styles.infoCard}>
+              <div className={`${styles.infoIcon} ${styles.researchIcon}`}>
+                <FaGraduationCap />
+              </div>
+              <h3>Investigación Aplicada</h3>
+              <p>
+                Aplicamos metodologías de investigación científica para el desarrollo de soluciones tecnológicas a problemas reales de nuestra sociedad.
+              </p>
+            </div>
           </div>
+        </div>
 
-          <div className="info-card">
-            <div className="info-icon">
-              <FaUsers />
-            </div>
-            <h3>Compromiso Social</h3>
+        <div className={styles.visionMissionSection}>
+          <div className={styles.visionCard}>
+            <h2>Nuestra Visión</h2>
             <p>
-              Buscamos generar un impacto positivo en nuestra comunidad, especialmente 
-              en zonas vulnerables ante eventos climatológicos adversos.
-            </p>
-          </div>
-
-          <div className="info-card">
-            <div className="info-icon">
-              <FaGraduationCap />
-            </div>
-            <h3>Investigación Aplicada</h3>
-            <p>
-              Aplicamos metodologías de investigación científica para el desarrollo
-              de soluciones tecnológicas a problemas reales de nuestra sociedad.
+              Aspiramos a que Alerta Andina se convierta en una herramienta esencial para la prevención de riesgos climatológicos, comenzando en La Paz, pero con potencial de expansión a otras regiones de Bolivia y Sudamérica. Creemos firmemente que la tecnología puede y debe ponerse al servicio de la seguridad y bienestar de las personas.
             </p>
           </div>
         </div>
 
-        <div className="vision-section">
-          <h2>Nuestra Visión</h2>
-          <p>
-            Aspiramos a que Alerta Andina se convierta en una herramienta esencial 
-            para la prevención de riesgos climatológicos, comenzando en La Paz, 
-            pero con potencial de expansión a otras regiones de Bolivia y Sudamérica.
-            Creemos firmemente que la tecnología puede y debe ponerse al servicio 
-            de la seguridad y bienestar de las personas.
-          </p>
-        </div>
-
-        <div className="project-details">
-          <h2>Detalles del Proyecto</h2>
-          <ul>
-            <li><strong>Carrera:</strong> Ingeniería de Sistemas</li>
-            <li><strong>Paralelo:</strong> 8vo "A"</li>
-            <li><strong>Semestre:</strong> I / 2025</li>
-            <li><strong>Grupo:</strong> 1</li>
-          </ul>
+        <div className={styles.projectDetails}>
+          <h2 className={styles.sectionTitle}>Detalles del Proyecto</h2>
+          <div className={styles.detailsGrid}>
+            <div className={styles.detailItem}>
+              <strong>Carrera:</strong>
+              <span>Ingeniería de Sistemas</span>
+            </div>
+            <div className={styles.detailItem}>
+              <strong>Paralelo:</strong>
+              <span>8vo "A"</span>
+            </div>
+            <div className={styles.detailItem}>
+              <strong>Semestre:</strong>
+              <span>I / 2025</span>
+            </div>
+            <div className={styles.detailItem}>
+              <strong>Grupo:</strong>
+              <span>1</span>
+            </div>
+          </div>
         </div>
       </main>
 
-      <div className="side-decoration right-decoration"></div>
+      <div className={`${styles.sideDecoration} ${styles.rightDecoration}`}></div>
     </div>
   );
 }

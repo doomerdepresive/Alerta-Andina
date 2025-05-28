@@ -1,0 +1,891 @@
+/* MisionPage.module.css - Estilo Elegante y Sofisticado con Franjas Extendidas */
+
+/* Variables CSS para diseño elegante */
+.misionPage {
+  --primary-dark: #1a252f;
+  --primary-navy: #2c3e50;
+  --accent-gold: #f39c12;
+  --accent-blue: #3498db;
+  --accent-emerald: #2ecc71;
+  --text-primary: #2c3e50;
+  --text-secondary: #34495e;
+  --text-light: #7f8c8d;
+  --text-gold: #e67e22;
+  --background-white: #ffffff;
+  --background-cream: #fefefe;
+  --background-light: #f8f9fa;
+  --background-dark: #2c3e50;
+  --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --background-gold: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --shadow-elegant: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-gold: 0 8px 32px rgba(243, 156, 18, 0.3);
+  --border-radius: 16px;
+  --border-radius-lg: 24px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+  --max-width: 1400px;
+}
+
+.misionPage {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--background-cream);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Container principal elegante */
+.pageContainer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  position: relative;
+  min-height: 100vh;
+}
+
+.pageContainer.withNavbar {
+  padding-top: 160px;
+}
+
+/* Decoraciones laterales elegantes - EXTENDIDAS A TODO EL DOCUMENTO */
+.sideDecoration {
+  position: fixed;
+  top: 0;
+  width: 120px;
+  height: 100vh;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xl);
+  z-index: 10;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(52, 73, 94, 0.03) 20%, 
+    rgba(52, 73, 94, 0.05) 50%, 
+    rgba(52, 73, 94, 0.03) 80%, 
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Fondo de las franjas que se extiende hasta el final del documento */
+.sideDecoration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200vh; /* Altura extendida para cubrir scroll */
+  background: inherit;
+  z-index: -1;
+}
+
+.leftDecoration {
+  left: 0;
+  background: linear-gradient(90deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.leftDecoration::before {
+  background: linear-gradient(90deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.rightDecoration {
+  right: 0;
+  background: linear-gradient(270deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.rightDecoration::before {
+  background: linear-gradient(270deg, 
+    rgba(52, 73, 94, 0.08) 0%, 
+    transparent 100%);
+}
+
+.decorationElement {
+  border-radius: var(--border-radius);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.decoration1 {
+  width: 8px;
+  height: 120px;
+  background: var(--background-gradient);
+  box-shadow: var(--shadow-elegant);
+}
+
+.decoration2 {
+  width: 12px;
+  height: 180px;
+  background: var(--background-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.decoration3 {
+  width: 6px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-blue) 100%);
+  box-shadow: var(--shadow-elegant);
+}
+
+.decorationElement::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sideDecoration:hover .decorationElement {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.sideDecoration:hover .decorationElement::before {
+  opacity: 1;
+}
+
+/* Franjas adicionales para el área del footer */
+.footerDecorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.footerStripeLeft,
+.footerStripeRight {
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+}
+
+.footerStripeLeft {
+  left: 0;
+  background: linear-gradient(90deg, 
+    rgba(52, 73, 94, 0.12) 0%, 
+    rgba(52, 73, 94, 0.06) 50%,
+    transparent 100%);
+}
+
+.footerStripeRight {
+  right: 0;
+  background: linear-gradient(270deg, 
+    rgba(52, 73, 94, 0.12) 0%, 
+    rgba(52, 73, 94, 0.06) 50%,
+    transparent 100%);
+}
+
+.footerDecorationElement {
+  border-radius: var(--border-radius);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.footerDecoration1 {
+  width: 6px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-emerald) 100%);
+  box-shadow: var(--shadow-elegant);
+}
+
+.footerDecoration2 {
+  width: 10px;
+  height: 120px;
+  background: var(--background-gradient);
+  box-shadow: var(--shadow-gold);
+}
+
+.footerDecoration3 {
+  width: 4px;
+  height: 60px;
+  background: var(--background-gold);
+  box-shadow: var(--shadow-elegant);
+}
+
+/* Contenido principal elegante */
+.mainContent {
+  position: relative;
+  z-index: 2;
+  padding: var(--spacing-xxl) 0;
+  background: radial-gradient(ellipse at center, 
+    rgba(255, 255, 255, 0.9) 0%, 
+    transparent 70%);
+}
+
+.contentWrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header elegante */
+.pageHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+  position: relative;
+}
+
+.pageHeader::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, 
+    rgba(243, 156, 18, 0.1) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.pageTitle {
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--primary-dark);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.titleDecoration {
+  width: 120px;
+  height: 4px;
+  background: var(--background-gradient);
+  border-radius: 2px;
+  box-shadow: var(--shadow-elegant);
+  position: relative;
+  overflow: hidden;
+}
+
+.titleDecoration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.6) 50%, 
+    transparent 100%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Divider elegante */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--background-gradient);
+  max-width: 200px;
+  border-radius: 1px;
+}
+
+.dividerIcon {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--accent-gold);
+  border-radius: 50%;
+  margin: 0 var(--spacing-lg);
+  position: relative;
+  background: var(--background-white);
+  box-shadow: var(--shadow-gold);
+}
+
+.dividerIcon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+}
+
+/* Sección de declaración de misión elegante */
+.missionStatementSection {
+  margin-bottom: var(--spacing-xxl);
+  position: relative;
+}
+
+.missionText {
+  font-size: 1.4rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  text-align: justify;
+  font-weight: 400;
+  padding: var(--spacing-xxl);
+  background: var(--background-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-deep);
+  border: 1px solid rgba(243, 156, 18, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Crimson Text', serif;
+}
+
+.missionText::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--background-gradient);
+}
+
+.missionText::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, 
+    rgba(243, 156, 18, 0.1) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+}
+
+.missionText::first-letter {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: var(--accent-gold);
+  float: left;
+  line-height: 0.8;
+  margin: 0.1em 0.2em 0 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Sección de pilares elegante */
+.missionPillarsSection {
+  margin-bottom: var(--spacing-xxl);
+  position: relative;
+}
+
+.pillarsTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pillarsTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--background-gold);
+  border-radius: 2px;
+  box-shadow: var(--shadow-gold);
+}
+
+.missionPillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xxl);
+}
+
+.missionPillar {
+  background: var(--background-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-elegant);
+  border: 1px solid rgba(52, 73, 94, 0.1);
+}
+
+.missionPillar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--background-gradient);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.missionPillar::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(243, 156, 18, 0.05) 0%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.missionPillar:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-deep);
+}
+
+.missionPillar:hover::before {
+  transform: scaleX(1);
+}
+
+.missionPillar:hover::after {
+  opacity: 1;
+}
+
+.pillarIcon {
+  font-size: 3.5rem;
+  margin-bottom: var(--spacing-md);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 2;
+}
+
+.missionPillar:nth-child(1) .pillarIcon { color: var(--accent-blue); }
+.missionPillar:nth-child(2) .pillarIcon { color: var(--accent-emerald); }
+.missionPillar:nth-child(3) .pillarIcon { color: var(--accent-gold); }
+.missionPillar:nth-child(4) .pillarIcon { color: #e74c3c; }
+
+.missionPillar:hover .pillarIcon {
+  transform: scale(1.2) rotate(5deg);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+.missionPillar h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-dark);
+  position: relative;
+  z-index: 2;
+}
+
+.missionPillar p {
+  color: var(--text-light);
+  line-height: 1.7;
+  font-size: 1.1rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  position: relative;
+  z-index: 2;
+}
+
+/* Sección de compromiso elegante */
+.commitmentSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.commitmentCard {
+  background: var(--background-dark);
+  color: var(--background-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xxl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-deep);
+}
+
+.commitmentCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background-gradient);
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.commitmentCard::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.commitmentCard > * {
+  position: relative;
+  z-index: 2;
+}
+
+.commitmentTitle {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.commitmentQuote {
+  font-size: 1.8rem;
+  font-style: italic;
+  margin-bottom: var(--spacing-lg);
+  font-weight: 300;
+  line-height: 1.6;
+  font-family: 'Playfair Display', serif;
+  position: relative;
+}
+
+.commitmentQuote::before {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  top: -20px;
+  left: -40px;
+  color: var(--accent-gold);
+  opacity: 0.7;
+}
+
+.commitmentQuote::after {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  color: var(--accent-gold);
+  opacity: 0.7;
+}
+
+.commitmentText {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Estilos para el footer con decoraciones */
+.footerDecorations .footerStripeLeft .footerDecorationElement,
+.footerDecorations .footerStripeRight .footerDecorationElement {
+  animation: footerDecorationFloat 6s ease-in-out infinite alternate;
+}
+
+.footerDecorations .footerDecoration1 {
+  animation-delay: 0s;
+}
+
+.footerDecorations .footerDecoration2 {
+  animation-delay: 2s;
+}
+
+.footerDecorations .footerDecoration3 {
+  animation-delay: 4s;
+}
+
+@keyframes footerDecorationFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-10px) rotate(2deg);
+    opacity: 1;
+  }
+}
+
+/* Animaciones elegantes */
+@keyframes elegantFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.pageTitle {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.divider {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+}
+
+.missionText {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s both;
+}
+
+.pillarsTitle {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s both;
+}
+
+.missionPillar:nth-child(1) { animation: slideInLeft 0.8s ease-out 1.2s both; }
+.missionPillar:nth-child(2) { animation: elegantFadeIn 0.8s ease-out 1.4s both; }
+.missionPillar:nth-child(3) { animation: elegantFadeIn 0.8s ease-out 1.6s both; }
+.missionPillar:nth-child(4) { animation: slideInRight 0.8s ease-out 1.8s both; }
+
+.commitmentCard {
+  animation: elegantFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s both;
+}
+
+.leftDecoration .decorationElement {
+  animation: slideInLeft 0.8s ease-out both;
+}
+
+.rightDecoration .decorationElement {
+  animation: slideInRight 0.8s ease-out both;
+}
+
+.decoration1 { animation-delay: 0.5s; }
+.decoration2 { animation-delay: 0.7s; }
+.decoration3 { animation-delay: 0.9s; }
+
+/* Responsive Design Elegante */
+@media (max-width: 1024px) {
+  .sideDecoration,
+  .footerStripeLeft,
+  .footerStripeRight {
+    width: 80px;
+  }
+  
+  .pageTitle {
+    font-size: 3.5rem;
+  }
+  
+  .missionPillars {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .pageContainer.withNavbar {
+    padding-top: 80px;
+  }
+  
+  .mainContent {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .pageTitle {
+    font-size: 2.8rem;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .titleDecoration {
+    width: 80px;
+  }
+  
+  .missionText {
+    font-size: 1.2rem;
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .missionPillars {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .pillarsTitle {
+    font-size: 2.2rem;
+  }
+  
+  .commitmentCard {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .commitmentTitle {
+    font-size: 2.2rem;
+  }
+  
+  .commitmentQuote {
+    font-size: 1.4rem;
+  }
+  
+  .sideDecoration,
+  .footerStripeLeft,
+  .footerStripeRight {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 2.2rem;
+  }
+  
+  .titleDecoration {
+    width: 60px;
+    height: 3px;
+  }
+  
+  .missionText {
+    font-size: 1.1rem;
+    padding: var(--spacing-lg);
+  }
+  
+  .missionPillar {
+    padding: var(--spacing-lg);
+  }
+  
+  .pillarIcon {
+    font-size: 2.8rem;
+  }
+  
+  .commitmentCard {
+    padding: var(--spacing-lg);
+  }
+  
+  .commitmentTitle {
+    font-size: 1.8rem;
+  }
+  
+  .commitmentQuote {
+    font-size: 1.2rem;
+  }
+  
+  .sideDecoration,
+  .footerStripeLeft,
+  .footerStripeRight {
+    display: none;
+  }
+}
+
+/* Estados de focus elegantes */
+.missionPillar:focus-within {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-deep);
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 4px;
+}
+
+/* Mejoras de rendimiento */
+.decorationElement,
+.footerDecorationElement,
+.missionPillar,
+.pillarIcon,
+.commitmentCard::after {
+  will-change: transform;
+}
+
+/* Modo de contraste alto */
+@media (prefers-contrast: high) {
+  .misionPage {
+    --text-secondary: #000;
+    --text-light: #333;
+  }
+}
+
+/* Modo de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .misionPage *,
+  .misionPage *::before,
+  .misionPage *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .commitmentCard::after {
+    animation: none;
+  }
+}

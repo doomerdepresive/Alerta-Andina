@@ -46,6 +46,8 @@
   text-align: center;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Cambia este valor para hacer la imagen más grande o pequeña */
+  width: auto; /* Mantiene la proporción original */
 }
 
 .mobile-menu-button {

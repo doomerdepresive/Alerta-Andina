@@ -1,5 +1,5 @@
 import React from "react";
-import "./MisionPage.css";
+import "./SistemasPage.css";
 
 function SistemasPage() {
   return (
