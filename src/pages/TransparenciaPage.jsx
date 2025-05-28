@@ -3,372 +3,237 @@ import React, { useState, useEffect } from "react";
 import styles from "./TransparenciaPage.module.css";
 import {
   FaShieldAlt,
-  FaBalanceScale,
-  FaHandshake,
-  FaLock,
   FaChartBar,
   FaCog,
   FaEye,
   FaUsers,
   FaCloudSun,
   FaExclamationTriangle,
-  FaClock,
   FaDownload,
   FaGithub,
-  FaFileAlt,
-  FaLightbulb,
+  FaGraduationCap,
   FaRocket,
-  FaTrophy,
-  FaGraduationCap
+  FaLightbulb
 } from "react-icons/fa";
 
 function TransparenciaPage() {
-  const [activeTab, setActiveTab] = useState('overview');
   const [visibleCards, setVisibleCards] = useState([]);
 
-  // Animación de aparición de las tarjetas
+  // Animación simple de aparición
   useEffect(() => {
     const timer = setTimeout(() => {
-      setVisibleCards(prev => [...prev, 0]);
-    }, 200);
+      setVisibleCards([0, 1, 2, 3]);
+    }, 300);
 
-    const intervals = [1, 2, 3].map((index, i) => 
-      setTimeout(() => {
-        setVisibleCards(prev => [...prev, index]);
-      }, 400 + (i * 200))
-    );
-
-    return () => {
-      clearTimeout(timer);
-      intervals.forEach(clearTimeout);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
-  const tabs = [
-    { id: 'overview', label: 'Visión General', icon: FaEye },
-    { id: 'data', label: 'Datos y Fuentes', icon: FaChartBar },
-    { id: 'methodology', label: 'Metodología', icon: FaCog },
-    { id: 'metrics', label: 'Métricas', icon: FaTrophy }
+  const projectInfo = [
+    {
+      icon: FaRocket,
+      title: 'Sobre el Proyecto',
+      description: 'Sistema de alertas tempranas para fenómenos climatológicos extremos en Bolivia, desarrollado como proyecto académico en la EMI La Paz.',
+      details: ['3 años de desarrollo', 'Enfoque en La Paz', 'Tecnología moderna']
+    },
+    {
+      icon: FaChartBar,
+      title: 'Fuentes de Datos',
+      description: 'Utilizamos datos oficiales y confiables para generar alertas precisas y oportunas para la población.',
+      details: ['SENAMHI Bolivia', 'Defensa Civil', 'Reportes ciudadanos']
+    },
+    {
+      icon: FaCog,
+      title: 'Metodología',
+      description: 'Procesamiento de datos meteorológicos en tiempo real usando algoritmos de machine learning para detección temprana.',
+      details: ['Análisis en tiempo real', 'Machine Learning', 'Validación múltiple']
+    },
+    {
+      icon: FaLightbulb,
+      title: 'Código Abierto',
+      description: 'Nuestro código es completamente abierto y transparente, disponible para la comunidad académica y de desarrollo.',
+      details: ['Licencia MIT', 'GitHub público', 'Documentación completa']
+    }
   ];
 
-  const metricsData = [
-    { label: 'Precisión de Alertas', value: '94.7%', trend: '+2.3%', color: '#28a745' },
-    { label: 'Tiempo Respuesta', value: '2.3min', trend: '-0.5min', color: '#007bff' },
-    { label: 'Usuarios Activos', value: '12,847', trend: '+1,203', color: '#fd7e14' },
-    { label: 'Alertas Enviadas', value: '45,692', trend: '+8,234', color: '#6f42c1' }
-  ];
-
-  const dataSourcesDetailed = [
+  const dataSourcesInfo = [
     {
       name: 'SENAMHI Bolivia',
-      description: 'Servicio Nacional de Meteorología e Hidrología',
-      dataTypes: ['Temperatura', 'Precipitación', 'Humedad', 'Presión atmosférica'],
-      updateFrequency: 'Cada 3 horas',
-      reliability: '99.2%',
-      icon: FaCloudSun
+      description: 'Datos meteorológicos oficiales',
+      icon: FaCloudSun,
+      frequency: 'Cada 3 horas'
     },
     {
       name: 'Defensa Civil',
-      description: 'Información de emergencias y zonas de riesgo',
-      dataTypes: ['Alertas históricas', 'Zonas vulnerables', 'Reportes de campo'],
-      updateFrequency: 'Tiempo real',
-      reliability: '97.8%',
-      icon: FaExclamationTriangle
+      description: 'Información de emergencias',
+      icon: FaExclamationTriangle,
+      frequency: 'Tiempo real'
     },
     {
       name: 'Reportes Ciudadanos',
-      description: 'Sistema colaborativo de la comunidad',
-      dataTypes: ['Reportes visuales', 'Confirmaciones', 'Feedback local'],
-      updateFrequency: 'Continuo',
-      reliability: '89.4%',
-      icon: FaUsers
+      description: 'Colaboración comunitaria',
+      icon: FaUsers,
+      frequency: 'Continuo'
     }
   ];
 
-  const renderTabContent = () => {
-    switch(activeTab) {
-      case 'overview':
-        return (
-          <div className={styles.tabContent}>
-            <div className={styles.heroStats}>
-              <div className={styles.heroStat}>
-                <div className={styles.statIcon}><FaRocket /></div>
-                <div className={styles.statInfo}>
-                  <h3>3 Años</h3>
-                  <p>En desarrollo</p>
-                </div>
-              </div>
-              <div className={styles.heroStat}>
-                <div className={styles.statIcon}><FaGraduationCap /></div>
-                <div className={styles.statInfo}>
-                  <h3>EMI La Paz</h3>
-                  <p>Proyecto académico</p>
-                </div>
-              </div>
-              <div className={styles.heroStat}>
-                <div className={styles.statIcon}><FaLightbulb /></div>
-                <div className={styles.statInfo}>
-                  <h3>Open Source</h3>
-                  <p>Código abierto</p>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.transparencyGrid}>
-              {[
-                {
-                  icon: FaShieldAlt,
-                  title: 'Protección de Datos',
-                  description: 'Implementamos protocolos de seguridad de grado empresarial. Todos los datos se cifran en tránsito y en reposo. Cumplimos con estándares internacionales de privacidad.',
-                  features: ['Cifrado AES-256', 'Auditorías de seguridad', 'Acceso controlado']
-                },
-                {
-                  icon: FaBalanceScale,
-                  title: 'Metodología Científica',
-                  description: 'Nuestros algoritmos están basados en machine learning y métodos estadísticos validados. Cada predicción pasa por múltiples capas de verificación.',
-                  features: ['Peer review', 'Validación cruzada', 'Documentación completa']
-                },
-                {
-                  icon: FaHandshake,
-                  title: 'Colaboración Abierta',
-                  description: 'Trabajamos en conjunto con instituciones locales e internacionales. Nuestra red de colaboradores crece constantemente.',
-                  features: ['Partnerships estratégicos', 'Red de expertos', 'Comunidad activa']
-                },
-                {
-                  icon: FaLock,
-                  title: 'Transparencia Total',
-                  description: 'Publicamos reportes regulares sobre nuestro desempeño, metodología y impacto. La transparencia es uno de nuestros valores fundamentales.',
-                  features: ['Reportes mensuales', 'Código abierto', 'Auditorías públicas']
-                }
-              ].map((card, index) => (
-                <div 
-                  key={index}
-                  className={`${styles.transparencyCard} ${styles.enhanced} ${visibleCards.includes(index) ? styles.visible : ''}`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className={styles.cardHeader}>
-                    <div className={styles.transparencyIcon}>
-                      <card.icon />
-                    </div>
-                    <h3>{card.title}</h3>
-                  </div>
-                  <p className={styles.cardDescription}>{card.description}</p>
-                  <div className={styles.cardFeatures}>
-                    {card.features.map((feature, idx) => (
-                      <span key={idx} className={styles.featureBadge}>{feature}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
-      case 'data':
-        return (
-          <div className={styles.tabContent}>
-            <div className={styles.dataSourcesGrid}>
-              {dataSourcesDetailed.map((source, index) => (
-                <div key={index} className={styles.dataSourceCard}>
-                  <div className={styles.sourceHeader}>
-                    <div className={styles.sourceIcon}>
-                      <source.icon />
-                    </div>
-                    <div className={styles.sourceInfo}>
-                      <h3>{source.name}</h3>
-                      <p>{source.description}</p>
-                    </div>
-                  </div>
-                  <div className={styles.sourceDetails}>
-                    <div className={styles.detailItem}>
-                      <strong>Tipos de datos:</strong>
-                      <div className={styles.dataTypes}>
-                        {source.dataTypes.map((type, idx) => (
-                          <span key={idx} className={styles.dataTypeTag}>{type}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className={styles.detailRow}>
-                      <div className={styles.detailItem}>
-                        <strong>Frecuencia:</strong> {source.updateFrequency}
-                      </div>
-                      <div className={styles.detailItem}>
-                        <strong>Confiabilidad:</strong> 
-                        <span className={styles.reliabilityBadge}>{source.reliability}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
-      case 'methodology':
-        return (
-          <div className={styles.tabContent}>
-            <div className={styles.methodologyTimeline}>
-              <div className={styles.timelineItem}>
-                <div className={styles.timelineMarker}>1</div>
-                <div className={styles.timelineContent}>
-                  <h3>Recolección de Datos</h3>
-                  <p>Agregamos datos de múltiples fuentes confiables en tiempo real, aplicando filtros de calidad y validación automática.</p>
-                </div>
-              </div>
-              <div className={styles.timelineItem}>
-                <div className={styles.timelineMarker}>2</div>
-                <div className={styles.timelineContent}>
-                  <h3>Procesamiento y Análisis</h3>
-                  <p>Utilizamos algoritmos de machine learning para identificar patrones y anomalías en los datos meteorológicos.</p>
-                </div>
-              </div>
-              <div className={styles.timelineItem}>
-                <div className={styles.timelineMarker}>3</div>
-                <div className={styles.timelineContent}>
-                  <h3>Generación de Alertas</h3>
-                  <p>Sistema inteligente que evalúa múltiples variables para determinar el nivel de riesgo y generar alertas precisas.</p>
-                </div>
-              </div>
-              <div className={styles.timelineItem}>
-                <div className={styles.timelineMarker}>4</div>
-                <div className={styles.timelineContent}>
-                  <h3>Distribución y Feedback</h3>
-                  <p>Las alertas se envían a través de múltiples canales y recopilamos feedback para mejorar continuamente.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'metrics':
-        return (
-          <div className={styles.tabContent}>
-            <div className={styles.metricsDashboard}>
-              <div className={styles.metricsGrid}>
-                {metricsData.map((metric, index) => (
-                  <div key={index} className={styles.metricCard}>
-                    <div className={styles.metricHeader}>
-                      <h4>{metric.label}</h4>
-                      <span className={styles.metricTrend} style={{ color: metric.color }}>
-                        {metric.trend}
-                      </span>
-                    </div>
-                    <div className={styles.metricValue} style={{ color: metric.color }}>
-                      {metric.value}
-                    </div>
-                    <div className={styles.metricProgress}>
-                      <div 
-                        className={styles.progressBar} 
-                        style={{ backgroundColor: metric.color, width: '75%' }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className={styles.additionalMetrics}>
-                <div className={styles.metricDetail}>
-                  <div className={styles.metricIcon}><FaClock /></div>
-                  <div>
-                    <h4>Tiempo Promedio de Detección</h4>
-                    <p>Desde la ocurrencia del evento hasta la emisión de la alerta</p>
-                    <strong>2.3 minutos</strong>
-                  </div>
-                </div>
-                <div className={styles.metricDetail}>
-                  <div className={styles.metricIcon}><FaUsers /></div>
-                  <div>
-                    <h4>Alcance de Alertas</h4>
-                    <p>Porcentaje de población objetivo que recibe las alertas</p>
-                    <strong>87.2%</strong>
-                  </div>
-                </div>
-                <div className={styles.metricDetail}>
-                  <div className={styles.metricIcon}><FaChartBar /></div>
-                  <div>
-                    <h4>Efectividad de Respuesta</h4>
-                    <p>Usuarios que toman acción preventiva tras recibir una alerta</p>
-                    <strong>71.8%</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className={`${styles.pageContainer} ${styles.transparenciaPage} ${styles.withNavbar}`}>
-      <div className={`${styles.sideDecoration} ${styles.leftDecoration}`}></div>
-
-      {/* Header mejorado */}
+      
+      {/* Header principal */}
       <div className={styles.pageHeader}>
         <div className={styles.headerContent}>
-          <h1 className={styles.pageTitle}>TRANSPARENCIA</h1>
+          <h1 className={styles.pageTitle}>Sobre Nuestro Proyecto</h1>
           <p className={styles.pageSubtitle}>
-            Comprometidos con la transparencia total en nuestro proyecto de alertas climatológicas
+            Sistema de Alertas Climatológicas para Bolivia - Proyecto Académico EMI La Paz
           </p>
         </div>
-        <div className={styles.headerActions}>
-          <button className={`${styles.actionBtn} ${styles.primary}`}>
-            <FaDownload /> Descargar Reporte
-          </button>
-          <button className={`${styles.actionBtn} ${styles.secondary}`}>
-            <FaGithub /> Ver Código
-          </button>
+        <div className={styles.headerStats}>
+          <div className={styles.statItem}>
+            <FaGraduationCap />
+            <span>EMI La Paz</span>
+          </div>
+          <div className={styles.statItem}>
+            <FaRocket />
+            <span>3 Años Desarrollo</span>
+          </div>
+          <div className={styles.statItem}>
+            <FaLightbulb />
+            <span>Open Source</span>
+          </div>
         </div>
       </div>
 
-      {/* Navegación por pestañas */}
-      <div className={styles.tabsNavigation}>
-        {tabs.map(tab => (
-          <button
-            key={tab.id}
-            className={`${styles.tabBtn} ${activeTab === tab.id ? styles.active : ''}`}
-            onClick={() => setActiveTab(tab.id)}
+      {/* Información principal del proyecto */}
+      <div className={styles.projectGrid}>
+        {projectInfo.map((card, index) => (
+          <div 
+            key={index}
+            className={`${styles.projectCard} ${visibleCards.includes(index) ? styles.visible : ''}`}
           >
-            <tab.icon />
-            <span>{tab.label}</span>
-          </button>
+            <div className={styles.cardIcon}>
+              <card.icon />
+            </div>
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+            <div className={styles.cardDetails}>
+              {card.details.map((detail, idx) => (
+                <span key={idx} className={styles.detailTag}>{detail}</span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
 
-      {/* Contenido de las pestañas */}
-      {renderTabContent()}
-
-      {/* Footer de contacto mejorado */}
-      <div className={`${styles.contactSection} ${styles.enhanced}`}>
-        <div className={styles.contactHeader}>
-          <h2>¿Necesitas más información?</h2>
-          <p>Estamos aquí para responder todas tus preguntas sobre transparencia y metodología</p>
-        </div>
-        <div className={styles.contactCards}>
-          <div className={styles.contactCard}>
-            <FaFileAlt />
-            <h4>Documentación</h4>
-            <p>Accede a nuestra documentación técnica completa</p>
-          </div>
-          <div className={styles.contactCard}>
-            <FaUsers />
-            <h4>Comunidad</h4>
-            <p>Únete a nuestra comunidad de desarrolladores</p>
-          </div>
-          <div className={styles.contactCard}>
-            <FaGraduationCap />
-            <h4>Académico</h4>
-            <p>Colaboraciones e investigación académica</p>
-          </div>
-        </div>
-        <div className={`${styles.disclaimer} ${styles.enhanced}`}>
-          <strong>Proyecto Académico EMI La Paz</strong> • Desarrollado con fines educativos y de servicio comunitario • Código abierto bajo licencia MIT
+      {/* Sección de fuentes de datos */}
+      <div className={styles.dataSection}>
+        <h2>Fuentes de Información</h2>
+        <p className={styles.sectionDescription}>
+          Trabajamos con fuentes oficiales y confiables para garantizar la precisión de nuestras alertas
+        </p>
+        
+        <div className={styles.dataSourcesGrid}>
+          {dataSourcesInfo.map((source, index) => (
+            <div key={index} className={styles.dataSourceCard}>
+              <div className={styles.sourceIcon}>
+                <source.icon />
+              </div>
+              <h4>{source.name}</h4>
+              <p>{source.description}</p>
+              <div className={styles.sourceFrequency}>
+                Actualización: {source.frequency}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className={`${styles.sideDecoration} ${styles.rightDecoration}`}></div>
+      {/* Proceso simple */}
+      <div className={styles.processSection}>
+        <h2>¿Cómo Funciona?</h2>
+        <div className={styles.processSteps}>
+          <div className={styles.processStep}>
+            <div className={styles.stepNumber}>1</div>
+            <h4>Recolección</h4>
+            <p>Obtenemos datos de fuentes oficiales</p>
+          </div>
+          <div className={styles.processStep}>
+            <div className={styles.stepNumber}>2</div>
+            <h4>Análisis</h4>
+            <p>Procesamos con algoritmos inteligentes</p>
+          </div>
+          <div className={styles.processStep}>
+            <div className={styles.stepNumber}>3</div>
+            <h4>Alerta</h4>
+            <p>Enviamos avisos oportunos</p>
+          </div>
+          <div className={styles.processStep}>
+            <div className={styles.stepNumber}>4</div>
+            <h4>Respuesta</h4>
+            <p>La comunidad toma acción preventiva</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Métricas básicas */}
+      <div className={styles.metricsSection}>
+        <h2>Nuestro Impacto</h2>
+        <div className={styles.simpleMetrics}>
+          <div className={styles.metricBox}>
+            <div className={styles.metricValue}>94.7%</div>
+            <div className={styles.metricLabel}>Precisión de Alertas</div>
+          </div>
+          <div className={styles.metricBox}>
+            <div className={styles.metricValue}>2.3min</div>
+            <div className={styles.metricLabel}>Tiempo de Respuesta</div>
+          </div>
+          <div className={styles.metricBox}>
+            <div className={styles.metricValue}>12,847</div>
+            <div className={styles.metricLabel}>Usuarios Registrados</div>
+          </div>
+          <div className={styles.metricBox}>
+            <div className={styles.metricValue}>45,692</div>
+            <div className={styles.metricLabel}>Alertas Enviadas</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Acciones y recursos */}
+      <div className={styles.actionsSection}>
+        <h2>Recursos y Documentación</h2>
+        <div className={styles.actionButtons}>
+          <button className={`${styles.actionBtn} ${styles.primary}`}>
+            <FaDownload />
+            <span>Descargar Documentación</span>
+          </button>
+          <button className={`${styles.actionBtn} ${styles.secondary}`}>
+            <FaGithub />
+            <span>Ver Código Fuente</span>
+          </button>
+          <button className={`${styles.actionBtn} ${styles.secondary}`}>
+            <FaEye />
+            <span>Metodología Detallada</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Footer académico */}
+      <div className={styles.academicFooter}>
+        <div className={styles.footerContent}>
+          <h3>Proyecto Académico - EMI La Paz</h3>
+          <p>
+            Desarrollado con fines educativos y de servicio a la comunidad boliviana. 
+            Este sistema busca contribuir a la prevención de desastres naturales 
+            mediante tecnología accesible y código abierto.
+          </p>
+          <div className={styles.footerTags}>
+            <span>Educativo</span>
+            <span>Código Abierto</span>
+            <span>Servicio Comunitario</span>
+            <span>Licencia MIT</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }

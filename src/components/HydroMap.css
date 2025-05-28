@@ -1,23 +1,251 @@
+/* ==========================================================================
+   Variables CSS Globales
+   ========================================================================== */
+:root {
+  /* Colores Primarios y Acento */
+  --primary-color: #1a4b84; /* Azul corporativo o principal */
+  --secondary-color: #555;   /* Color de texto secundario */
+  --light-text-color: #666;
+  --dark-text-color: #333;
+
+  /* Colores de Fondo y Bordes */
+  --background-light: #f8f9fa;
+  --background-widget: white;
+  --background-widget-transparent: rgba(255, 255, 255, 0.95); /* Ligeramente más opaco para mejor legibilidad */
+  --border-color-soft: #e0e0e0;
+  --border-color-light: #eee;
+
+  /* Sombras */
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-light: 0 1px 5px rgba(0, 0, 0, 0.1);
+
+  /* Radios de Borde */
+  --border-radius-small: 6px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+
+  /* Espaciado */
+  --spacing-xs: 4px;
+  --spacing-s: 8px;
+  --spacing-m: 12px;
+  --spacing-l: 15px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 25px;
+
+  /* Tipografía */
+  --font-family-ui: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Stack más robusto */
+  --font-size-small: 12px;
+  --font-size-base: 14px;
+  --font-size-medium: 16px;
+  --line-height-base: 1.5; /* Mejor para legibilidad */
+}
+
+/* ==========================================================================
+   Contenedor Principal del Mapa
+   ========================================================================== */
 .hydro-map-container {
-    height: 500px;
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  height: 600px;
+  width: 100%;
+  border-radius: var(--border-radius-large);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+  margin: var(--spacing-xl) 0;
+  border: 1px solid var(--border-color-soft);
+}
+
+/* ==========================================================================
+   Estilos Base del Mapa Leaflet
+   ========================================================================== */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: var(--background-light);
+  font-family: var(--font-family-ui); /* Aplicar la fuente base al mapa */
+}
+
+/* ==========================================================================
+   Popup de los Marcadores (Leaflet)
+   ========================================================================== */
+.leaflet-popup-content-wrapper {
+  border-radius: var(--border-radius-medium); /* Suavizar bordes del wrapper del popup */
+  box-shadow: var(--shadow-soft);
+}
+
+.leaflet-popup-content {
+  min-width: 220px; /* Un poco más de espacio */
+  margin: var(--spacing-m);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.leaflet-popup-content h4 {
+  color: var(--primary-color);
+  margin: 0 0 var(--spacing-s) 0;
+  font-size: var(--font-size-medium);
+  border-bottom: 1px solid var(--border-color-light);
+  padding-bottom: var(--spacing-s);
+  font-weight: 600; /* Añadido para consistencia */
+}
+
+.leaflet-popup-content p {
+  margin: var(--spacing-s) 0;
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs); /* Mejor que margin-left en el span para espaciado */
+}
+
+/* .leaflet-popup-content p span {
+  margin-left: 5px; Ya no es necesario con 'gap' en el 'p'
+} */
+
+/* Estilo para el botón de cierre del popup (opcional, pero mejora consistencia) */
+.leaflet-popup-close-button {
+  padding: var(--spacing-s);
+  color: var(--secondary-color);
+}
+.leaflet-popup-close-button:hover {
+  color: var(--dark-text-color);
+}
+
+/* ==========================================================================
+   Leyenda del Mapa
+   ========================================================================== */
+.map-legend {
+  position: absolute;
+  bottom: var(--spacing-xxl);
+  right: var(--spacing-xxl);
+  background: var(--background-widget);
+  padding: var(--spacing-m) var(--spacing-l);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-soft);
+  z-index: 1000; /* Leaflet usa z-index altos, asegurarse que esté por encima */
+  font-family: var(--font-family-ui);
+}
+
+.map-legend h4 {
+  margin: 0 0 var(--spacing-m) 0; /* Un poco más de margen inferior */
+  font-size: var(--font-size-base);
+  color: var(--dark-text-color);
+  font-weight: 600;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-s);
+  font-size: var(--font-size-small); /* Ligeramente más pequeño para jerarquía */
+  color: var(--secondary-color);
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: var(--spacing-s);
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Mantener borde sutil */
+  flex-shrink: 0; /* Evita que el círculo se encoja si el texto es largo */
+}
+
+/* ==========================================================================
+   Caja de Información (Info Box)
+   ========================================================================== */
+.map-info {
+  position: absolute;
+  top: var(--spacing-l);
+  left: var(--spacing-l);
+  background: var(--background-widget-transparent);
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--border-radius-small);
+  font-size: var(--font-size-small);
+  z-index: 1000;
+  box-shadow: var(--shadow-light);
+  max-width: 220px; /* Un poco más de espacio si es necesario */
+  font-family: var(--font-family-ui);
+}
+
+.map-info strong {
+  display: block;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-base); /* Consistente con títulos de leyenda */
+  font-weight: 600;
+}
+
+.map-info p {
+  margin: 0;
+  color: var(--light-text-color);
+  line-height: var(--line-height-base);
+}
+
+/* ==========================================================================
+   Efectos Interactivos
+   ========================================================================== */
+.leaflet-interactive {
+  transition: stroke-width 0.2s ease-out, stroke-opacity 0.2s ease-out; /* Transición suave */
+}
+
+.leaflet-interactive:hover {
+  stroke-width: 3px; /* Podrías usar un valor relativo o una variable si lo prefieres */
+  stroke-opacity: 1;
+}
+
+/* ==========================================================================
+   Estilos Responsivos
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hydro-map-container {
+    height: 450px;
+    border-radius: var(--border-radius-medium); /* Ajuste de radio */
+    margin: var(--spacing-l) 0; /* Menos margen en pantallas pequeñas */
   }
-  
-  .leaflet-container {
-    height: 100%;
-    width: 100%;
+
+  .map-legend {
+    bottom: var(--spacing-l);
+    right: var(--spacing-l);
+    padding: var(--spacing-s) var(--spacing-m);
+    font-size: var(--font-size-small); /* Reducir tamaño de fuente base de la leyenda */
   }
-  
-  .leaflet-popup-content h3 {
-    color: #1a4b84;
-    margin-bottom: 0.5rem;
+
+  .map-legend h4 {
+    font-size: var(--font-size-base); /* Ajustar título */
   }
-  
-  .leaflet-popup-content p {
-    margin: 0.25rem 0;
-    color: #555;
+
+  .map-info {
+    top: var(--spacing-s);
+    left: var(--spacing-s);
+    padding: var(--spacing-xs) var(--spacing-s);
+    font-size: 11px; /* Si necesitas aún más pequeño */
   }
-  
+
+  .map-info strong {
+    font-size: var(--font-size-small); /* Ajustar título */
+  }
+
+  .leaflet-popup-content {
+    min-width: 180px; /* Reducir ancho mínimo del popup en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes adicionales para pantallas muy pequeñas si es necesario */
+  .hydro-map-container {
+    height: 350px;
+  }
+
+  .map-legend,
+  .map-info {
+    /* Considerar si deben ocupar todo el ancho o tener un comportamiento diferente */
+    font-size: 10px; /* Reducción general de fuentes para estos elementos */
+  }
+  .map-legend h4, .map-info strong {
+    font-size: 12px;
+  }
+}

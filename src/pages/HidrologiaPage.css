@@ -9,21 +9,21 @@
   color: #333;
   background-color: #f8f9fa;
   min-height: 100vh;
-  /* SOLUCIÓN: Padding top por defecto para el navbar fijo */
-  padding-top: 180px;
+  /* AJUSTADO: Padding top reducido para acercar contenido al navbar */
+  padding-top: 100px;
   position: relative;
   z-index: 1;
 }
 
-/* Clase específica para cuando hay navbar - ahora redundante pero mantenemos compatibilidad */
+/* Clase específica para cuando hay navbar - ajustada */
 .hydrology-page.with-navbar {
-  padding-top: 180px;
+  padding-top: 100px;
   margin-top: 0;
 }
 
 /* Alternativa: Si el navbar cambia de altura, usar esta clase */
 .hydrology-page.navbar-large {
-  padding-top: 200px;
+  padding-top: 120px;
 }
 
 /* Para páginas sin navbar (si las hay) */
@@ -492,15 +492,15 @@
 @media (max-width: 768px) {
   .hydrology-page {
     padding: 15px;
-    padding-top: 200px; /* Más espacio en móviles */
+    padding-top: 120px; /* Ajustado para móviles */
   }
   
   .hydrology-page.with-navbar {
-    padding-top: 200px;
+    padding-top: 120px;
   }
   
   .page-title {
-    font-size: 2rem;
+    font-size: 2rem;  
   }
   
   .station-details-grid,
@@ -538,11 +538,11 @@
 
 @media (max-width: 480px) {
   .hydrology-page {
-    padding-top: 220px; /* Aún más espacio en pantallas muy pequeñas */
+    padding-top: 140px; /* Ajustado para pantallas muy pequeñas */
   }
   
   .hydrology-page.with-navbar {
-    padding-top: 220px;
+    padding-top: 140px;
   }
   
   .page-title {
@@ -560,11 +560,20 @@
 
 /* Ajustes específicos para evitar conflictos con navbar fijo */
 body.has-fixed-navbar .hydrology-page {
-  padding-top: 160px;
+  padding-top: 80px; /* Reducido considerablemente */
 }
 
 /* Clase auxiliar para debugging */
 .debug-spacing {
   border: 2px dashed red;
   background-color: rgba(255, 0, 0, 0.1);
+}
+
+/* NUEVA: Clase para ajuste fino si necesitas aún menos espacio */
+.hydrology-page.compact {
+  padding-top: 80px;
+}
+
+.hydrology-page.compact.with-navbar {
+  padding-top: 80px;
 }
