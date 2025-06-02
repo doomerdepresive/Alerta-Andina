@@ -97,7 +97,7 @@ function AlertaHidrologicaPage() {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         const tipos = ["Inundación", "Desborde", "Crecida"];
-        const snapshot = await getDocs(collection(db, "zonas_riesgo"));
+        const snapshot = await getDocs(collection(db, "Alerta_Hidrologico_Tabla"));
         const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         const zonasFiltradas = data.filter(z => tipos.includes(z.tipoRiesgo));
 

@@ -1,7 +1,7 @@
-/* HidrologiaPage.css - Estilos para el sistema de monitoreo hidrológico */
+/* HidrologiaPage.module.css - VERSIÓN CORREGIDA CON ESPACIADO ÓPTIMO */
 
-/* Estilos generales */
-.hydrology-page {
+/* Estilos generales - ESPACIADO CORREGIDO */
+.hydrologyPage {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -9,30 +9,30 @@
   color: #333;
   background-color: #f8f9fa;
   min-height: 100vh;
-  /* AJUSTADO: Padding top reducido para acercar contenido al navbar */
-  padding-top: 100px;
+  /* CORREGIDO: Padding top reducido significativamente */
+  padding-top: 20px;
   position: relative;
   z-index: 1;
 }
 
-/* Clase específica para cuando hay navbar - ajustada */
-.hydrology-page.with-navbar {
-  padding-top: 100px;
+/* Clase específica para cuando hay navbar - VALORES CORREGIDOS */
+.withNavbar {
+  padding-top: 20px; /* Reducido de 100px a 20px */
   margin-top: 0;
 }
 
-/* Alternativa: Si el navbar cambia de altura, usar esta clase */
-.hydrology-page.navbar-large {
-  padding-top: 120px;
+/* Para navbars más altos si es necesario */
+.navbarLarge {
+  padding-top: 40px; /* Reducido de 120px a 40px */
 }
 
-/* Para páginas sin navbar (si las hay) */
-.hydrology-page.no-navbar {
+/* Para páginas sin navbar */
+.noNavbar {
   padding-top: 20px;
 }
 
-/* Header */
-.hydrology-header {
+/* Header - SIN MARGEN SUPERIOR EXCESIVO */
+.hydrologyHeader {
   text-align: center;
   margin-bottom: 30px;
   padding: 25px;
@@ -40,21 +40,20 @@
   color: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  /* CRÍTICO: z-index muy bajo para estar debajo del navbar */
   position: relative;
   z-index: 1;
-  /* Asegurar que no se superponga */
+  /* CORREGIDO: Sin margen superior */
   margin-top: 0;
 }
 
-.page-title {
+.pageTitle {
   font-size: 2.5rem;
   margin-bottom: 10px;
   font-weight: 600;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.page-subtitle {
+.pageSubtitle {
   font-size: 1.1rem;
   font-weight: 300;
   margin-bottom: 0;
@@ -62,25 +61,23 @@
 }
 
 /* Contenido principal */
-.hydrology-content {
+.hydrologyContent {
   display: grid;
   grid-gap: 30px;
-  /* Asegurar que el contenido esté por debajo del navbar */
   position: relative;
   z-index: 1;
 }
 
 /* Secciones */
-.hydrology-content section {
+.hydrologyContent section {
   background-color: white;
   border-radius: 10px;
   padding: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  /* Asegurar posición relativa */
   position: relative;
 }
 
-.hydrology-content h2 {
+.hydrologyContent h2 {
   font-size: 1.6rem;
   color: #2c3e50;
   margin-top: 0;
@@ -90,26 +87,25 @@
 }
 
 /* Panel de estaciones */
-.station-selector {
+.stationSelector {
   margin-bottom: 25px;
 }
 
-.station-selector h3 {
+.stationSelector h3 {
   font-size: 1.2rem;
   margin-bottom: 15px;
   color: #495057;
 }
 
-.station-buttons {
+.stationButtons {
   display: flex;
   overflow-x: auto;
   padding-bottom: 15px;
   gap: 12px;
-  /* Prevenir que los botones se salgan del contenedor */
   scroll-behavior: smooth;
 }
 
-.station-button {
+.stationButton {
   padding: 12px 18px;
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
@@ -121,22 +117,21 @@
   min-width: 200px;
   transition: all 0.3s ease;
   font-size: 0.95rem;
-  /* Evitar que se compriman demasiado */
   flex-shrink: 0;
 }
 
-.station-button.active {
+.stationButton.active {
   background-color: #e9f5ff;
   border-color: #3498db;
   box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
 }
 
-.station-button:hover {
+.stationButton:hover {
   background-color: #e9f5ff;
   transform: translateY(-2px);
 }
 
-.station-status {
+.stationStatus {
   font-size: 0.85rem;
   margin-top: 6px;
   font-weight: bold;
@@ -146,16 +141,15 @@
 }
 
 /* Detalles de estación */
-.station-details {
+.stationDetails {
   background-color: #f8fafc;
   border-radius: 8px;
   padding: 20px;
   border: 1px solid #e9ecef;
-  /* Margen superior para separar del selector */
   margin-top: 20px;
 }
 
-.station-details h3 {
+.stationDetails h3 {
   margin-top: 0;
   margin-bottom: 20px;
   color: #2c3e50;
@@ -163,13 +157,13 @@
   font-weight: 500;
 }
 
-.station-details-grid {
+.stationDetailsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 18px;
 }
 
-.detail-card {
+.detailCard {
   background-color: white;
   border-radius: 8px;
   padding: 15px;
@@ -177,28 +171,28 @@
   transition: transform 0.2s;
 }
 
-.detail-card:hover {
+.detailCard:hover {
   transform: translateY(-3px);
 }
 
-.detail-title {
+.detailTitle {
   font-size: 0.9rem;
   color: #6c757d;
   margin-bottom: 8px;
   font-weight: 500;
 }
 
-.detail-value {
+.detailValue {
   font-size: 1.3rem;
   font-weight: 600;
   color: #2c3e50;
 }
 
-.capacity-card {
+.capacityCard {
   grid-column: 1 / -1;
 }
 
-.capacity-indicator {
+.capacityIndicator {
   position: relative;
   height: 24px;
   background-color: #e9ecef;
@@ -207,13 +201,13 @@
   overflow: hidden;
 }
 
-.capacity-bar {
+.capacityBar {
   height: 100%;
   border-radius: 12px;
   transition: width 0.5s ease, background-color 0.3s;
 }
 
-.capacity-value {
+.capacityValue {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -225,11 +219,11 @@
 }
 
 /* Mapa */
-.hydrology-map-section {
+.hydrologyMapSection {
   min-height: 500px;
 }
 
-.map-container {
+.mapContainer {
   height: 500px;
   border-radius: 8px;
   overflow: hidden;
@@ -239,14 +233,14 @@
 }
 
 /* Gráficos históricos */
-.data-selector {
+.dataSelector {
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
-.data-button {
+.dataButton {
   padding: 10px 20px;
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
@@ -257,18 +251,18 @@
   font-size: 0.95rem;
 }
 
-.data-button.active {
+.dataButton.active {
   background-color: #3498db;
   color: white;
   border-color: #3498db;
   box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
 }
 
-.data-button:hover {
+.dataButton:hover {
   background-color: #e9f5ff;
 }
 
-.chart-container {
+.chartContainer {
   background-color: #fff;
   padding: 15px;
   border-radius: 8px;
@@ -278,13 +272,13 @@
 }
 
 /* Alertas */
-.alerts-container {
+.alertsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 18px;
 }
 
-.alert-card {
+.alertCard {
   padding: 18px;
   border-radius: 8px;
   border-left: 5px solid;
@@ -292,51 +286,51 @@
   transition: transform 0.2s;
 }
 
-.alert-card:hover {
+.alertCard:hover {
   transform: translateY(-3px);
 }
 
-.alert-verde {
+.alertVerde {
   background-color: #d4edda;
   border-color: #28a745;
 }
 
-.alert-amarillo {
+.alertAmarillo {
   background-color: #fff3cd;
   border-color: #ffc107;
 }
 
-.alert-rojo {
+.alertRojo {
   background-color: #f8d7da;
   border-color: #dc3545;
 }
 
-.alert-header {
+.alertHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
 }
 
-.alert-header h4 {
+.alertHeader h4 {
   margin: 0;
   font-size: 1.1rem;
   color: #212529;
 }
 
-.alert-time {
+.alertTime {
   font-size: 0.85rem;
   color: #495057;
 }
 
-.alert-message {
+.alertMessage {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.5;
   color: #343a40;
 }
 
-.no-alerts {
+.noAlerts {
   grid-column: 1 / -1;
   text-align: center;
   color: #6c757d;
@@ -345,13 +339,13 @@
 }
 
 /* Información adicional */
-.info-cards {
+.infoCards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 22px;
 }
 
-.info-card {
+.infoCard {
   background-color: #f8fafc;
   border-radius: 8px;
   padding: 20px;
@@ -359,12 +353,12 @@
   transition: transform 0.2s;
 }
 
-.info-card:hover {
+.infoCard:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.info-card h3 {
+.infoCard h3 {
   font-size: 1.2rem;
   color: #2c3e50;
   margin-top: 0;
@@ -372,7 +366,7 @@
   font-weight: 500;
 }
 
-.info-card p {
+.infoCard p {
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -380,7 +374,7 @@
 }
 
 /* Footer */
-.hydrology-footer {
+.hydrologyFooter {
   margin-top: 40px;
   text-align: center;
   padding: 25px;
@@ -392,7 +386,7 @@
 }
 
 /* Estados y utilidades */
-.loading-overlay {
+.loadingOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -403,7 +397,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Z-index muy alto para estar sobre todo */
+  z-index: 9999;
   backdrop-filter: blur(3px);
 }
 
@@ -422,7 +416,7 @@
   100% { transform: rotate(360deg); }
 }
 
-.no-data-message {
+.noDataMessage {
   text-align: center;
   padding: 40px;
   font-size: 1.1rem;
@@ -433,7 +427,7 @@
   border: 1px dashed #dee2e6;
 }
 
-.error-message {
+.errorMessage {
   background-color: #f8d7da;
   color: #721c24;
   padding: 15px 20px;
@@ -444,21 +438,21 @@
 }
 
 /* Estilos para el gráfico */
-.recharts-wrapper {
+:global(.recharts-wrapper) {
   font-family: 'Roboto', sans-serif !important;
 }
 
-.recharts-cartesian-axis-tick-value {
+:global(.recharts-cartesian-axis-tick-value) {
   font-size: 0.85rem !important;
   fill: #6c757d !important;
 }
 
-.recharts-legend-item-text {
+:global(.recharts-legend-item-text) {
   font-size: 0.9rem !important;
   color: #495057 !important;
 }
 
-.recharts-tooltip {
+:global(.recharts-tooltip) {
   background-color: white !important;
   border: 1px solid #dee2e6 !important;
   border-radius: 6px !important;
@@ -466,114 +460,128 @@
   padding: 12px !important;
 }
 
-.recharts-tooltip-label {
+:global(.recharts-tooltip-label) {
   color: #2c3e50 !important;
   font-weight: bold !important;
   margin-bottom: 8px !important;
   font-size: 0.95rem !important;
 }
 
-.recharts-tooltip-item {
+:global(.recharts-tooltip-item) {
   font-size: 0.9rem !important;
 }
 
 /* Clases de utilidad para z-index */
-.z-below-navbar {
+.zBelowNavbar {
   position: relative;
   z-index: 1;
 }
 
-.z-above-content {
+.zAboveContent {
   position: relative;
   z-index: 10;
 }
 
-/* Responsive */
+/* Responsive - VALORES CORREGIDOS */
 @media (max-width: 768px) {
-  .hydrology-page {
+  .hydrologyPage {
     padding: 15px;
-    padding-top: 120px; /* Ajustado para móviles */
+    padding-top: 25px; /* Reducido de 120px a 25px */
   }
   
-  .hydrology-page.with-navbar {
-    padding-top: 120px;
+  .withNavbar {
+    padding-top: 25px; /* Reducido de 120px a 25px */
   }
   
-  .page-title {
+  .pageTitle {
     font-size: 2rem;  
   }
   
-  .station-details-grid,
-  .info-cards,
-  .alerts-container {
+  .stationDetailsGrid,
+  .infoCards,
+  .alertsContainer {
     grid-template-columns: 1fr;
   }
   
-  .station-buttons {
+  .stationButtons {
     flex-direction: column;
     gap: 8px;
   }
   
-  .station-button {
+  .stationButton {
     min-width: 100%;
     flex-shrink: 0;
   }
   
-  .map-container {
+  .mapContainer {
     height: 350px;
   }
   
-  .hydrology-content section {
+  .hydrologyContent section {
     padding: 18px;
   }
   
-  .data-selector {
+  .dataSelector {
     flex-direction: column;
   }
   
-  .data-button {
+  .dataButton {
     width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .hydrology-page {
-    padding-top: 140px; /* Ajustado para pantallas muy pequeñas */
+  .hydrologyPage {
+    padding-top: 30px; /* Reducido de 140px a 30px */
   }
   
-  .hydrology-page.with-navbar {
-    padding-top: 140px;
+  .withNavbar {
+    padding-top: 30px; /* Reducido de 140px a 30px */
   }
   
-  .page-title {
+  .pageTitle {
     font-size: 1.8rem;
   }
   
-  .hydrology-content {
+  .hydrologyContent {
     grid-gap: 20px;
   }
   
-  .hydrology-content section {
+  .hydrologyContent section {
     padding: 15px;
   }
 }
 
-/* Ajustes específicos para evitar conflictos con navbar fijo */
-body.has-fixed-navbar .hydrology-page {
-  padding-top: 80px; /* Reducido considerablemente */
+/* CLASES ADICIONALES PARA AJUSTE FINO */
+
+/* Si necesitas aún menos espacio */
+.compact {
+  padding-top: 10px !important;
 }
 
-/* Clase auxiliar para debugging */
-.debug-spacing {
-  border: 2px dashed red;
-  background-color: rgba(255, 0, 0, 0.1);
+.compact.withNavbar {
+  padding-top: 10px !important;
 }
 
-/* NUEVA: Clase para ajuste fino si necesitas aún menos espacio */
-.hydrology-page.compact {
-  padding-top: 80px;
+/* Si el navbar tiene altura específica, usa estas clases */
+.navbarHeight60 {
+  padding-top: 15px;
 }
 
-.hydrology-page.compact.with-navbar {
-  padding-top: 80px;
+.navbarHeight80 {
+  padding-top: 25px;
+}
+
+.navbarHeight100 {
+  padding-top: 30px;
+}
+
+/* Para quitar completamente el espaciado superior */
+.noTopPadding {
+  padding-top: 0 !important;
+}
+
+/* Ajuste específico para el header si quieres que esté más pegado */
+.headerNoMargin {
+  margin-top: -10px;
 }

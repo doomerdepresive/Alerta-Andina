@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,16 +16,33 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Función general para navegar y hacer scroll arriba
+  const handleNavigate = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsMobileMenuOpen(false); // cierra menú en mobile
+  };
+
   return (
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
-        <Link to="/" className="logo-link">
-          <img src="src\assets\Logo_Clima-remove.png" alt="SENAMHI" className="logo" />
-        </Link>
 
-        <img src="src\assets\Logo_Alerta_Andina.png" alt="ALERTA ANDINA" className="site-title" />
-        <img src="src\assets\Logo_Clima-remove.png" alt="Bolivia" className="logo" />
+        {/* Logo izquierdo */}
+        <button onClick={() => handleNavigate('/')} className="logo-link" style={{ background: 'none', border: 'none' }}>
+          <img src="src/assets/Logo_Clima-remove.png" alt="SENAMHI" className="logo" />
+        </button>
 
+        {/* Logo del medio */}
+        <button onClick={() => handleNavigate('/')} className="logo-link" style={{ background: 'none', border: 'none' }}>
+          <img src="src/assets/Logo_Alerta_Andina.png" alt="ALERTA ANDINA" className="site-title" />
+        </button>
+
+        {/* Logo derecho */}
+        <button onClick={() => handleNavigate('/')} className="logo-link" style={{ background: 'none', border: 'none' }}>
+          <img src="src/assets/Logo_Clima-remove.png" alt="Bolivia" className="logo" />
+        </button>
+
+        {/* Botón menú mobile */}
         <button
           className={`mobile-menu-button ${isMobileMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -37,10 +55,10 @@ function Navbar() {
 
       <nav className={`main-menu ${isMobileMenuOpen ? 'active' : ''}`}>
         <div className="menu-items">
-          <Link to="/" className="nav-link">
+          <button className="nav-link" onClick={() => handleNavigate('/')}>
             <i className="fas fa-home"></i>
             <span className="link-content">Inicio</span>
-          </Link>
+          </button>
 
           <div
             className={`dropdown ${dropdownOpen ? 'active' : ''}`}
@@ -53,60 +71,57 @@ function Navbar() {
               <i className={`fas fa-chevron-down ${dropdownOpen ? 'rotate' : ''}`}></i>
             </button>
             <div className="dropdown-content">
-              <Link to="/institucion/mision" className="dropdown-link">
-                <i className="fas fa-bullseye"></i>
-                Misión
-              </Link>
-              <Link to="/institucion/vision" className="dropdown-link">
-                <i className="fas fa-eye"></i>
-                Visión
-              </Link>
-              <Link to="/institucion/quienes-somos" className="dropdown-link">
-                <i className="fas fa-users"></i>
-                ¿Quiénes Somos?
-              </Link>
-              <Link to="/institucion/que-hacemos" className="dropdown-link">
-                <i className="fas fa-tasks"></i>
-                ¿Qué Hacemos?
-              </Link>
+              <button className="dropdown-link" onClick={() => handleNavigate('/institucion/mision')}>
+                <i className="fas fa-bullseye"></i> Misión
+              </button>
+              <button className="dropdown-link" onClick={() => handleNavigate('/institucion/vision')}>
+                <i className="fas fa-eye"></i> Visión
+              </button>
+              <button className="dropdown-link" onClick={() => handleNavigate('/institucion/quienes-somos')}>
+                <i className="fas fa-users"></i> ¿Quiénes Somos?
+              </button>
+              <button className="dropdown-link" onClick={() => handleNavigate('/institucion/que-hacemos')}>
+                <i className="fas fa-tasks"></i> ¿Qué Hacemos?
+              </button>
             </div>
           </div>
 
-          <Link to="/transparencia" className="nav-link">
+          <button className="nav-link" onClick={() => handleNavigate('/transparencia')}>
             <i className="fas fa-search"></i>
             <span className="link-content">Transparencia</span>
-          </Link>
+          </button>
 
-          <Link to="/meteorologia" className="nav-link">
+          <button className="nav-link" onClick={() => handleNavigate('/meteorologia')}>
             <i className="fas fa-cloud-sun"></i>
             <span className="link-content">Meteorología</span>
-          </Link>
+          </button>
 
-          <Link to="/hidrologia" className="nav-link">
+          <button className="nav-link" onClick={() => handleNavigate('/hidrologia')}>
             <i className="fas fa-water"></i>
             <span className="link-content">Hidrología</span>
-          </Link>
+          </button>
         </div>
 
         <div className="alerts-container">
-          <Link to="/alerta-meteorologica" className="alert meteorologica">
+          <button onClick={() => handleNavigate('/alerta-meteorologica')} className="alert meteorologica">
             <i className="fas fa-exclamation-triangle"></i>
             <span>ALERTA METEOROLÓGICA</span>
-          </Link>
-          <Link to="/alerta-hidrologica" className="alert hidrologica">
+          </button>
+          <button onClick={() => handleNavigate('/alerta-hidrologica')} className="alert hidrologica">
             <i className="fas fa-exclamation-triangle"></i>
             <span>ALERTA HIDROLÓGICA</span>
-          </Link>
+          </button>
         </div>
       </nav>
+
       <div className="login-button-wrapper">
-        <Link to="/login" className="login-button">
+        <button onClick={() => handleNavigate('/login')} className="login-button">
           <i className="fas fa-user"></i>
           <span>Admin</span>
-        </Link>
+        </button>
       </div>
     </header>
   );
 }
 
-export default Navbar;  
+export default Navbar;

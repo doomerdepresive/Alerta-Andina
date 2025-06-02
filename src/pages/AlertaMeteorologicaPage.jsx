@@ -10,12 +10,7 @@ function AlertaMeteorologicaPage() {
   const [regionSeleccionada, setRegionSeleccionada] = useState("todas");
   const [cargando, setCargando] = useState(true);
   const [mostrarMock, setMostrarMock] = useState(false);
-
-  // Debug temporal - eliminar después
-  console.log("Estilos cargados:", styles);
-  useEffect(() => {
-    console.log("Clases CSS disponibles:", Object.keys(styles));
-  }, []);
+  const [mostrarPronostico, setMostrarPronostico] = useState(false); // NUEVO
 
   const datosMock = [
     {
@@ -55,21 +50,17 @@ function AlertaMeteorologicaPage() {
 
       try {
         const tiposMeteorologicos = ["Tormenta", "Helada", "Sequía", "Granizo", "Vientos Fuertes"];
-        const zonasCollection = collection(db, "zonas_riesgo");
+        const zonasCollection = collection(db, "Alerta_Meteorologica");
         const zonasSnapshot = await getDocs(zonasCollection);
 
         let zonasData = zonasSnapshot.docs
           .map(doc => ({ id: doc.id, ...doc.data() }))
           .filter(zona => tiposMeteorologicos.includes(zona.tipoRiesgo));
 
-        // Si no hay datos en Firebase, usar los falsos
-        if (zonasData.length === 0) {
-          zonasData = datosMock;
-        }
+        if (zonasData.length === 0) zonasData = datosMock;
 
         setZonasRiesgo(zonasData);
-        const regionesUnicas = [...new Set(zonasData.map(zona => zona.region))];
-        setRegiones(regionesUnicas);
+        setRegiones([...new Set(zonasData.map(zona => zona.region))]);
         setCargando(false);
       } catch (error) {
         console.error("Error al obtener zonas de riesgo:", error);
@@ -85,17 +76,12 @@ function AlertaMeteorologicaPage() {
       ? zonasRiesgo
       : zonasRiesgo.filter(zona => zona.region === regionSeleccionada);
 
-  // Función para obtener la clase CSS según el nivel de riesgo
   const obtenerClaseNivel = (nivel) => {
     switch (nivel.toLowerCase()) {
-      case 'alto':
-        return styles.nivelAlto;
-      case 'medio':
-        return styles.nivelMedio;
-      case 'bajo':
-        return styles.nivelBajo;
-      default:
-        return '';
+      case 'alto': return styles.nivelAlto;
+      case 'medio': return styles.nivelMedio;
+      case 'bajo': return styles.nivelBajo;
+      default: return '';
     }
   };
 
@@ -104,13 +90,9 @@ function AlertaMeteorologicaPage() {
       <div className={styles.alertaHeader}>
         <h1>Alerta Meteorológica</h1>
         <p className={styles.descripcion}>
-          Sistema de alerta temprana para condiciones meteorológicas adversas. 
-          Identifique zonas de riesgo y consulte pronósticos específicos por región.
+          Sistema de alerta temprana para condiciones meteorológicas adversas.
         </p>
-        <button 
-          onClick={() => setMostrarMock(true)} 
-          className={styles.btnMock}
-        >
+        <button onClick={() => setMostrarMock(true)} className={styles.btnMock}>
           Mostrar Datos de Prueba
         </button>
       </div>
@@ -122,7 +104,10 @@ function AlertaMeteorologicaPage() {
           <select
             id="region-select"
             value={regionSeleccionada}
-            onChange={(e) => setRegionSeleccionada(e.target.value)}
+            onChange={(e) => {
+              setRegionSeleccionada(e.target.value);
+              setMostrarPronostico(false); // NO mostrar pronóstico al usar el filtro
+            }}
             className={styles.selectRegion}
           >
             <option value="todas">Todas las regiones</option>
@@ -134,7 +119,7 @@ function AlertaMeteorologicaPage() {
       </div>
 
       {cargando ? (
-        <div className={styles.cargando}>Cargando datos de alertas meteorológicas...</div>
+        <div className={styles.cargando}>Cargando datos...</div>
       ) : (
         <div className={styles.zonasContent}>
           <div className={styles.zonasTableContainer}>
@@ -159,7 +144,15 @@ function AlertaMeteorologicaPage() {
                       <td>{zona.tipoRiesgo}</td>
                       <td>{zona.ultimaActualizacion}</td>
                       <td>
-                        <button className={styles.btnDetalles}>Ver Detalles</button>
+                        <button
+                          className={styles.btnDetalles}
+                          onClick={() => {
+                            setRegionSeleccionada(zona.region);
+                            setMostrarPronostico(true); // MOSTRAR pronóstico
+                          }}
+                        >
+                          Ver Detalles
+                        </button>
                       </td>
                     </tr>
                   ))
@@ -167,7 +160,7 @@ function AlertaMeteorologicaPage() {
                   <tr>
                     <td colSpan="6" className={styles.noData}>
                       No hay alertas meteorológicas activas
-                      {regionSeleccionada !== "todas" && ` para la región ${regionSeleccionada}`}
+                      {regionSeleccionada !== "todas" && ` para ${regionSeleccionada}`}
                     </td>
                   </tr>
                 )}
@@ -175,9 +168,15 @@ function AlertaMeteorologicaPage() {
             </table>
           </div>
 
-          {regionSeleccionada !== "todas" && (
+          {mostrarPronostico && regionSeleccionada !== "todas" && (
             <div className={styles.pronosticoContainer}>
-              <h2>Pronóstico Meteorológico para {regionSeleccionada}</h2>
+              <button
+                onClick={() => setMostrarPronostico(false)}
+                className={styles.btnMock}
+              >
+                Cerrar Pronóstico
+              </button>
+              <h2>Pronóstico para {regionSeleccionada}</h2>
               <div className={styles.pronosticoGrid}>
                 <div className={styles.pronosticoDetalle}>
                   <div className={styles.pronosticoInfo}>
@@ -199,12 +198,12 @@ function AlertaMeteorologicaPage() {
                       </div>
                     </div>
                     <div className={styles.pronosticoRecomendaciones}>
-                      <h4>Recomendaciones de Prevención</h4>
+                      <h4>Recomendaciones</h4>
                       <ul>
-                        <li>Manténgase informado a través de los canales oficiales</li>
-                        <li>Asegure objetos que puedan ser arrastrados por el viento</li>
-                        <li>Evite actividades al aire libre durante condiciones adversas</li>
-                        <li>Tenga preparado un kit de emergencia</li>
+                        <li>Manténgase informado a través de canales oficiales</li>
+                        <li>Asegure objetos sueltos</li>
+                        <li>Evite salir durante tormentas</li>
+                        <li>Prepare un kit de emergencia</li>
                       </ul>
                     </div>
                   </div>
@@ -217,16 +216,13 @@ function AlertaMeteorologicaPage() {
             <h3>Recursos Adicionales</h3>
             <div className={styles.recursosLinks}>
               <a href="#" className={styles.recursoLink}>
-                <i className="fas fa-file-pdf"></i>
-                Manual de Prevención ante Fenómenos Meteorológicos
+                <i className="fas fa-file-pdf"></i> Manual de Prevención
               </a>
               <a href="#" className={styles.recursoLink}>
-                <i className="fas fa-map-marked-alt"></i>
-                Mapa Interactivo de Riesgos
+                <i className="fas fa-map-marked-alt"></i> Mapa de Riesgos
               </a>
               <a href="#" className={styles.recursoLink}>
-                <i className="fas fa-phone-alt"></i>
-                Números de Emergencia
+                <i className="fas fa-phone-alt"></i> Números de Emergencia
               </a>
             </div>
           </div>

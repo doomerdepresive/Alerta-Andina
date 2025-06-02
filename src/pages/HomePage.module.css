@@ -1,13 +1,13 @@
 /* HomePage.module.css - Estilos aislados usando CSS Modules */
 
 .homePageContainer {
-  padding-top: 60px; /* Reducido para eliminar el espacio excesivo */
+  padding-top: 0px; /* Reducido para eliminar el espacio excesivo */
   min-height: 100vh;
   position: relative; /* Añadido para mejor control del posicionamiento */
 }
 
 .homePageContainer.with-navbar {
-  padding-top: 60px; /* Consistente con el valor base */
+  padding-top: 0px; /* Consistente con el valor base */
 }
 
 .sliderWrapper {

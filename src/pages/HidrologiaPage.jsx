@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./HidrologiaPage.css";
+import styles from "./HidrologiaPage.module.css";
 import HydroMap from "../components/HydroMap";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { db } from "../firebase-config";
@@ -76,7 +76,7 @@ function HidrologiaPage() {
   const [reportesClima, setReportesClima] = useState([]);
   const [usingMockData, setUsingMockData] = useState(false);
 
-  // Función para cargar datos históricos (una sola vez)
+  // Función para cargar datos históricos
   const loadHistoricalData = async () => {
     try {
       console.log("🔍 Cargando datos históricos...");
@@ -119,10 +119,8 @@ function HidrologiaPage() {
 
     const setupRealtimeConnections = async () => {
       try {
-        // Cargar datos históricos una sola vez
         const historicalData = await loadHistoricalData();
         
-        // Configurar listener para estaciones en tiempo real
         unsubscribeStations = onSnapshot(
           collection(db, "estaciones_monitoreo"), 
           (snapshot) => {
@@ -160,7 +158,6 @@ function HidrologiaPage() {
           },
           (error) => {
             console.error("❌ Error en conexión de estaciones:", error);
-            // Usar datos mock como fallback
             setHydrologicalData({
               stationData: MOCK_HYDROLOGICAL_DATA.stationData,
               historicalData,
@@ -173,7 +170,6 @@ function HidrologiaPage() {
           }
         );
 
-        // Configurar listener para reportes de clima (opcional)
         unsubscribeReportes = onSnapshot(
           collection(db, "reportes_clima"), 
           (snapshot) => {
@@ -190,7 +186,6 @@ function HidrologiaPage() {
 
       } catch (err) {
         console.error("❌ Error general al configurar conexiones:", err);
-        // Usar datos mock completamente
         setHydrologicalData({
           stationData: MOCK_HYDROLOGICAL_DATA.stationData,
           historicalData: { waterLevels: [], precipitation: [] },
@@ -205,14 +200,13 @@ function HidrologiaPage() {
 
     setupRealtimeConnections();
 
-    // Cleanup
     return () => {
       if (unsubscribeStations) unsubscribeStations();
       if (unsubscribeReportes) unsubscribeReportes();
     };
   }, [selectedStation]);
 
-  // Formatear fecha/hora
+  // Funciones auxiliares
   const formatDateTime = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString('es-BO', { 
@@ -224,7 +218,6 @@ function HidrologiaPage() {
     });
   };
 
-  // Obtener color según el estado
   const getStatusColor = (status) => {
     switch(status) {
       case 'normal': return '#28a745';
@@ -234,7 +227,6 @@ function HidrologiaPage() {
     }
   };
 
-  // Etiqueta según el estado
   const getStatusLabel = (status) => {
     switch(status) {
       case 'normal': return 'Normal';
@@ -246,8 +238,9 @@ function HidrologiaPage() {
 
   if (loading) {
     return (
-      <div className="hydrology-page">
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
+      <div className={styles.hydrologyPage}>
+        <div className={styles.loadingOverlay}>
+          <div className={styles.spinner}></div>
           <h2>Cargando Sistema de Monitoreo Hidrológico...</h2>
           <p>Conectando con base de datos...</p>
         </div>
@@ -256,43 +249,37 @@ function HidrologiaPage() {
   }
 
   return (
-    <div className="hydrology-page">
-      <header className="hydrology-header">
-        <h1 className="page-title">Sistema de Monitoreo Hidrológico</h1>
-        <p className="page-subtitle">
+    <div className={styles.hydrologyPage}>
+      <header className={styles.hydrologyHeader}>
+        <h1 className={styles.pageTitle}>Sistema de Monitoreo Hidrológico</h1>
+        <p className={styles.pageSubtitle}>
           Alerta Andina - Monitoreo en tiempo real de ríos, represas y cuerpos de agua
           {usingMockData && " (Modo Demostración)"}
         </p>
         {error && (
-          <div className="error-banner" style={{ 
-            backgroundColor: '#fff3cd', 
-            color: '#856404', 
-            padding: '0.5rem', 
-            borderRadius: '4px',
-            margin: '1rem 0'
-          }}>
+          <div className={styles.errorMessage}>
             ⚠️ {error}
           </div>
         )}
       </header>
 
-      <main className="hydrology-content">
+      <main className={styles.hydrologyContent}>
         {/* Panel de indicadores principales */}
-        <section className="hydrology-dashboard">
+        <section className={styles.hydrologyDashboard}>
           <h2>Panel de Control Hidrológico</h2>
           
-          <div className="station-selector">
+          <div className={styles.stationSelector}>
             <h3>Estaciones de Monitoreo ({hydrologicalData.stationData.length})</h3>
-            <div className="station-buttons">
+            <div className={styles.stationButtons}>
               {hydrologicalData.stationData.map(station => (
                 <button 
                   key={station.id}
-                  className={`station-button ${selectedStation?.id === station.id ? 'active' : ''}`}
+                  className={`${styles.stationButton} ${selectedStation?.id === station.id ? styles.active : ''}`}
                   style={{borderLeft: `4px solid ${getStatusColor(station.status)}`}}
                   onClick={() => setSelectedStation(station)}
                 >
                   {station.name}
-                  <span className="station-status" style={{color: getStatusColor(station.status)}}>
+                  <span className={styles.stationStatus} style={{color: getStatusColor(station.status)}}>
                     {getStatusLabel(station.status)}
                   </span>
                 </button>
@@ -301,47 +288,47 @@ function HidrologiaPage() {
           </div>
           
           {selectedStation && (
-            <div className="station-details">
+            <div className={styles.stationDetails}>
               <h3>{selectedStation.name}</h3>
-              <div className="station-details-grid">
-                <div className="detail-card">
-                  <div className="detail-title">Ubicación</div>
-                  <div className="detail-value">{selectedStation.location}</div>
+              <div className={styles.stationDetailsGrid}>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailTitle}>Ubicación</div>
+                  <div className={styles.detailValue}>{selectedStation.location}</div>
                 </div>
-                <div className="detail-card">
-                  <div className="detail-title">Nivel de Agua</div>
-                  <div className="detail-value">{selectedStation.waterLevel} m</div>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailTitle}>Nivel de Agua</div>
+                  <div className={styles.detailValue}>{selectedStation.waterLevel} m</div>
                 </div>
-                <div className="detail-card">
-                  <div className="detail-title">Caudal</div>
-                  <div className="detail-value">{selectedStation.flow} m³/s</div>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailTitle}>Caudal</div>
+                  <div className={styles.detailValue}>{selectedStation.flow} m³/s</div>
                 </div>
-                <div className="detail-card">
-                  <div className="detail-title">Precipitación (24h)</div>
-                  <div className="detail-value">{selectedStation.precipitation24h} mm</div>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailTitle}>Precipitación (24h)</div>
+                  <div className={styles.detailValue}>{selectedStation.precipitation24h} mm</div>
                 </div>
-                <div className="detail-card">
-                  <div className="detail-title">Estado</div>
-                  <div className="detail-value" style={{color: getStatusColor(selectedStation.status)}}>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailTitle}>Estado</div>
+                  <div className={styles.detailValue} style={{color: getStatusColor(selectedStation.status)}}>
                     {getStatusLabel(selectedStation.status)}
                   </div>
                 </div>
-                <div className="detail-card">
-                  <div className="detail-title">Última Actualización</div>
-                  <div className="detail-value">{formatDateTime(selectedStation.lastUpdate)}</div>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailTitle}>Última Actualización</div>
+                  <div className={styles.detailValue}>{formatDateTime(selectedStation.lastUpdate)}</div>
                 </div>
                 {selectedStation.reservoirCapacity !== null && (
-                  <div className="detail-card capacity-card">
-                    <div className="detail-title">Capacidad de Embalse</div>
-                    <div className="capacity-indicator">
+                  <div className={`${styles.detailCard} ${styles.capacityCard}`}>
+                    <div className={styles.detailTitle}>Capacidad de Embalse</div>
+                    <div className={styles.capacityIndicator}>
                       <div 
-                        className="capacity-bar" 
+                        className={styles.capacityBar} 
                         style={{
                           width: `${selectedStation.reservoirCapacity}%`,
                           backgroundColor: selectedStation.reservoirCapacity > 75 ? '#ffc107' : '#28a745'
                         }}
                       ></div>
-                      <span className="capacity-value">{selectedStation.reservoirCapacity}%</span>
+                      <span className={styles.capacityValue}>{selectedStation.reservoirCapacity}%</span>
                     </div>
                   </div>
                 )}
@@ -351,9 +338,9 @@ function HidrologiaPage() {
         </section>
 
         {/* Mapa hidrológico */}
-        <section className="hydrology-map-section">
+        <section className={styles.hydrologyMapSection}>
           <h2>Mapa de Monitoreo Hidrológico</h2>
-          <div className="map-container">
+          <div className={styles.mapContainer}>
             <HydroMap 
               stations={hydrologicalData.stationData} 
               onStationSelect={setSelectedStation} 
@@ -362,23 +349,23 @@ function HidrologiaPage() {
         </section>
 
         {/* Gráficos históricos */}
-        <section className="historical-data-section">
+        <section className={styles.historicalDataSection}>
           <h2>Datos Históricos</h2>
-          <div className="data-selector">
+          <div className={styles.dataSelector}>
             <button 
-              className={`data-button ${dataType === 'waterLevels' ? 'active' : ''}`}
+              className={`${styles.dataButton} ${dataType === 'waterLevels' ? styles.active : ''}`}
               onClick={() => setDataType('waterLevels')}
             >
               Niveles de Agua
             </button>
             <button 
-              className={`data-button ${dataType === 'precipitation' ? 'active' : ''}`}
+              className={`${styles.dataButton} ${dataType === 'precipitation' ? styles.active : ''}`}
               onClick={() => setDataType('precipitation')}
             >
               Precipitación
             </button>
           </div>
-          <div className="chart-container">
+          <div className={styles.chartContainer}>
             {hydrologicalData.historicalData[dataType]?.length > 0 ? (
               <ResponsiveContainer width="100%" height={400}>
                 <LineChart
@@ -420,86 +407,90 @@ function HidrologiaPage() {
                 </LineChart>
               </ResponsiveContainer>
             ) : (
-              <p>No hay datos históricos disponibles para mostrar</p>
+              <div className={styles.noDataMessage}>
+                No hay datos históricos disponibles para mostrar
+              </div>
             )}
           </div>
         </section>
         
         {/* Reportes en tiempo real desde Firebase */}
         {reportesClima.length > 0 && (
-          <section className="firebase-reportes">
+          <section className={styles.firebaseReportes}>
             <h2>Reportes en Tiempo Real</h2>
-            <table className="firebase-table">
-              <thead>
-                <tr>
-                  <th>Estación</th>
-                  <th>Nivel Agua (m)</th>
-                  <th>Caudal (m³/s)</th>
-                  <th>Precipitación (24h)</th>
-                  <th>Estado</th>
-                  <th>Última Actualización</th>
-                </tr>
-              </thead>
-              <tbody>
-                {reportesClima.map((r) => (
-                  <tr key={r.id}>
-                    <td>{r.estacion || r.name || 'N/A'}</td>
-                    <td>{r.nivel_agua || r.waterLevel || 'N/A'}</td>
-                    <td>{r.caudal || r.flow || 'N/A'}</td>
-                    <td>{r.precipitacion_24h || r.precipitation24h || 'N/A'}</td>
-                    <td style={{ color: getStatusColor(r.estado || r.status) }}>
-                      {getStatusLabel(r.estado || r.status)}
-                    </td>
-                    <td>{formatDateTime(r.ultima_actualizacion || r.lastUpdate || new Date().toISOString())}</td>
+            <div className={styles.tableContainer}>
+              <table className={styles.firebaseTable}>
+                <thead>
+                  <tr>
+                    <th>Estación</th>
+                    <th>Nivel Agua (m)</th>
+                    <th>Caudal (m³/s)</th>
+                    <th>Precipitación (24h)</th>
+                    <th>Estado</th>
+                    <th>Última Actualización</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {reportesClima.map((r) => (
+                    <tr key={r.id}>
+                      <td>{r.estacion || r.name || 'N/A'}</td>
+                      <td>{r.nivel_agua || r.waterLevel || 'N/A'}</td>
+                      <td>{r.caudal || r.flow || 'N/A'}</td>
+                      <td>{r.precipitacion_24h || r.precipitation24h || 'N/A'}</td>
+                      <td style={{ color: getStatusColor(r.estado || r.status) }}>
+                        {getStatusLabel(r.estado || r.status)}
+                      </td>
+                      <td>{formatDateTime(r.ultima_actualizacion || r.lastUpdate || new Date().toISOString())}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
         )}
 
         {/* Alertas activas */}
-        <section className="alerts-section">
+        <section className={styles.alertsSection}>
           <h2>Alertas Activas</h2>
-          <div className="alerts-container">
+          <div className={styles.alertsContainer}>
             {hydrologicalData.alerts.length > 0 ? (
               hydrologicalData.alerts.map(alert => (
                 <div 
                   key={alert.id} 
-                  className={`alert-card alert-${alert.level}`}
+                  className={`${styles.alertCard} ${styles[`alert${alert.level.charAt(0).toUpperCase() + alert.level.slice(1)}`]}`}
                 >
-                  <div className="alert-header">
+                  <div className={styles.alertHeader}>
                     <h4>{alert.station}</h4>
-                    <span className="alert-time">{formatDateTime(alert.timestamp)}</span>
+                    <span className={styles.alertTime}>{formatDateTime(alert.timestamp)}</span>
                   </div>
-                  <p className="alert-message">{alert.message}</p>
+                  <p className={styles.alertMessage}>{alert.message}</p>
                 </div>
               ))
             ) : (
-              <p className="no-alerts">No hay alertas activas en este momento.</p>
+              <p className={styles.noAlerts}>No hay alertas activas en este momento.</p>
             )}
           </div>
         </section>
 
         {/* Información adicional */}
-        <section className="additional-info">
+        <section className={styles.additionalInfo}>
           <h2>Información del Sistema</h2>
-          <div className="info-cards">
-            <div className="info-card">
+          <div className={styles.infoCards}>
+            <div className={styles.infoCard}>
               <h3>Sobre el Monitoreo</h3>
               <p>
                 La unidad de Hidrología del sistema Alerta Andina se encarga del monitoreo de ríos,
                 represas y cuerpos de agua en tiempo real.
               </p>
             </div>
-            <div className="info-card">
+            <div className={styles.infoCard}>
               <h3>Metodología</h3>
               <p>
                 Las estaciones de monitoreo utilizan sensores ultrasónicos, radares y pluviómetros 
                 para medir niveles de agua, caudal y precipitación.
               </p>
             </div>
-            <div className="info-card">
+            <div className={styles.infoCard}>
               <h3>Interpretación de Datos</h3>
               <p>
                 Los estados se clasifican en Normal (verde), Alerta (amarillo) y Peligro (rojo).
@@ -509,7 +500,7 @@ function HidrologiaPage() {
         </section>
       </main>
 
-      <footer className="hydrology-footer">
+      <footer className={styles.hydrologyFooter}>
         <p>© 2025 Sistema Alerta Andina - Unidad de Hidrología</p>
         <p>
           Datos actualizados en tiempo real. Última actualización del sistema: {new Date().toLocaleString('es-BO')}

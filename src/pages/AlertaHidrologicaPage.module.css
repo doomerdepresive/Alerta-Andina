@@ -143,7 +143,7 @@
   transform: translateY(-5px);
 }
 
-/* Contenedor de tabla */
+/* Contenedor de tabla - CORREGIDO */
 .tablaContainer {
   overflow-x: auto;
   border-radius: 20px;
@@ -152,7 +152,7 @@
   margin-bottom: 2rem;
 }
 
-/* Tabla moderna */
+/* Tabla moderna - COMPLETAMENTE REDISEÑADA */
 .tablaZonas {
   width: 100%;
   border-collapse: separate;
@@ -160,119 +160,177 @@
   font-size: 1rem;
 }
 
+.tablaZonas thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
 .tablaZonas th {
-  background: linear-gradient(45deg, var(--azul-profundo), var(--azul-agua));
+  background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-agua) 100%);
   color: var(--blanco);
-  padding: 1rem;
+  padding: 1.2rem 1rem;
   text-align: left;
   font-weight: 600;
   font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  position: relative;
+  border: none;
 }
 
 .tablaZonas th:first-child {
-  border-radius: 15px 0 0 0;
+  border-radius: 20px 0 0 0;
+  padding-left: 1.5rem;
 }
 
 .tablaZonas th:last-child {
-  border-radius: 0 15px 0 0;
+  border-radius: 0 20px 0 0;
+  padding-right: 1.5rem;
+}
+
+.tablaZonas tbody tr {
+  background: var(--blanco);
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+}
+
+.tablaZonas tbody tr:nth-child(odd) {
+  background: #fafbfc;
+}
+
+.tablaZonas tbody tr:hover {
+  background: linear-gradient(90deg, rgba(8, 145, 178, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(8, 145, 178, 0.1);
 }
 
 .tablaZonas td {
-  padding: 1rem;
-  border-bottom: 1px solid #f1f5f9;
+  padding: 1.2rem 1rem;
+  border: none;
   vertical-align: middle;
-}
-
-.tablaZonas tr {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.tablaZonas tr:hover {
-  background: linear-gradient(45deg, rgba(8, 145, 178, 0.05), rgba(6, 182, 212, 0.05));
-  transform: scale(1.01);
-}
-
-.tablaZonas tr:last-child td:first-child {
-  border-radius: 0 0 0 15px;
-}
-
-.tablaZonas tr:last-child td:last-child {
-  border-radius: 0 0 15px 0;
-}
-
-/* Niveles de alerta */
-.nivelAlto {
-  border-left: 6px solid var(--rojo-alerta);
-  background: linear-gradient(90deg, rgba(248, 113, 113, 0.1), transparent);
+  font-size: 0.95rem;
   position: relative;
 }
 
-.nivelAlto::before {
-  content: '🔥';
-  position: absolute;
-  left: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--blanco);
-  padding: 0.25rem;
+.tablaZonas td:first-child {
+  padding-left: 1.5rem;
+}
+
+.tablaZonas td:last-child {
+  padding-right: 1.5rem;
+}
+
+.tablaZonas tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 20px;
+}
+
+.tablaZonas tbody tr:last-child td:last-child {
+  border-radius: 0 0 20px 0;
+}
+
+/* Iconos de tipo de alerta - MEJORADOS */
+.tablaZonas .icono-alerta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  font-size: 0.8rem;
+  font-size: 16px;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
 }
 
-.nivelMedio {
-  border-left: 6px solid var(--naranja-sol);
-  background: linear-gradient(90deg, rgba(251, 146, 60, 0.1), transparent);
-  position: relative;
+.tablaZonas .icono-fuego {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: white;
+  box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
 }
 
-.nivelMedio::before {
-  content: '⚡';
-  position: absolute;
-  left: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--blanco);
-  padding: 0.25rem;
-  border-radius: 50%;
-  font-size: 0.8rem;
+.tablaZonas .icono-rayo {
+  background: linear-gradient(135deg, #feca57, #ff9ff3);
+  color: white;
+  box-shadow: 0 4px 12px rgba(254, 202, 87, 0.3);
 }
 
+.tablaZonas .icono-estrella {
+  background: linear-gradient(135deg, #48dbfb, #0abde3);
+  color: white;
+  box-shadow: 0 4px 12px rgba(72, 219, 251, 0.3);
+}
+
+/* Niveles de alerta - REDISEÑADOS */
+.nivelAlto,
+.nivelMedio,
 .nivelBajo {
-  border-left: 6px solid var(--verde-agua);
-  background: linear-gradient(90deg, rgba(6, 182, 212, 0.1), transparent);
   position: relative;
+  padding-left: 0;
 }
 
+.nivelAlto::before,
+.nivelMedio::before,
 .nivelBajo::before {
-  content: '✨';
-  position: absolute;
-  left: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--blanco);
-  padding: 0.25rem;
-  border-radius: 50%;
-  font-size: 0.8rem;
+  display: none; /* Removemos los pseudo-elementos problemáticos */
 }
 
-/* Badges */
+/* Badges completamente rediseñados */
 .badgeTipo,
 .badgeNivel {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
   color: var(--blanco);
   font-weight: 600;
   font-size: 0.85rem;
   text-align: center;
-  min-width: 80px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  min-width: 90px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Colores específicos para tipos */
+.badgeTipo.crecida {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.badgeTipo.inundacion {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+}
+
+.badgeTipo.desborde {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+/* Colores para niveles */
+.badgeNivel.alto {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  animation: pulsoSuave 2s infinite;
+}
+
+.badgeNivel.medio {
+  background: linear-gradient(135deg, #f39c12, #d68910);
+}
+
+.badgeNivel.bajo {
+  background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+@keyframes pulsoSuave {
+  0%, 100% { 
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+  50% { 
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+  }
 }
 
 .badgeTipo::before,
@@ -283,8 +341,8 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
 }
 
 .badgeTipo:hover::before,
@@ -294,7 +352,29 @@
 
 .badgeTipo:hover,
 .badgeNivel:hover {
-  transform: translateY(-2px) scale(1.05);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Columna de región */
+.tablaZonas .columna-region {
+  font-weight: 600;
+  color: var(--azul-profundo);
+  font-size: 1rem;
+}
+
+/* Columna de localidad */
+.tablaZonas .columna-localidad {
+  color: var(--gris-lluvia);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Columna de actualización */
+.tablaZonas .columna-actualizacion {
+  font-size: 0.85rem;
+  color: var(--gris-lluvia);
+  font-family: 'Courier New', monospace;
 }
 
 /* Pronóstico */
@@ -488,6 +568,18 @@
     font-size: 0.9rem;
   }
   
+  .tablaZonas th,
+  .tablaZonas td {
+    padding: 0.8rem 0.5rem;
+  }
+  
+  .badgeTipo,
+  .badgeNivel {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.8rem;
+    min-width: 80px;
+  }
+  
   .recomendacionesGrid {
     grid-template-columns: 1fr;
   }
@@ -510,10 +602,15 @@
     padding: 0.75rem;
   }
   
+  .tablaZonas th,
+  .tablaZonas td {
+    padding: 0.6rem 0.4rem;
+  }
+  
   .badgeTipo,
   .badgeNivel {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
     min-width: 70px;
   }
   

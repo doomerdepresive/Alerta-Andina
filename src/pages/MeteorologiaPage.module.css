@@ -1,0 +1,979 @@
+/* MeteorologiaPage.module.css - VERSIÓN MEJORADA CON INSPIRACIÓN DE HIDROLOGÍA */
+
+/* Estilos generales - ESPACIADO OPTIMIZADO */
+.meteorologiaPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Clase específica para cuando hay navbar */
+.withNavbar {
+  padding-top: 20px;
+  margin-top: 0;
+}
+
+/* Para navbars más altos si es necesario */
+.navbarLarge {
+  padding-top: 40px;
+}
+
+/* Para páginas sin navbar */
+.noNavbar {
+  padding-top: 20px;
+}
+
+/* Header principal - ESTILO INSPIRADO EN HIDROLOGÍA */
+.headerMeteorologia {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+}
+
+.tituloSection {
+  margin-bottom: 15px;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  margin: 0 0 5px 0;
+}
+
+.subtitulo {
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-bottom: 0;
+  opacity: 0.9;
+  text-transform: capitalize;
+}
+
+.controlesHeader {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.botonTiempoReal,
+.botonActualizar {
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
+  backdrop-filter: blur(10px);
+}
+
+.botonTiempoReal:hover,
+.botonActualizar:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.botonTiempoReal.activo {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Contenido principal */
+.contenido {
+  display: grid;
+  grid-gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Secciones generales - ESTILO INSPIRADO EN HIDROLOGÍA */
+.contenido section,
+.sistemaAlertas,
+.selectorCiudades,
+.climaActualCard,
+.pronosticoSection,
+.estadisticasSection,
+.footerMeteorologia {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+/* Estados de carga - MEJORADO */
+.cargandoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.spinner {
+  border: 5px solid rgba(30, 60, 114, 0.2);
+  border-top: 5px solid #1e3c72;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cargando {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.cargandoDetalle {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Sistema de Alertas - ESTILO MEJORADO */
+.sistemaAlertas {
+  margin-bottom: 30px;
+}
+
+.tituloAlertas {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alertasContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.alertaCard {
+  padding: 18px;
+  border-radius: 8px;
+  border-left: 5px solid;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  background-color: white;
+}
+
+.alertaCard:hover {
+  transform: translateY(-3px);
+}
+
+.alertaCard.nivelVerde {
+  background-color: #d4edda;
+  border-color: #28a745;
+}
+
+.alertaCard.nivelAmarillo {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+}
+
+.alertaCard.nivelNaranja {
+  background-color: #fff3cd;
+  border-color: #fd7e14;
+}
+
+.alertaCard.nivelRojo {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+}
+
+.alertaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.alertaHeader h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #212529;
+}
+
+.alertaIcono {
+  font-size: 1.2rem;
+}
+
+.alertaNivel {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.alertaTipo {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.alertaMensaje {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #343a40;
+}
+
+.noAlerts {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #6c757d;
+  padding: 25px;
+  font-style: italic;
+}
+
+/* Banner de error - MEJORADO */
+.errorBanner {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px 20px;
+  border-radius: 6px;
+  margin-bottom: 25px;
+  border: 1px solid #f5c6cb;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.errorIcono {
+  font-size: 1.5rem;
+  color: #d32f2f;
+}
+
+.errorMensaje {
+  flex: 1;
+  color: #721c24;
+  font-weight: 500;
+}
+
+.errorReintentar {
+  padding: 8px 16px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.errorReintentar:hover {
+  background: #b71c1c;
+}
+
+/* Selector de ciudades - ESTILO MEJORADO */
+.selectorCiudades {
+  margin-bottom: 30px;
+}
+
+.selectorTitulo {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.ciudadesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.botonCiudad {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.botonCiudad:hover {
+  background-color: #e9f5ff;
+  transform: translateY(-2px);
+}
+
+.botonCiudad.seleccionada {
+  background-color: #e9f5ff;
+  border-color: #3498db;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+}
+
+.ciudadNombre {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.ciudadTemp {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3498db;
+}
+
+.ciudadCondicion {
+  font-size: 1.5rem;
+}
+
+/* Clima actual - ESTILO MEJORADO */
+.climaActualCard {
+  margin-bottom: 30px;
+  padding: 30px;
+}
+
+.climaPrincipal {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.climaTemperaturaSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconoClimaGrande {
+  font-size: 4rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.temperaturaPrincipal {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.temperaturaActual {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #3498db;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sensacionTermica {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.climaDescripcion {
+  flex: 1;
+}
+
+.condicionActual {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+}
+
+.detallesPrincipales {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detalleItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  color: #495057;
+}
+
+.detalleIcono {
+  font-size: 1.3rem;
+  width: 25px;
+  text-align: center;
+  color: #3498db;
+}
+
+/* Detalles extendidos - ESTILO MEJORADO */
+.climaDetallesExtendidos {
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.detalleGrupo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.detalleItemExt {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detalleItemExt:hover {
+  transform: translateY(-3px);
+}
+
+.detalleLabel {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.detalleValor {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Pronóstico - ESTILO MEJORADO */
+.pronosticoSection {
+  margin-bottom: 30px;
+}
+
+.tituloPronostico {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.pronosticoSemanal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+}
+
+.diaPronostico {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 20px 15px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.diaPronostico:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.diaPronostico.diaActual {
+  background-color: #e9f5ff;
+  border-color: #3498db;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+}
+
+.diaHeader {
+  margin-bottom: 10px;
+}
+
+.diaNombre {
+  font-weight: 700;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.diaFecha {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.diaIconoSection {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.diaIcono {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+}
+
+.diaAlertaIndicator {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  font-size: 1rem;
+}
+
+.diaLluvia {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+
+.probabilidad {
+  color: #3498db;
+  font-weight: 600;
+}
+
+.precipitacion {
+  color: #6c757d;
+  margin-left: 5px;
+}
+
+.diaTemperatura {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.tempMax {
+  color: #e74c3c;
+  font-size: 1.1rem;
+}
+
+.separador {
+  color: #999;
+}
+
+.tempMin {
+  color: #3498db;
+  font-size: 1.1rem;
+}
+
+.diaViento {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+
+.vientoDireccion {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.vientoVelocidad {
+  color: #6c757d;
+}
+
+.diaDescripcion {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* Información de actualización - ESTILO MEJORADO */
+.infoActualizacion {
+  margin-bottom: 30px;
+  padding: 15px 20px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.actualizacionContenido {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+
+.actualizacionIcono {
+  color: #3498db;
+  font-size: 1.1rem;
+}
+
+.actualizacionTexto {
+  color: #6c757d;
+  flex: 1;
+}
+
+.tiempoRealIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  background: #4CAF50;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(0.8); opacity: 1; }
+}
+
+/* Estadísticas - ESTILO MEJORADO */
+.estadisticasSection {
+  margin-bottom: 30px;
+}
+
+.tituloEstadisticas {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.estadisticasGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.estadisticaCard {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.estadisticaCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.estadisticaIcono {
+  font-size: 2.5rem;
+  color: #3498db;
+}
+
+.estadisticaContenido h3 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.estadisticaValor {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3498db;
+  margin: 5px 0;
+}
+
+.estadisticaDescripcion {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* Footer - ESTILO MEJORADO */
+.footerMeteorologia {
+  margin-top: 40px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.footerContenido {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.footerSection h4 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.footerSection p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+.nivelesInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nivelBadge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+.nivelBadge.verde { background: #28a745; }
+.nivelBadge.amarillo { background: #ffc107; color: #333; }
+.nivelBadge.naranja { background: #fd7e14; }
+.nivelBadge.rojo { background: #dc3545; }
+
+.footerDisclaimer {
+  padding-top: 20px;
+  border-top: 1px solid #eaeaea;
+  text-align: center;
+}
+
+.footerDisclaimer p {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Estados y utilidades */
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+}
+
+.noDataMessage {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px dashed #dee2e6;
+}
+
+/* Clases de utilidad para z-index */
+.zBelowNavbar {
+  position: relative;
+  z-index: 1;
+}
+
+.zAboveContent {
+  position: relative;
+  z-index: 10;
+}
+
+/* CLASES ADICIONALES PARA AJUSTE FINO */
+.compact {
+  padding-top: 10px !important;
+}
+
+.compact.withNavbar {
+  padding-top: 10px !important;
+}
+
+.navbarHeight60 {
+  padding-top: 15px;
+}
+
+.navbarHeight80 {
+  padding-top: 25px;
+}
+
+.navbarHeight100 {
+  padding-top: 30px;
+}
+
+.noTopPadding {
+  padding-top: 0 !important;
+}
+
+/* Responsive - VALORES OPTIMIZADOS */
+@media (max-width: 768px) {
+  .meteorologiaPage {
+    padding: 15px;
+    padding-top: 25px;
+  }
+  
+  .withNavbar {
+    padding-top: 25px;
+  }
+
+  .titulo {
+    font-size: 2rem;
+  }
+
+  .headerMeteorologia {
+    padding: 20px 15px;
+  }
+
+  .controlesHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .botonTiempoReal,
+  .botonActualizar {
+    width: 100%;
+  }
+
+  .climaPrincipal {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .climaTemperaturaSection {
+    justify-content: center;
+  }
+
+  .detalleGrupo {
+    grid-template-columns: 1fr;
+  }
+
+  .pronosticoSemanal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ciudadesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .estadisticasGrid,
+  .alertasContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .footerContenido {
+    grid-template-columns: 1fr;
+  }
+
+  .contenido section,
+  .sistemaAlertas,
+  .selectorCiudades,
+  .climaActualCard,
+  .pronosticoSection,
+  .estadisticasSection,
+  .footerMeteorologia {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .meteorologiaPage {
+    padding-top: 30px;
+  }
+  
+  .withNavbar {
+    padding-top: 30px;
+  }
+
+  .titulo {
+    font-size: 1.8rem;
+  }
+
+  .temperaturaActual {
+    font-size: 2.5rem;
+  }
+
+  .pronosticoSemanal {
+    grid-template-columns: 1fr;
+  }
+
+  .ciudadesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contenido {
+    grid-gap: 20px;
+  }
+
+  .contenido section,
+  .sistemaAlertas,
+  .selectorCiudades,
+  .climaActualCard,
+  .pronosticoSection,
+  .estadisticasSection,
+  .footerMeteorologia {
+    padding: 15px;
+  }
+}
+
+/* Animaciones mejoradas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.climaActualCard,
+.pronosticoSection,
+.estadisticasSection,
+.sistemaAlertas,
+.selectorCiudades {
+  animation: fadeIn 0.6s ease-out;
+}

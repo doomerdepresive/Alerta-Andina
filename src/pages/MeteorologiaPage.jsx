@@ -1,4 +1,4 @@
-// src/pages/MeteorologiaPage.jsx
+// src/pages/MeteorologiaPage.jsx - PARTE 1
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { 
   collection, 
@@ -12,7 +12,7 @@ import {
   getDoc 
 } from "firebase/firestore";
 import { db } from "../firebase-config";
-import "./MeteorologiaPage.css";
+import styles from "./MeteorologiaPage.module.css";
 import MeteoCards from "../components/MeteoCards";
 
 // Constantes para niveles de alerta
@@ -490,12 +490,12 @@ function MeteorologiaPage() {
 
   if (cargando) {
     return (
-      <div className="meteorologia-page with-navbar">
-        <div className="contenido">
-          <div className="cargando-container">
-            <div className="spinner"></div>
-            <p className="cargando">Conectando con Firestore...</p>
-            <p className="cargando-detalle">Cargando datos meteorológicos...</p>
+      <div className={`${styles.meteorologiaPage} ${styles.withNavbar}`}>
+        <div className={styles.contenido}>
+          <div className={styles.cargandoContainer}>
+            <div className={styles.spinner}></div>
+            <p className={styles.cargando}>Conectando con Firestore...</p>
+            <p className={styles.cargandoDetalle}>Cargando datos meteorológicos...</p>
           </div>
         </div>
       </div>
@@ -503,13 +503,13 @@ function MeteorologiaPage() {
   }
 
   return (
-    <div className="meteorologia-page with-navbar">
-      <div className="contenido">
+    <div className={`${styles.meteorologiaPage} ${styles.withNavbar}`}>
+      <div className={styles.contenido}>
         {/* Header con controles */}
-        <div className="header-meteorologia">
-          <div className="titulo-section">
-            <h1 className="titulo">Tiempo en {ciudadSeleccionada}</h1>
-            <p className="subtitulo">
+        <div className={styles.headerMeteorologia}>
+          <div className={styles.tituloSection}>
+            <h1 className={styles.titulo}>Tiempo en {ciudadSeleccionada}</h1>
+            <p className={styles.subtitulo}>
               {new Date().toLocaleTimeString('es-ES', { 
                 hour: '2-digit', 
                 minute: '2-digit' 
@@ -521,9 +521,9 @@ function MeteorologiaPage() {
             </p>
           </div>
           
-          <div className="controles-header">
+          <div className={styles.controlesHeader}>
             <button 
-              className={`boton-tiempo-real ${modoTiempoReal ? 'activo' : ''}`}
+              className={`${styles.botonTiempoReal} ${modoTiempoReal ? styles.activo : ''}`}
               onClick={toggleTiempoReal}
               title={modoTiempoReal ? "Desactivar tiempo real" : "Activar tiempo real"}
             >
@@ -532,7 +532,7 @@ function MeteorologiaPage() {
             
             {!modoTiempoReal && (
               <button 
-                className="boton-actualizar"
+                className={styles.botonActualizar}
                 onClick={actualizarDatos}
                 title="Actualizar datos"
               >
@@ -544,21 +544,21 @@ function MeteorologiaPage() {
 
         {/* Sistema de Alertas Tempranas */}
         {alertasCiudadSeleccionada.length > 0 && (
-          <div className="sistema-alertas">
-            <h2 className="titulo-alertas">🚨 Sistema de Alertas Tempranas</h2>
-            <div className="alertas-container">
+          <div className={styles.sistemaAlertas}>
+            <h2 className={styles.tituloAlertas}>🚨 Sistema de Alertas Tempranas</h2>
+            <div className={styles.alertasContainer}>
               {alertasCiudadSeleccionada.map((alerta, index) => (
                 <div 
                   key={index}
-                  className={`alerta-card nivel-${alerta.nivel.nivel.toLowerCase()}`}
+                  className={`${styles.alertaCard} ${styles[`nivel${alerta.nivel.nivel}`]}`}
                   style={{ borderLeftColor: alerta.nivel.color }}
                 >
-                  <div className="alerta-header">
-                    <span className="alerta-icono">{alerta.icono}</span>
-                    <span className="alerta-nivel">{alerta.nivel.nivel}</span>
-                    <span className="alerta-tipo">{alerta.tipo.toUpperCase()}</span>
+                  <div className={styles.alertaHeader}>
+                    <span className={styles.alertaIcono}>{alerta.icono}</span>
+                    <span className={styles.alertaNivel}>{alerta.nivel.nivel}</span>
+                    <span className={styles.alertaTipo}>{alerta.tipo.toUpperCase()}</span>
                   </div>
-                  <p className="alerta-mensaje">{alerta.mensaje}</p>
+                  <p className={styles.alertaMensaje}>{alerta.mensaje}</p>
                 </div>
               ))}
             </div>
@@ -567,10 +567,10 @@ function MeteorologiaPage() {
 
         {/* Información de error */}
         {error && (
-          <div className="error-banner">
-            <span className="error-icono">⚠️</span>
-            <span className="error-mensaje">{error}</span>
-            <button className="error-reintentar" onClick={actualizarDatos}>
+          <div className={styles.errorBanner}>
+            <span className={styles.errorIcono}>⚠️</span>
+            <span className={styles.errorMensaje}>{error}</span>
+            <button className={styles.errorReintentar} onClick={actualizarDatos}>
               Reintentar
             </button>
           </div>
@@ -587,20 +587,20 @@ function MeteorologiaPage() {
         )}
 
         {/* Selector de ciudades mejorado */}
-        <div className="selector-ciudades">
-          <h3 className="selector-titulo">Seleccionar ubicación:</h3>
-          <div className="ciudades-grid">
+        <div className={styles.selectorCiudades}>
+          <h3 className={styles.selectorTitulo}>Seleccionar ubicación:</h3>
+          <div className={styles.ciudadesGrid}>
             {datosClima.map(item => (
               <button 
                 key={item.id}
-                className={`boton-ciudad ${item.region === ciudadSeleccionada ? 'seleccionada' : ''}`}
+                className={`${styles.botonCiudad} ${item.region === ciudadSeleccionada ? styles.seleccionada : ''}`}
                 onClick={() => cambiarCiudad(item.region)}
               >
-                <div className="ciudad-nombre">{item.region}</div>
-                <div className="ciudad-temp">
+                <div className={styles.ciudadNombre}>{item.region}</div>
+                <div className={styles.ciudadTemp}>
                   {typeof item.temperatura === 'string' ? item.temperatura : `${item.temperatura}°C`}
                 </div>
-                <div className="ciudad-condicion">
+                <div className={styles.ciudadCondicion}>
                   {obtenerIconoClima(item.pronostico)}
                 </div>
               </button>
@@ -609,19 +609,19 @@ function MeteorologiaPage() {
         </div>
 
         {/* Tarjeta principal del clima actual mejorada */}
-        <div className="clima-actual-card">
-          <div className="clima-principal">
-            <div className="clima-temperatura-section">
-              <div className="icono-clima-grande">
+        <div className={styles.climaActualCard}>
+          <div className={styles.climaPrincipal}>
+            <div className={styles.climaTemperaturaSection}>
+              <div className={styles.iconoClimaGrande}>
                 {obtenerIconoClima(climaCiudadSeleccionada.pronostico)}
               </div>
-              <div className="temperatura-principal">
-                <span className="temperatura-actual">
+              <div className={styles.temperaturaPrincipal}>
+                <span className={styles.temperaturaActual}>
                   {typeof climaCiudadSeleccionada.temperatura === 'string' 
                     ? climaCiudadSeleccionada.temperatura 
                     : `${climaCiudadSeleccionada.temperatura}°C`}
                 </span>
-                <span className="sensacion-termica">
+                <span className={styles.sensacionTermica}>
                   Sensación {typeof climaCiudadSeleccionada.sensacionTermica === 'string' 
                     ? climaCiudadSeleccionada.sensacionTermica 
                     : `${climaCiudadSeleccionada.sensacionTermica}°C`}
@@ -629,23 +629,23 @@ function MeteorologiaPage() {
               </div>
             </div>
             
-            <div className="clima-descripcion">
-              <h3 className="condicion-actual">{climaCiudadSeleccionada.pronostico}</h3>
-              <div className="detalles-principales">
-                <div className="detalle-item">
-                  <span className="detalle-icono">💧</span>
+            <div className={styles.climaDescripcion}>
+              <h3 className={styles.condicionActual}>{climaCiudadSeleccionada.pronostico}</h3>
+              <div className={styles.detallesPrincipales}>
+                <div className={styles.detalleItem}>
+                  <span className={styles.detalleIcono}>💧</span>
                   <span>Humedad: {typeof climaCiudadSeleccionada.humedad === 'string' 
                     ? climaCiudadSeleccionada.humedad 
                     : `${climaCiudadSeleccionada.humedad}%`}</span>
                 </div>
-                <div className="detalle-item">
-                  <span className="detalle-icono">
+                <div className={styles.detalleItem}>
+                  <span className={styles.detalleIcono}>
                     {obtenerFlechaViento(climaCiudadSeleccionada.direccionViento)}
                   </span>
                   <span>Viento: {formatearViento(climaCiudadSeleccionada.viento)} {climaCiudadSeleccionada.direccionViento}</span>
                 </div>
-                <div className="detalle-item">
-                  <span className="detalle-icono">🌧️</span>
+                <div className={styles.detalleItem}>
+                  <span className={styles.detalleIcono}>🌧️</span>
                   <span>Precipitación: {climaCiudadSeleccionada.precipitaciones}mm</span>
                 </div>
               </div>
@@ -653,19 +653,19 @@ function MeteorologiaPage() {
           </div>
 
           {/* Información adicional detallada */}
-          <div className="clima-detalles-extendidos">
-            <div className="detalle-grupo">
-              <div className="detalle-item-ext">
-                <span className="detalle-label">Presión</span>
-                <span className="detalle-valor">
+          <div className={styles.climaDetallesExtendidos}>
+            <div className={styles.detalleGrupo}>
+              <div className={styles.detalleItemExt}>
+                <span className={styles.detalleLabel}>Presión</span>
+                <span className={styles.detalleValor}>
                   {typeof climaCiudadSeleccionada.presion === 'string' 
                     ? climaCiudadSeleccionada.presion 
                     : `${climaCiudadSeleccionada.presion} hPa`}
                 </span>
               </div>
-              <div className="detalle-item-ext">
-                <span className="detalle-label">Índice UV</span>
-                <span className="detalle-valor">
+              <div className={styles.detalleItemExt}>
+                <span className={styles.detalleLabel}>Índice UV</span>
+                <span className={styles.detalleValor}>
                   {typeof climaCiudadSeleccionada.uv === 'string' 
                     ? climaCiudadSeleccionada.uv 
                     : climaCiudadSeleccionada.uv}
@@ -674,14 +674,14 @@ function MeteorologiaPage() {
             </div>
             
             {climaCiudadSeleccionada.visibilidad && (
-              <div className="detalle-grupo">
-                <div className="detalle-item-ext">
-                  <span className="detalle-label">Visibilidad</span>
-                  <span className="detalle-valor">{climaCiudadSeleccionada.visibilidad} km</span>
+              <div className={styles.detalleGrupo}>
+                <div className={styles.detalleItemExt}>
+                  <span className={styles.detalleLabel}>Visibilidad</span>
+                  <span className={styles.detalleValor}>{climaCiudadSeleccionada.visibilidad} km</span>
                 </div>
-                <div className="detalle-item-ext">
-                  <span className="detalle-label">Punto de rocío</span>
-                  <span className="detalle-valor">{climaCiudadSeleccionada.puntoRocio}°C</span>
+                <div className={styles.detalleItemExt}>
+                  <span className={styles.detalleLabel}>Punto de rocío</span>
+                  <span className={styles.detalleValor}>{climaCiudadSeleccionada.puntoRocio}°C</span>
                 </div>
               </div>
             )}
@@ -689,47 +689,47 @@ function MeteorologiaPage() {
         </div>
 
         {/* Pronóstico semanal mejorado */}
-        <div className="pronostico-section">
-          <h2 className="titulo-pronostico">Pronóstico extendido - 7 días</h2>
-          <div className="pronostico-semanal">
+        <div className={styles.pronosticoSection}>
+          <h2 className={styles.tituloPronostico}>Pronóstico extendido - 7 días</h2>
+          <div className={styles.pronosticoSemanal}>
             {pronosticoExtendido.map((dia, index) => (
-              <div key={index} className={`dia-pronostico ${index === 0 ? 'dia-actual' : ''}`}>
-                <div className="dia-header">
-                  <div className="dia-nombre">{dia.dia}</div>
-                  <div className="dia-fecha">{dia.fecha}</div>
+              <div key={index} className={`${styles.diaPronostico} ${index === 0 ? styles.diaActual : ''}`}>
+                <div className={styles.diaHeader}>
+                  <div className={styles.diaNombre}>{dia.dia}</div>
+                  <div className={styles.diaFecha}>{dia.fecha}</div>
                 </div>
                 
-                <div className="dia-icono-section">
-                  <div className="dia-icono">{dia.icono}</div>
+                <div className={styles.diaIconoSection}>
+                  <div className={styles.diaIcono}>{dia.icono}</div>
                   {dia.alertas && dia.alertas.length > 0 && (
-                    <div className="dia-alerta-indicator">⚠️</div>
+                    <div className={styles.diaAlertaIndicator}>⚠️</div>
                   )}
                 </div>
                 
                 {dia.probabilidadLluvia > 0 && (
-                  <div className="dia-lluvia">
-                    <span className="probabilidad">{dia.probabilidadLluvia}%</span>
-                    <span className="precipitacion">{dia.precipitacion} mm</span>
+                  <div className={styles.diaLluvia}>
+                    <span className={styles.probabilidad}>{dia.probabilidadLluvia}%</span>
+                    <span className={styles.precipitacion}>{dia.precipitacion} mm</span>
                   </div>
                 )}
                 
-                <div className="dia-temperatura">
-                  <span className="temp-max">{dia.tempMax}°</span>
-                  <span className="separador"> / </span>
-                  <span className="temp-min">{dia.tempMin}°</span>
+                <div className={styles.diaTemperatura}>
+                  <span className={styles.tempMax}>{dia.tempMax}°</span>
+                  <span className={styles.separador}> / </span>
+                  <span className={styles.tempMin}>{dia.tempMin}°</span>
                 </div>
                 
-                <div className="dia-viento">
-                  <div className="viento-direccion">
+                <div className={styles.diaViento}>
+                  <div className={styles.vientoDireccion}>
                     {obtenerFlechaViento(dia.vientoDireccion)}
                   </div>
-                  <div className="viento-velocidad">
+                  <div className={styles.vientoVelocidad}>
                     {formatearViento(dia.vientoVelocidad)}
                   </div>
                 </div>
 
                 {dia.descripcion && (
-                  <div className="dia-descripcion">{dia.descripcion}</div>
+                  <div className={styles.diaDescripcion}>{dia.descripcion}</div>
                 )}
               </div>
             ))}
@@ -738,10 +738,10 @@ function MeteorologiaPage() {
 
         {/* Información de última actualización */}
         {ultimaActualizacion && (
-          <div className="info-actualizacion">
-            <div className="actualizacion-contenido">
-              <span className="actualizacion-icono">🔄</span>
-              <span className="actualizacion-texto">
+          <div className={styles.infoActualizacion}>
+            <div className={styles.actualizacionContenido}>
+              <span className={styles.actualizacionIcono}>🔄</span>
+              <span className={styles.actualizacionTexto}>
                 Última actualización: {ultimaActualizacion.toLocaleTimeString('es-ES', {
                   hour: '2-digit',
                   minute: '2-digit',
@@ -749,8 +749,8 @@ function MeteorologiaPage() {
                 })}
               </span>
               {modoTiempoReal && (
-                <span className="tiempo-real-indicator">
-                  <span className="pulse-dot"></span>
+                <span className={styles.tiempoRealIndicator}>
+                  <span className={styles.pulseDot}></span>
                   Tiempo real activo
                 </span>
               )}
@@ -759,37 +759,37 @@ function MeteorologiaPage() {
         )}
 
         {/* Información adicional y estadísticas */}
-        <div className="estadisticas-section">
-          <h2 className="titulo-estadisticas">Información adicional</h2>
-          <div className="estadisticas-grid">
-            <div className="estadistica-card">
-              <div className="estadistica-icono">📊</div>
-              <div className="estadistica-contenido">
+        <div className={styles.estadisticasSection}>
+          <h2 className={styles.tituloEstadisticas}>Información adicional</h2>
+          <div className={styles.estadisticasGrid}>
+            <div className={styles.estadisticaCard}>
+              <div className={styles.estadisticaIcono}>📊</div>
+              <div className={styles.estadisticaContenido}>
                 <h3>Alertas activas</h3>
-                <p className="estadistica-valor">{alertasActivas.length}</p>
-                <p className="estadistica-descripcion">
+                <p className={styles.estadisticaValor}>{alertasActivas.length}</p>
+                <p className={styles.estadisticaDescripcion}>
                   {alertasActivas.length === 0 ? 'Sin alertas' : 'Alertas meteorológicas'}
                 </p>
               </div>
             </div>
 
-            <div className="estadistica-card">
-              <div className="estadistica-icono">🏙️</div>
-              <div className="estadistica-contenido">
+            <div className={styles.estadisticaCard}>
+              <div className={styles.estadisticaIcono}>🏙️</div>
+              <div className={styles.estadisticaContenido}>
                 <h3>Ciudades monitoreadas</h3>
-                <p className="estadistica-valor">{datosClima.length}</p>
-                <p className="estadistica-descripcion">Estaciones meteorológicas</p>
+                <p className={styles.estadisticaValor}>{datosClima.length}</p>
+                <p className={styles.estadisticaDescripcion}>Estaciones meteorológicas</p>
               </div>
             </div>
 
-            <div className="estadistica-card">
-              <div className="estadistica-icono">⚡</div>
-              <div className="estadistica-contenido">
+            <div className={styles.estadisticaCard}>
+              <div className={styles.estadisticaIcono}>⚡</div>
+              <div className={styles.estadisticaContenido}>
                 <h3>Estado del sistema</h3>
-                <p className="estadistica-valor">
+                <p className={styles.estadisticaValor}>
                   {error ? 'Error' : 'Operativo'}
                 </p>
-                <p className="estadistica-descripcion">
+                <p className={styles.estadisticaDescripcion}>
                   {modoTiempoReal ? 'Tiempo real' : 'Manual'}
                 </p>
               </div>
@@ -798,33 +798,33 @@ function MeteorologiaPage() {
         </div>
 
         {/* Pie de página con información técnica */}
-        <div className="footer-meteorologia">
-          <div className="footer-contenido">
-            <div className="footer-section">
+        <div className={styles.footerMeteorologia}>
+          <div className={styles.footerContenido}>
+            <div className={styles.footerSection}>
               <h4>Fuentes de datos</h4>
               <p>• Servicio Nacional de Meteorología</p>
               <p>• Estaciones automáticas</p>
               <p>• Sensores IoT distribuidos</p>
             </div>
             
-            <div className="footer-section">
+            <div className={styles.footerSection}>
               <h4>Niveles de alerta</h4>
-              <div className="niveles-info">
-                <span className="nivel-badge verde">Verde: Sin riesgo</span>
-                <span className="nivel-badge amarillo">Amarillo: Precaución</span>
-                <span className="nivel-badge naranja">Naranja: Riesgo moderado</span>
-                <span className="nivel-badge rojo">Rojo: Alto riesgo</span>
+              <div className={styles.nivelesInfo}>
+                <span className={`${styles.nivelBadge} ${styles.verde}`}>Verde: Sin riesgo</span>
+                <span className={`${styles.nivelBadge} ${styles.amarillo}`}>Amarillo: Precaución</span>
+                <span className={`${styles.nivelBadge} ${styles.naranja}`}>Naranja: Riesgo moderado</span>
+                <span className={`${styles.nivelBadge} ${styles.rojo}`}>Rojo: Alto riesgo</span>
               </div>
             </div>
 
-            <div className="footer-section">
+            <div className={styles.footerSection}>
               <h4>Contacto de emergencia</h4>
               <p>📞 Emergencias: 911</p>
               <p>🌪️ Meteorología: 155</p>
             </div>
           </div>
           
-          <div className="footer-disclaimer">
+          <div className={styles.footerDisclaimer}>
             <p>
               ⚠️ Los datos meteorológicos son referenciales. 
               Para actividades críticas, consulte fuentes oficiales.
