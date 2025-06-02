@@ -1,0 +1,397 @@
+/* AlertaMeteorologicaPage.module.css */
+
+/* Contenedor principal */
+.alertaPage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ajuste para navbar */
+.withNavbar {
+    padding-top: 80px;
+}
+
+/* Header de la página */
+.alertaHeader {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.alertaHeader h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.descripcion {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Botón para datos mock */
+.btnMock {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btnMock:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Sección de filtros */
+.filtroSeccion {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.filtroSeccion h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.filtroRegion {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filtroRegion label {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 1rem;
+}
+
+.selectRegion {
+    padding: 10px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.selectRegion:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Estado de carga */
+.cargando {
+    text-align: center;
+    padding: 50px;
+    color: white;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+/* Contenido de zonas */
+.zonasContent {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Container de tabla */
+.zonasTableContainer {
+    overflow-x: auto;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla de zonas */
+.zonasTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.zonasTable thead {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.zonasTable th,
+.zonasTable td {
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.zonasTable th {
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.zonasTable tbody tr {
+    transition: all 0.3s ease;
+}
+
+.zonasTable tbody tr:hover {
+    background: rgba(102, 126, 234, 0.05);
+    transform: translateY(-1px);
+}
+
+/* Niveles de riesgo */
+.nivelAlto {
+    background: rgba(255, 107, 107, 0.1) !important;
+    border-left: 4px solid #ff6b6b;
+}
+
+.nivelMedio {
+    background: rgba(255, 193, 7, 0.1) !important;
+    border-left: 4px solid #ffc107;
+}
+
+.nivelBajo {
+    background: rgba(40, 167, 69, 0.1) !important;
+    border-left: 4px solid #28a745;
+}
+
+/* Botón de detalles */
+.btnDetalles {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btnDetalles:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* No data */
+.noData {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 30px !important;
+}
+
+/* Pronóstico */
+.pronosticoContainer {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #e9ecef;
+}
+
+.pronosticoContainer h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.pronosticoGrid {
+    display: grid;
+    gap: 25px;
+}
+
+.pronosticoDetalle {
+    background: linear-gradient(135deg, #f8f9ff, #e8ecff);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.pronosticoInfo {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.pronosticoIndicadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.indicador {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #667eea;
+}
+
+.indicador h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.indicador p {
+    margin: 5px 0;
+    color: #5a6c7d;
+    font-size: 0.95rem;
+}
+
+.pronosticoRecomendaciones {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.pronosticoRecomendaciones h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.pronosticoRecomendaciones ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pronosticoRecomendaciones li {
+    padding: 8px 0;
+    color: #5a6c7d;
+    position: relative;
+    padding-left: 25px;
+}
+
+.pronosticoRecomendaciones li::before {
+    content: "▶";
+    color: #667eea;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    font-size: 0.8rem;
+}
+
+/* Recursos adicionales */
+.recursosAdicionales {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #e9ecef;
+}
+
+.recursosAdicionales h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.recursosLinks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.recursoLink {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #2c3e50;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.recursoLink:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.recursoLink i {
+    font-size: 1.5rem;
+    color: #667eea;
+}
+
+/* Media queries para responsive */
+@media (max-width: 768px) {
+    .alertaPage {
+        padding: 15px;
+    }
+
+    .withNavbar {
+        padding-top: 70px;
+    }
+
+    .alertaHeader h1 {
+        font-size: 2rem;
+    }
+
+    .filtroRegion {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .selectRegion {
+        width: 100%;
+    }
+
+    .pronosticoInfo {
+        grid-template-columns: 1fr;
+    }
+
+    .pronosticoIndicadores {
+        grid-template-columns: 1fr;
+    }
+
+    .recursosLinks {
+        grid-template-columns: 1fr;
+    }
+
+    .zonasTable {
+        font-size: 0.9rem;
+    }
+
+    .zonasTable th,
+    .zonasTable td {
+        padding: 10px 8px;
+    }
+}

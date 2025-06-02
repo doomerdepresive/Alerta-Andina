@@ -23,7 +23,7 @@ function UserManager() {
     const [error, setError] = useState(null);
     const [busqueda, setBusqueda] = useState("");
     const [ediciones, setEdiciones] = useState({});
-    const roles = ["usuario", "suscriptor", "administrador"];
+    const roles = ["ciudadano", "suscriptor", "administrador"];
     const superAdmin = "admin@gmail.com";
 
     useEffect(() => {

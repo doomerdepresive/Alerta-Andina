@@ -1,0 +1,161 @@
+.perfil-admin {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", sans-serif;
+}
+
+.perfil-admin h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.mensaje-perfil {
+    background-color: #f0f8f4;
+    color: #2e7d32;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #c8e6c9;
+}
+
+.perfil-contenido {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.perfil-foto-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perfil-foto {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.perfil-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #eee;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    border: 2px dashed #bbb;
+    margin-bottom: 0.5rem;
+}
+
+.perfil-foto-container input[type="file"] {
+    font-size: 0.9rem;
+}
+
+.perfil-datos {
+    flex: 1;
+}
+
+.perfil-datos label {
+    display: block;
+    margin-top: 1.2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.perfil-datos p,
+.perfil-datos input {
+    margin-top: 0.4rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.perfil-datos input {
+    padding: 0.45rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.perfil-controles {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.perfil-controles button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.perfil-controles button:hover {
+    background-color: #0056b3;
+}
+
+.perfil-controles button:last-child {
+    background-color: #e67e22;
+}
+
+.perfil-controles button:last-child:hover {
+    background-color: #d35400;
+}
+
+.cambio-password {
+    margin-top: 2rem;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.cambio-password h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.cambio-password input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.cambio-password button {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.cambio-password button:hover {
+    background-color: #388e3c;
+}

@@ -1,0 +1,510 @@
+/* AdminLayout.css - Estilos específicos para el panel administrativo */
+
+/* Importar fuentes modernas */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Variables CSS con colores profesionales y alto contraste */
+.admin-layout {
+    --primary-dark: #1a365d;
+    --primary-blue: #2d3748;
+    --secondary-blue: #4a5568;
+    --accent-gold: #d69e2e;
+    --accent-gold-light: #f6e05e;
+    --sidebar-bg: rgba(26, 54, 93, 0.95);
+    --sidebar-hover: rgba(214, 158, 46, 0.15);
+    --content-bg: #ffffff;
+    --text-white: #ffffff;
+    --text-dark: #2d3748;
+    --text-gray: #718096;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 25px 50px rgba(0, 0, 0, 0.25);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+/* Layout principal del admin */
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Sidebar con mejor contraste */
+.admin-layout .sidebar {
+    width: 280px;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border-light);
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    transition: var(--transition);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+}
+
+.admin-layout .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(214, 158, 46, 0.1) 0%, rgba(26, 54, 93, 0.95) 100%);
+    pointer-events: none;
+}
+
+/* Logo con mejor visibilidad */
+.admin-layout .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 30px;
+    color: var(--text-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.admin-layout .logo::before {
+    content: '';
+    width: 45px;
+    height: 45px;
+    background-image: url('../assets/Logo_Alerta_Andina.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 2px 8px rgba(214, 158, 46, 0.4));
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    0% {
+        filter: drop-shadow(0 2px 8px rgba(214, 158, 46, 0.4));
+        transform: scale(1);
+    }
+
+    100% {
+        filter: drop-shadow(0 4px 12px rgba(214, 158, 46, 0.6));
+        transform: scale(1.02);
+    }
+}
+
+/* Navegación con texto más visible */
+.admin-layout nav {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    padding: 20px 0;
+}
+
+.admin-layout nav ul {
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-layout nav ul li {
+    position: relative;
+}
+
+.admin-layout nav ul li a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.admin-layout nav ul li a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--accent-gold);
+    transform: scaleY(0);
+    transition: var(--transition);
+    transform-origin: bottom;
+}
+
+.admin-layout nav ul li a:hover::before,
+.admin-layout nav ul li a.active::before {
+    transform: scaleY(1);
+}
+
+.admin-layout nav ul li a:hover,
+.admin-layout nav ul li a.active {
+    background: var(--sidebar-hover);
+    color: var(--text-white);
+    transform: translateX(8px);
+    box-shadow: 0 4px 12px rgba(214, 158, 46, 0.2);
+    font-weight: 600;
+}
+
+.admin-layout nav ul li a.active {
+    background: rgba(214, 158, 46, 0.2);
+    color: var(--accent-gold-light);
+    border-left: 3px solid var(--accent-gold);
+}
+
+/* Iconos mejorados */
+.admin-layout nav ul li:nth-child(1) a::after {
+    content: '📊';
+    font-size: 1.2rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.admin-layout nav ul li:nth-child(2) a::after {
+    content: '👥';
+    font-size: 1.2rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.admin-layout nav ul li:nth-child(3) a::after {
+    content: '📈';
+    font-size: 1.2rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.admin-layout nav ul li:nth-child(4) a::after {
+    content: '🚨';
+    font-size: 1.2rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.admin-layout nav ul li:nth-child(5) a::after {
+    content: '📝';
+    font-size: 1.2rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Contenido principal */
+.admin-layout .content {
+    flex: 1;
+    background: var(--content-bg);
+    margin: 20px 20px 20px 0;
+    border-radius: 20px;
+    box-shadow: var(--shadow-heavy);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-layout .content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-dark), var(--accent-gold), var(--primary-blue));
+}
+
+/* Header del contenido */
+.admin-layout .content header {
+    padding: 30px 40px 25px;
+    border-bottom: 2px solid #e2e8f0;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+}
+
+.admin-layout .content header h1 {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-layout .content header h1::before {
+    content: '⚙️';
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(214, 158, 46, 0.3));
+}
+
+/* Sección principal */
+.admin-layout .content section {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background: var(--content-bg);
+}
+
+/* Botón toggle para móvil */
+.admin-layout .sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: var(--accent-gold);
+    color: white;
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+    font-weight: bold;
+}
+
+.admin-layout .sidebar-toggle:hover {
+    transform: scale(1.1);
+    background: var(--accent-gold-light);
+    box-shadow: var(--shadow-heavy);
+}
+
+/* Animaciones mejoradas */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.admin-layout .sidebar {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.admin-layout .content {
+    animation: slideInRight 0.6s ease-out;
+}
+
+.admin-layout nav ul li {
+    animation: slideInLeft 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.admin-layout nav ul li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.admin-layout nav ul li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.admin-layout nav ul li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.admin-layout nav ul li:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.admin-layout nav ul li:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+/* Responsivo mejorado */
+@media (max-width: 1024px) {
+    .admin-layout .content section {
+        padding: 30px;
+    }
+
+    .admin-layout .sidebar {
+        width: 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-layout .sidebar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .admin-layout .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        height: 100vh;
+        z-index: 9998;
+        transition: var(--transition);
+        width: 280px;
+    }
+
+    .admin-layout .sidebar.active {
+        left: 0;
+        box-shadow: var(--shadow-heavy);
+    }
+
+    .admin-layout .content {
+        margin: 80px 10px 10px 10px;
+        border-radius: var(--border-radius);
+    }
+
+    .admin-layout .content header {
+        padding: 20px 25px 15px;
+    }
+
+    .admin-layout .content header h1 {
+        font-size: 1.6rem;
+    }
+
+    .admin-layout .content section {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-layout .content {
+        margin: 80px 5px 5px 5px;
+    }
+
+    .admin-layout .content section {
+        padding: 20px;
+    }
+
+    .admin-layout .content header {
+        padding: 15px 20px;
+    }
+
+    .admin-layout .content header h1 {
+        font-size: 1.4rem;
+    }
+
+    .admin-layout .logo {
+        font-size: 1.3rem;
+        padding: 25px 20px;
+    }
+
+    .admin-layout nav ul {
+        padding: 0 15px;
+    }
+}
+
+/* Overlay para móvil */
+.admin-layout .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 54, 93, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 9997;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.admin-layout .sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Estados de focus para accesibilidad */
+.admin-layout nav ul li a:focus,
+.admin-layout .sidebar-toggle:focus {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(214, 158, 46, 0.2);
+}
+
+/* Scroll personalizado */
+.admin-layout .content section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.admin-layout .content section::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.admin-layout .content section::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+    border-radius: 4px;
+}
+
+.admin-layout .content section::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Mejoras adicionales para mejor contraste */
+.admin-layout nav ul li a {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.admin-layout .logo {
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+/* Efecto hover más suave */
+.admin-layout nav ul li a:hover {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Mejor separación visual */
+.admin-layout nav ul li:not(:last-child) {
+    margin-bottom: 4px;
+}
+
+.sidebar ul li .logout-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar ul li .logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

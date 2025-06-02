@@ -45,7 +45,7 @@ function HydroRiskMap() {
   useEffect(() => {
     const cargarZonas = async () => {
       try {
-        const snapshot = await getDocs(collection(db, "zonas_riesgo"));
+        const snapshot = await getDocs(collection(db, "Alerta_Hidrologico_Mapa"));
         const tipos = ["Inundación", "Desborde", "Crecida"];
         const data = snapshot.docs
           .map(doc => ({ id: doc.id, ...doc.data() }))

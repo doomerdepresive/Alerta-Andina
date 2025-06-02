@@ -1,5 +1,6 @@
 /* Estilos globales para body y html */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -47,7 +48,8 @@ body, html {
 /* Estilos comunes para secciones */
 .section {
   min-height: 100vh;
-  padding: 100px 20px 60px; /* Se añade espacio para el header fijo */
+  padding: 100px 20px 60px;
+  /* Se añade espacio para el header fijo */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +96,8 @@ button:hover {
 }
 
 /* Sección Información y Beneficios */
-.info, .beneficios {
+.info,
+.beneficios {
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   max-width: 700px;
@@ -123,11 +126,16 @@ button:hover {
 }
 
 .with-navbar {
-  padding-top: 160px; /* Este valor ya cubre perfectamente tu navbar */
+  padding-top: 160px;
+  /* Este valor ya cubre perfectamente tu navbar */
 }
 
 @media (max-width: 768px) {
   .with-navbar {
-    padding-top: 120px; /* Para móviles */
+    padding-top: 120px;
+    /* Para móviles */
   }
 }
+
+/* Leaflet CSS (necesario para mostrar el mapa correctamente) */
+@import "leaflet/dist/leaflet.css";

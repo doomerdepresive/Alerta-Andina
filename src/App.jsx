@@ -1,8 +1,12 @@
-// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
 
+// Layouts
+import Layout from "./components/Layout";
+import AdminLayout from "./layouts/AdminLayout";
+import ProtectedRoute from "./routes/ProtectedRoute";
+
+// Páginas públicas
 import HomePage from "./pages/HomePage";
 import MisionPage from "./pages/MisionPage";
 import VisionPage from "./pages/VisionPage";
@@ -17,19 +21,41 @@ import TransparenciaPage from "./pages/TransparenciaPage";
 import AlertaMeteorologicaPage from "./pages/AlertaMeteorologicaPage";
 import AlertaHidrologicaPage from "./pages/AlertaHidrologicaPage";
 import LoginPage from "./pages/LoginPage";
-import AdminPage from "./pages/AdminPage";
-import DashboardEstadisticas from './components/DashboardEstadisticas';
 
+// Páginas del administrador
+import Dashboard from "./pages/admin/Dashboard";
+import Usuarios from "./pages/admin/Usuarios";
+import Reportes from "./pages/admin/Reportes";
+import Alertas from "./pages/admin/Alertas";
+import Contenido from "./pages/admin/Contenido";
+import Perfil from "./pages/admin/Perfil";
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Ruta protegida sin layout */}
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/estadisticas" element={<DashboardEstadisticas />} />
 
-        {/* Rutas públicas con layout */}
+        {/* ✅ Ruta de Login pública, separada */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* ✅ Área de Administración protegida */}
+        <Route
+          path="/admin/*"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="usuarios" element={<Usuarios />} />
+          <Route path="reportes" element={<Reportes />} />
+          <Route path="alertas" element={<Alertas />} />
+          <Route path="contenido" element={<Contenido />} />
+          <Route path="perfil" element={<Perfil />} />
+        </Route>
+
+        {/* ✅ Rutas públicas bajo Layout general */}
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="mision" element={<MisionPage />} />
@@ -45,8 +71,8 @@ function App() {
           <Route path="transparencia" element={<TransparenciaPage />} />
           <Route path="alerta-meteorologica" element={<AlertaMeteorologicaPage />} />
           <Route path="alerta-hidrologica" element={<AlertaHidrologicaPage />} />
-          <Route path="login" element={<LoginPage />} />
         </Route>
+
       </Routes>
     </Router>
   );

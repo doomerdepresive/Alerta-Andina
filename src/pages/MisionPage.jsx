@@ -1,175 +1,171 @@
 // src/pages/MisionPage.jsx
+import React from "react";
+import PropTypes from "prop-types";
+import styles from "./MisionPage.module.css";
+import {
+  FaBullseye, FaGlobe, FaLeaf, FaShieldAlt, FaHeart,
+  FaStar, FaMagic, FaQuoteLeft, FaEye, FaHandshake,
+  FaRocket, FaUsers, FaGraduationCap
+} from "react-icons/fa";
 
-import React from 'react';
-import { 
-  FaBullseye, 
-  FaGlobe, 
-  FaLeaf, 
-  FaShieldAlt 
-} from 'react-icons/fa';
-import styles from './MisionPage.module.css';
+// Configuración de datos
+const CONFIG = {
+  missionStatement: `Somos la entidad rectora de la actividad meteorológica, hidrológica y actividades afines; 
+como institución técnico científica prestamos servicios especializados que contribuyen al 
+desarrollo sostenible del Estado Plurinacional de Bolivia; proporcionamos información 
+hidrometeorológica a todos los usuarios, a los sistemas medioambientales para el cuidado de la Madre Tierra.`,
 
-// Datos separados para mejor mantenibilidad
-const MISSION_STATEMENT = `Entidad rectora de la actividad meteorológica, hidrológica y actividades afines; 
-como institución técnico científica presta servicios especializados que contribuyen al 
-desarrollo sostenible del Estado Plurinacional de Bolivia; proporciona información 
-hidrometeorológica a todos los usuarios de la información, a los sistemas 
-medioambientales para el cuidado de la Madre Tierra; en el ámbito nacional e internacional, 
-participa en la vigilancia atmosférica mundial junto a entidades afines; a 
-nivel nacional coadyuva en la gestión de riesgos para la prevención y mitigación de 
-desastres; miembro de la Organización Meteorológica Mundial (OMM) con 
-representación internacional en su actividad.`;
+  pillars: [
+    {
+      id: 'services',
+      icon: FaBullseye,
+      title: "Servicios Especializados",
+      description: "Institución técnico científica que contribuye al desarrollo sostenible del país"
+    },
+    {
+      id: 'environment',
+      icon: FaLeaf,
+      title: "Cuidado de la Madre Tierra",
+      description: "Información para sistemas medioambientales y sostenibilidad integral"
+    },
+    {
+      id: 'international',
+      icon: FaGlobe,
+      title: "Alcance Internacional",
+      description: "Participación en vigilancia atmosférica mundial y OMM"
+    },
+    {
+      id: 'risk-management',
+      icon: FaShieldAlt,
+      title: "Gestión de Riesgos",
+      description: "Prevención y mitigación de desastres naturales"
+    }
+  ],
 
-const MISSION_PILLARS = [
-  {
-    id: 'services',
-    icon: FaBullseye,
-    title: 'Servicios Especializados',
-    description: 'Institución técnico científica que contribuye al desarrollo sostenible'
-  },
-  {
-    id: 'environment',
-    icon: FaLeaf,
-    title: 'Cuidado de la Madre Tierra',
-    description: 'Información para sistemas medioambientales y sostenibilidad'
-  },
-  {
-    id: 'international',
-    icon: FaGlobe,
-    title: 'Alcance Internacional',
-    description: 'Participación en vigilancia atmosférica mundial y OMM'
-  },
-  {
-    id: 'risk-management',
-    icon: FaShieldAlt,
-    title: 'Gestión de Riesgos',
-    description: 'Prevención y mitigación de desastres naturales'
-  }
-];
+  values: [
+    { icon: FaEye, title: "Transparencia", description: "Información clara y accesible para todos" },
+    { icon: FaHandshake, title: "Compromiso", description: "Dedicación constante con la sociedad" },
+    { icon: FaRocket, title: "Innovación", description: "Tecnología avanzada al servicio del país" },
+    { icon: FaUsers, title: "Colaboración", description: "Trabajo conjunto con instituciones nacionales" }
+  ]
+};
 
-// Componente para las tarjetas de pilares
-const MissionPillar = ({ icon: Icon, title, description, id }) => (
-  <div className={styles.missionPillar} role="article" aria-labelledby={`pillar-title-${id}`}>
-    <div className={styles.pillarIcon} aria-hidden="true">
-      <Icon />
-    </div>
-    <h3 id={`pillar-title-${id}`}>{title}</h3>
-    <p>{description}</p>
-  </div>
-);
-
-// Componente para elementos decorativos
-const DecorationElement = ({ index, side }) => (
-  <div 
-    className={`${styles.decorationElement} ${styles[`decoration${index}`]}`}
-    aria-hidden="true"
-    role="presentation"
-  />
-);
-
-// Componente para decoraciones del footer
-const FooterDecorationElement = ({ index, side }) => (
-  <div 
-    className={`${styles.footerDecorationElement} ${styles[`footerDecoration${index}`]}`}
-    aria-hidden="true"
-    role="presentation"
-  />
-);
-
-// Componente principal corregido para CSS Modules
-function MisionPage() {
+/**
+ * Página Misión - Rediseño moderno inspirado en QueHacemosPage
+ */
+function MisionPage({ withNavbar = true }) {
   return (
-    <div className={`${styles.pageContainer} ${styles.misionPage} ${styles.withNavbar}`}>
-      {/* Decoración Lateral Izquierda */}
-      <aside className={`${styles.sideDecoration} ${styles.leftDecoration}`} aria-hidden="true">
-        {[1, 2, 3].map(index => (
-          <DecorationElement key={`left-${index}`} index={index} side="left" />
-        ))}
-      </aside>
+    <div className={styles.misionPage}>
+      <div className={`${styles.pageContainer} ${withNavbar ? styles.withNavbar : ''}`}>
 
-      {/* Contenido Principal */}
-      <main className={styles.mainContent} role="main">
-        <div className={styles.contentWrapper}>
-          {/* Header con título */}
-          <header className={styles.pageHeader}>
-            <h1 className={styles.pageTitle} id="mission-title">
-              <span className={styles.titleDecoration} aria-hidden="true"></span>
-              MISIÓN
-              <span className={styles.titleDecoration} aria-hidden="true"></span>
+        {/* Header principal */}
+        <header className={styles.pageHeader}>
+          <div className={styles.headerContent}>
+            <h1 className={styles.pageTitle}>
+              NUESTRA MISIÓN
             </h1>
-            
-            <div className={styles.divider} role="separator" aria-hidden="true">
-              <span className={styles.dividerIcon}></span>
-            </div>
-          </header>
-          
-          {/* Sección principal de la misión */}
-          <section className={styles.missionStatementSection} aria-labelledby="mission-title">
-            <p className={styles.missionText} role="text">
-              {MISSION_STATEMENT}
+            <p className={styles.pageSubtitle}>
+              Protegiendo Bolivia a través de la ciencia meteorológica
             </p>
-          </section>
+          </div>
+          <div className={styles.headerStats}>
+            <div className={styles.statItem}>
+              <FaStar />
+              <span>Excelencia Científica</span>
+            </div>
+            <div className={styles.statItem}>
+              <FaHeart />
+              <span>Servicio a la Patria</span>
+            </div>
+            <div className={styles.statItem}>
+              <FaShieldAlt />
+              <span>Protección Total</span>
+            </div>
+          </div>
+        </header>
 
-          {/* Sección de pilares de la misión */}
-          <section className={styles.missionPillarsSection} aria-labelledby="pillars-title">
-            <h2 id="pillars-title" className={styles.pillarsTitle}>
-              Nuestros Pilares Fundamentales
+        {/* Sección de declaración de misión */}
+        <section className={styles.missionSection}>
+          <div className={styles.missionCard}>
+            <div className={styles.missionIcon}>
+              <FaMagic />
+            </div>
+            <h2 className={styles.missionTitle}>
+              Al servicio de <span className={styles.highlight}>Bolivia</span>
             </h2>
-            <div className={styles.missionPillars} role="list">
-              {MISSION_PILLARS.map((pillar) => (
-                <MissionPillar
-                  key={pillar.id}
-                  id={pillar.id}
-                  icon={pillar.icon}
-                  title={pillar.title}
-                  description={pillar.description}
-                />
-              ))}
+            <p className={styles.missionText}>
+              {CONFIG.missionStatement}
+            </p>
+            <div className={styles.missionStats}>
+              <div className={styles.stat}>
+                <FaGlobe />
+                <span>Alcance Nacional</span>
+              </div>
+              <div className={styles.stat}>
+                <FaLeaf />
+                <span>Sostenibilidad</span>
+              </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Sección de compromiso */}
-          <section className={styles.commitmentSection} aria-labelledby="commitment-title">
-            <div className={styles.commitmentCard}>
-              <h2 id="commitment-title" className={styles.commitmentTitle}>
-                Nuestro Compromiso
-              </h2>
-              <blockquote className={styles.commitmentQuote}>
-                "Dedicados a proteger vidas y el medio ambiente a través de 
-                la ciencia meteorológica y la innovación tecnológica."
-              </blockquote>
-              <p className={styles.commitmentText}>
-                Como institución rectora, nos comprometemos a brindar información 
-                precisa y oportuna que permita a Bolivia enfrentar los desafíos 
-                climáticos con conocimiento y preparación.
-              </p>
+        {/* Sección de pilares */}
+        <section className={styles.pillarsSection}>
+          <h2 className={styles.sectionTitle}>Nuestros Pilares Fundamentales</h2>
+          <div className={styles.pillarsGrid}>
+            {CONFIG.pillars.map((pillar) => (
+              <div key={pillar.id} className={styles.pillarCard}>
+                <div className={styles.cardIcon}>
+                  <pillar.icon />
+                </div>
+                <h3 className={styles.cardTitle}>{pillar.title}</h3>
+                <p className={styles.cardDescription}>{pillar.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Sección de valores */}
+        <section className={styles.valuesSection}>
+          <h2 className={styles.sectionTitle}>Nuestros Valores</h2>
+          <p className={styles.valuesDescription}>
+            Los principios que guían nuestro trabajo diario y nuestro compromiso
+            con la excelencia en el servicio meteorológico nacional.
+          </p>
+          <div className={styles.valuesGrid}>
+            {CONFIG.values.map((value, index) => (
+              <div key={index} className={styles.valueCard}>
+                <div className={styles.cardIcon}>
+                  <value.icon />
+                </div>
+                <h3 className={styles.cardTitle}>{value.title}</h3>
+                <p className={styles.cardDescription}>{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Sección de compromiso */}
+        <section className={styles.commitmentSection}>
+          <div className={styles.commitmentCard}>
+            <div className={styles.quoteIcon}>
+              <FaQuoteLeft />
             </div>
-          </section>
-        </div>
-      </main>
+            <blockquote className={styles.commitmentText}>
+              "Dedicados a proteger vidas y el medio ambiente a través de
+              la ciencia meteorológica y la innovación tecnológica al servicio de Bolivia."
+            </blockquote>
+            <cite className={styles.commitmentAuthor}>— SENAMHI Bolivia</cite>
+          </div>
+        </section>
 
-      {/* Decoración Lateral Derecha */}
-      <aside className={`${styles.sideDecoration} ${styles.rightDecoration}`} aria-hidden="true">
-        {[1, 2, 3].map(index => (
-          <DecorationElement key={`right-${index}`} index={index} side="right" />
-        ))}
-      </aside>
-
-      {/* Decoraciones del Footer */}
-      <div className={styles.footerDecorations}>
-        <div className={`${styles.footerStripeLeft}`}>
-          {[1, 2, 3].map(index => (
-            <FooterDecorationElement key={`footer-left-${index}`} index={index} side="left" />
-          ))}
-        </div>
-        <div className={`${styles.footerStripeRight}`}>
-          {[1, 2, 3].map(index => (
-            <FooterDecorationElement key={`footer-right-${index}`} index={index} side="right" />
-          ))}
-        </div>
       </div>
     </div>
   );
 }
+
+MisionPage.propTypes = {
+  withNavbar: PropTypes.bool
+};
 
 export default MisionPage;

@@ -1,0 +1,634 @@
+/* =============================================
+   🌊 SISTEMA DE ALERTAS HIDROLÓGICAS - CSS MODULES
+   ============================================= */
+
+/* Variables CSS */
+.alertaHidrologicaPage {
+  --azul-agua: #0891b2;
+  --azul-profundo: #0e7490;
+  --verde-agua: #06b6d4;
+  --naranja-sol: #fb923c;
+  --rojo-alerta: #f87171;
+  --gris-nube: #f1f5f9;
+  --gris-lluvia: #64748b;
+  --blanco: #ffffff;
+  --sombra: 0 4px 20px rgba(8, 145, 178, 0.15);
+
+  /* Espaciado para navbar */
+  padding-top: 00px;
+  /* Ajusta según la altura de tu navbar */
+  min-height: 101vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(45deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
+  color: #334155;
+  line-height: 1.6;
+  animation: aparecer 0.8s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contenido principal */
+.contenidoAlerta {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.contenidoAlerta h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--azul-profundo);
+  text-align: center;
+}
+
+.intro {
+  font-size: 1.2rem;
+  color: var(--gris-lluvia);
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Panel de filtros */
+.filtroRegion {
+  background: var(--blanco);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filtroRegion label {
+  font-weight: 600;
+  color: var(--azul-profundo);
+  font-size: 1rem;
+}
+
+.filtroRegion select {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 50px;
+  background: var(--blanco);
+  font-size: 1rem;
+  min-width: 200px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.filtroRegion select:focus {
+  border-color: var(--azul-agua);
+  box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Estados de carga */
+.cargando {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--blanco);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  margin: 2rem 0;
+}
+
+.spinnerCarga {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid var(--verde-agua);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Secciones con estilo card */
+.seccionAlertas,
+.seccionMapa,
+.seccionRecomendaciones,
+.pronostico {
+  background: var(--blanco);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.seccionAlertas:hover,
+.seccionMapa:hover,
+.seccionRecomendaciones:hover {
+  transform: translateY(-5px);
+}
+
+/* Contenedor de tabla - CORREGIDO */
+.tablaContainer {
+  overflow-x: auto;
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  background: var(--blanco);
+  margin-bottom: 2rem;
+}
+
+/* Tabla moderna - COMPLETAMENTE REDISEÑADA */
+.tablaZonas {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+}
+
+.tablaZonas thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tablaZonas th {
+  background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-agua) 100%);
+  color: var(--blanco);
+  padding: 1.2rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  border: none;
+}
+
+.tablaZonas th:first-child {
+  border-radius: 20px 0 0 0;
+  padding-left: 1.5rem;
+}
+
+.tablaZonas th:last-child {
+  border-radius: 0 20px 0 0;
+  padding-right: 1.5rem;
+}
+
+.tablaZonas tbody tr {
+  background: var(--blanco);
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+}
+
+.tablaZonas tbody tr:nth-child(odd) {
+  background: #fafbfc;
+}
+
+.tablaZonas tbody tr:hover {
+  background: linear-gradient(90deg, rgba(8, 145, 178, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(8, 145, 178, 0.1);
+}
+
+.tablaZonas td {
+  padding: 1.2rem 1rem;
+  border: none;
+  vertical-align: middle;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.tablaZonas td:first-child {
+  padding-left: 1.5rem;
+}
+
+.tablaZonas td:last-child {
+  padding-right: 1.5rem;
+}
+
+.tablaZonas tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 20px;
+}
+
+.tablaZonas tbody tr:last-child td:last-child {
+  border-radius: 0 0 20px 0;
+}
+
+/* Iconos de tipo de alerta - MEJORADOS */
+.tablaZonas .icono-alerta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.tablaZonas .icono-fuego {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: white;
+  box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
+}
+
+.tablaZonas .icono-rayo {
+  background: linear-gradient(135deg, #feca57, #ff9ff3);
+  color: white;
+  box-shadow: 0 4px 12px rgba(254, 202, 87, 0.3);
+}
+
+.tablaZonas .icono-estrella {
+  background: linear-gradient(135deg, #48dbfb, #0abde3);
+  color: white;
+  box-shadow: 0 4px 12px rgba(72, 219, 251, 0.3);
+}
+
+/* Niveles de alerta - REDISEÑADOS */
+.nivelAlto,
+.nivelMedio,
+.nivelBajo {
+  position: relative;
+  padding-left: 0;
+}
+
+.nivelAlto::before,
+.nivelMedio::before,
+.nivelBajo::before {
+  display: none;
+  /* Removemos los pseudo-elementos problemáticos */
+}
+
+/* Badges completamente rediseñados */
+.badgeTipo,
+.badgeNivel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  color: var(--blanco);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: center;
+  min-width: 90px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Colores específicos para tipos */
+.badgeTipo.crecida {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.badgeTipo.inundacion {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+}
+
+.badgeTipo.desborde {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+/* Colores para niveles */
+.badgeNivel.alto {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  animation: pulsoSuave 2s infinite;
+}
+
+.badgeNivel.medio {
+  background: linear-gradient(135deg, #f39c12, #d68910);
+}
+
+.badgeNivel.bajo {
+  background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+@keyframes pulsoSuave {
+
+  0%,
+  100% {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+  }
+}
+
+.badgeTipo::before,
+.badgeNivel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.badgeTipo:hover::before,
+.badgeNivel:hover::before {
+  left: 100%;
+}
+
+.badgeTipo:hover,
+.badgeNivel:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Columna de región */
+.tablaZonas .columna-region {
+  font-weight: 600;
+  color: var(--azul-profundo);
+  font-size: 1rem;
+}
+
+/* Columna de localidad */
+.tablaZonas .columna-localidad {
+  color: var(--gris-lluvia);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Columna de actualización */
+.tablaZonas .columna-actualizacion {
+  font-size: 0.85rem;
+  color: var(--gris-lluvia);
+  font-family: 'Courier New', monospace;
+}
+
+/* Pronóstico */
+.pronostico {
+  padding: 2rem;
+}
+
+.pronostico h2 {
+  color: var(--azul-profundo);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pronosticoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pronosticoCard {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid var(--azul-agua);
+  transition: all 0.3s ease;
+}
+
+.pronosticoCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pronosticoCard h4 {
+  margin-bottom: 0.5rem;
+  color: var(--azul-profundo);
+  font-size: 1rem;
+}
+
+.pronosticoCard p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Recomendaciones */
+.recomendaciones {
+  background: var(--blanco);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.recomendaciones h2 {
+  color: var(--azul-profundo);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alertaRoja {
+  background: #ffebee;
+  border: 1px solid #e74c3c;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  animation: pulso 2s infinite;
+}
+
+.alertaRoja h3 {
+  color: #e74c3c;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.alertaRoja ul {
+  margin: 0;
+  color: #c62828;
+  padding-left: 1.5rem;
+}
+
+@keyframes pulso {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: var(--sombra);
+  }
+
+  50% {
+    transform: scale(1.01);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
+  }
+}
+
+.recomendacionesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.tarjetaRecomendacion {
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tarjetaRecomendacion:hover {
+  transform: translateY(-5px);
+}
+
+.tarjetaPreventiva {
+  background: #f0f8ff;
+  border: 1px solid #2980b9;
+}
+
+.tarjetaEmergencia {
+  background: #f0f8f0;
+  border: 1px solid #27ae60;
+}
+
+.tarjetaRecomendacion h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.tarjetaPreventiva h3 {
+  color: #2980b9;
+}
+
+.tarjetaEmergencia h3 {
+  color: #27ae60;
+}
+
+.tarjetaRecomendacion ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.tarjetaRecomendacion li {
+  margin-bottom: 0.5rem;
+}
+
+/* Mapa */
+.mapa {
+  background: var(--blanco);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mapa h2 {
+  color: var(--azul-profundo);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .alertaHidrologicaPage {
+    padding-top: 70px;
+    /* Navbar más pequeño en móvil */
+  }
+
+  .contenidoAlerta {
+    padding: 1rem;
+  }
+
+  .contenidoAlerta h1 {
+    flex-direction: column;
+    font-size: 2rem;
+  }
+
+  .filtroRegion {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtroRegion select {
+    min-width: auto;
+  }
+
+  .tablaZonas {
+    font-size: 0.9rem;
+  }
+
+  .tablaZonas th,
+  .tablaZonas td {
+    padding: 0.8rem 0.5rem;
+  }
+
+  .badgeTipo,
+  .badgeNivel {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.8rem;
+    min-width: 80px;
+  }
+
+  .recomendacionesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pronosticoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .alertaHidrologicaPage {
+    padding-top: 60px;
+  }
+
+  .contenidoAlerta {
+    padding: 0.75rem;
+  }
+
+  .filtroRegion {
+    padding: 0.75rem;
+  }
+
+  .tablaZonas th,
+  .tablaZonas td {
+    padding: 0.6rem 0.4rem;
+  }
+
+  .badgeTipo,
+  .badgeNivel {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+    min-width: 70px;
+  }
+
+  .recomendaciones,
+  .mapa,
+  .pronostico {
+    padding: 1rem;
+  }
+}

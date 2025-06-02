@@ -1,13 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
+  const navigate = useNavigate();
+
+  // Función mejorada para navegar (igual que en el Navbar)
+  const handleNavigate = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="footer">
-
-
       <div className="footer-content">
+
         <div className="footer-section about">
           <img src="/images/logo-senamhi-white.png" alt="SENAMHI" className="footer-logo" />
           <p className="about-text">
@@ -40,16 +47,65 @@ function Footer() {
         <div className="footer-section quick-links">
           <h4><i className="fas fa-link"></i> Enlaces Rápidos</h4>
           <ul>
-            <li><i className="fas fa-home"></i><Link to="/">Inicio</Link></li>
-            <li><i className="fas fa-search"></i><Link to="/transparencia">Transparencia</Link></li>
-            <li><i className="fas fa-phone"></i><Link to="/contacto">Contacto</Link></li>
             <li>
-              <i className="fas fa-exclamation-triangle"></i>
-              <Link to="/alerta-meteorologica">Alerta Meteorológica</Link>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/")}>
+                <i className="fas fa-home"></i>
+                <span>Inicio</span>
+              </button>
             </li>
             <li>
-              <i className="fas fa-water"></i>
-              <Link to="/alerta-hidrologica">Alerta Hidrológica</Link>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/transparencia")}>
+                <i className="fas fa-search"></i>
+                <span>Transparencia</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/meteorologia")}>
+                <i className="fas fa-cloud-sun"></i>
+                <span>Meteorología</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/hidrologia")}>
+                <i className="fas fa-water"></i>
+                <span>Hidrología</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button alert-link" onClick={() => handleNavigate("/alerta-meteorologica")}>
+                <i className="fas fa-exclamation-triangle"></i>
+                <span>Alerta Meteorológica</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button alert-link" onClick={() => handleNavigate("/alerta-hidrologica")}>
+                <i className="fas fa-exclamation-triangle"></i>
+                <span>Alerta Hidrológica</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/institucion/mision")}>
+                <i className="fas fa-bullseye"></i>
+                <span>Misión</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/institucion/vision")}>
+                <i className="fas fa-eye"></i>
+                <span>Visión</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/institucion/quienes-somos")}>
+                <i className="fas fa-users"></i>
+                <span>¿Quiénes Somos?</span>
+              </button>
+            </li>
+            <li>
+              <button className="footer-nav-button" onClick={() => handleNavigate("/institucion/que-hacemos")}>
+                <i className="fas fa-tasks"></i>
+                <span>¿Qué Hacemos?</span>
+              </button>
             </li>
           </ul>
         </div>
@@ -57,20 +113,21 @@ function Footer() {
         <div className="footer-section social-media">
           <h4><i className="fas fa-share-alt"></i> Síguenos</h4>
           <div className="social-icons">
-            <a href="https://www.facebook.com/senamhi" target="_blank" rel="noopener noreferrer" className="facebook">
+            <a href="https://www.facebook.com/SenamhiBoliviaOficial" target="_blank" rel="noopener noreferrer" className="social-link facebook">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="https://twitter.com/senamhi" target="_blank" rel="noopener noreferrer" className="twitter">
+            <a href="https://twitter.com/SENAMHI_Bolivia" target="_blank" rel="noopener noreferrer" className="social-link twitter">
               <i className="fab fa-twitter"></i>
             </a>
-            <a href="https://www.instagram.com/senamhi" target="_blank" rel="noopener noreferrer" className="instagram">
+            <a href="https://www.instagram.com/senamhi_bolivia/" target="_blank" rel="noopener noreferrer" className="social-link instagram">
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="https://www.youtube.com/senamhi" target="_blank" rel="noopener noreferrer" className="youtube">
+            <a href="https://www.youtube.com/@senamhibolivia3857" target="_blank" rel="noopener noreferrer" className="social-link youtube">
               <i className="fab fa-youtube"></i>
             </a>
           </div>
         </div>
+
       </div>
 
       <div className="footer-bottom">
@@ -79,9 +136,15 @@ function Footer() {
             © {new Date().getFullYear()} SENAMHI Bolivia | Todos los derechos reservados
           </p>
           <div className="footer-links">
-            <Link to="/terminos">Términos de Uso</Link>
-            <Link to="/privacidad">Política de Privacidad</Link>
-            <Link to="/mapa-sitio">Mapa del Sitio</Link>
+            <button className="footer-bottom-button" onClick={() => handleNavigate("/terminos")}>
+              Términos de Uso
+            </button>
+            <button className="footer-bottom-button" onClick={() => handleNavigate("/privacidad")}>
+              Política de Privacidad
+            </button>
+            <button className="footer-bottom-button" onClick={() => handleNavigate("/mapa-sitio")}>
+              Mapa del Sitio
+            </button>
           </div>
         </div>
       </div>
